@@ -6,17 +6,20 @@ import RegForm from './components/registeration/RegForm';
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./components/Login/Login";
+import Home from "./components/home/Home";
 function App() {
   return (
-    <div>
+    <div className="App" >
       <Router>
         <Routes>
           <Route exact path="/" element={<Login />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/reg" element={<RegForm />} />
+          <Route exact path="/home" element={<Home/>} />
+
         </Routes>
       </Router>
-      ,
+      
     </div>
   );
 

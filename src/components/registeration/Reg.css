@@ -1,5 +1,11 @@
+body{
+    background-image: url('../../assets/4380.jpg');
+    background-size: cover;
+    
+}
 
 .paperStyle{
+    
     padding: 20px;
     margin: 20px;
     height: auto;
@@ -30,9 +36,8 @@
 .inputLabel{
     color: #64c5b1 !important;
 }
-@media only screen and (max-width: 580px) {
-    .paperStyle {
-         
-              
-        }
+.genderText{
+    text-align: left;
+    margin-top: 20px;
+    color: #64c5b1 !important;
 }
