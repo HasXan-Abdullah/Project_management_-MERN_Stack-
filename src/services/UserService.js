@@ -4,7 +4,7 @@ import AuthHeader from "./AuthHeader";
 
 
 ///API
-const API_URL = "https://itechnet-server.herokuapp.com/v1/users";
+const API_URL = "http://localhost:4000/user";
 
 const getPublicContent= ()=>{
     const config =AuthHeader();

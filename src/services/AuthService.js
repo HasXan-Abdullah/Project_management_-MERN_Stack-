@@ -4,7 +4,7 @@ import axios from 'axios'
 
 /// API for users Auth
 
-const API_URL = "https://itechnet-server.herokuapp.com/v1/auth/login";
+const API_URL = "http://localhost:4000/user/login";
 
 /// Login method 
 const login = (email,password) => {
@@ -31,7 +31,7 @@ const logout = ()=>{
 /// register Method
 
 const register = (name,email,phone,address,gender,password)=>{
-  const API_URL = "https://itechnet-server.herokuapp.com/v1/auth/register";
+  const API_URL = "http://localhost:4000/user/register";
 console.log("sigin UP method");
 return axios.post(API_URL,{
   name,email,phone,address,gender,password,
