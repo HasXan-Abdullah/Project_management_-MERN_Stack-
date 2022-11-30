@@ -18,43 +18,34 @@ const Home = () => {
     dispatch(logout());
   }, [dispatch]);
   useEffect(() => {
-    // UserService.getPublicContent().then(
-    //   (response) => {
-    //     setContent(response.data.user);
-    //   },
-    //   (error) => {
-    //     const _content =
-    //       (error.response.data.user && error.response.data.user) ||
-    //       error.message ||
-    //       error.toString();
-
-    //     setContent(_content);
-    //   }
-    // );
-
     let user = window.localStorage.getItem("user")
     user = user ? JSON.parse(user) : navigate('/login');
+   
     setContent(user.user);
 
+    console.log(user);
+  
+
+   
+   
   }, []);
-  // let logout = ()=>{
-  //   window.localStorage.removeItem("user");
-  // }
 
   return (<>
     <div className="login-header">
+      <h1>Welcome {content ? content.username : ''}</h1>
       <h1>Welcome {content ? content.email : ''}</h1>
-     
-      <p> {content ? content.name : ''}</p>
-      <p> {content ? content.phone : ''}</p>
-      <p> {content ? content.address : ''}</p>
+      <p>{content ? content.gender : ''}</p>
+      <p>{content ? content.address : ''}</p>
+      <p>{content ? content.phone : ''}</p>
+      <p>{content ? content._id : ''}</p>
+
 
       <p className="d-flex justify-content-center mt-5">
         <Link to="/home" className="nav-link">
           Home
         </Link>
         <Link to="/login" className="nav-link">
-                <a onClick={logOut}>Logout</a>
+                <button onClick={logOut}>Logout</button>
               </Link>
        </p>
     </div>

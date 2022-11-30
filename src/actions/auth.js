@@ -7,9 +7,17 @@ import {
 } from './types';
 import AuthService from "../services/AuthService";
 ///for register
-export const register = (  name,email,phone,address,gender,password) => (dispatch) => {
-  return AuthService.register(  name,email,phone,address,gender,password).then(
+export const register = ( username,email,phone,address,gender,password) => (dispatch) => {
+  return AuthService.register(
+    username,
+    email,
+    phone,
+    address,
+    gender,
+    password
+  ).then(
     (response) => {
+      
       dispatch({
         type: REGISTER_SUCCESS,
       });
