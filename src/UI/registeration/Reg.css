@@ -1,9 +1,7 @@
-body{
-    background-image: url('../../assets/4380.jpg');
-    background-size: cover;
-    
+ 
+.loginContainer{
+    background-color: rgb(254, 254, 254) !important;
 }
-
 .paperStyle{
     
     padding: 20px;

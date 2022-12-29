@@ -94,9 +94,9 @@ const Login = () => {
     return (
     <>
     <div className='loginPage'>
-    <Container maxWidth="sm">
-           <Grid align="center" >
-          <Paper elevation={10} className="paperStyle">
+    <Container maxWidth="sm" >
+            <Grid align="center" className="loginContainer">
+              <Paper elevation={10} className="paperStyle loginContainer" >
     
               <Grid>
                   <Avatar className='avatarLock'>

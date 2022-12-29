@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import UserService from "../services/auth-service";
 import EventBus from "../common/EventBus";
+import MainLayout from "./Layouts/MainLayout";
 
 const BoardLeader = () => {
   const [content, setContent] = useState("");
@@ -33,6 +34,7 @@ const BoardLeader = () => {
       <header className="jumbotron">
         <h3>{content}</h3>
       </header>
+      <MainLayout/>
     </div>
   );
 };
