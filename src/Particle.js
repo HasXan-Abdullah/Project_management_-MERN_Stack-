@@ -26,12 +26,7 @@ const particlesLoaded = useCallback(async container => {
               },
               
           },
-          fullScreen: {
-            zIndex: {
-                value:-1,
-            },
-            
-        },
+         
           
           fpsLimit: 140,
           interactivity: {
