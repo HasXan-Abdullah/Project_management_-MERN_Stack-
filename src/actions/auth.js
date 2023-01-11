@@ -3,18 +3,19 @@ import {
     REGISTER_FAIL,
     LOGIN_SUCCESS,
     LOGIN_FAIL,
-    LOGOUT,SET_MESSAGE,
+    LOGOUT,SET_MESSAGE, CLEAR_MESSAGE,
 } from './types';
 import AuthService from "../services/AuthService";
 ///for register
-export const register = ( username,email,phone,address,gender,password) => (dispatch) => {
+export const register = ( username,email,phone,address,gender,password,role) => (dispatch) => {
   return AuthService.register(
     username,
     email,
     phone,
     address,
     gender,
-    password
+    password,
+    role
   ).then(
     (response) => {
       
@@ -76,7 +77,7 @@ export const login= (email,password)=>(dispatch)=>{
               type: SET_MESSAGE,
               payload: message,
             });
-      
+         
             return Promise.reject();
           }
     )
@@ -86,5 +87,6 @@ export const logout = () => (dispatch) => {
 
   dispatch({
     type: LOGOUT,
+
   });
 };

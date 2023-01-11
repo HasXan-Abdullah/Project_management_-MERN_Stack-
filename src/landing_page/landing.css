@@ -1,0 +1,72 @@
+.mt--40{
+    margin-top:8%;
+
+}
+.headingText{
+    margin-top: 7%;
+    padding-right: 50px;
+}
+.headingText>h1{
+    font-weight: bold;
+    font-size: 3rem;
+}
+.colorText{
+    color: #83d0c0;
+
+}
+.mainDiv{
+    position: sticky;
+
+}
+.startBtn{
+    background-color: #83d0c0;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 5px;
+    padding: 15px 20px;
+    margin-top:20px;
+    border: none;
+    border-radius: 20px;
+}
+.startBtn:hover{
+background-color: white;
+color: #83d0c0;
+transition: all 1s;
+border: 1px solid #83d0c0;
+}
+.paraText{
+    margin:20px;
+    font-size: 20px;
+}
+.managerPic{
+    margin-left: 20px;
+    width: 0150px;
+}
+.taskPic{
+    margin-left: 10px;
+    
+    width: 80px;
+    animation: MoveUpDown 1.9s linear infinite;
+    position: absolute;
+    left: 69%;
+    top: 25%;
+}
+.devPic{
+width: 250px;
+margin-left: 10px;
+    
+}
+.imagesBox{
+    padding: 60px;
+    text-align: center;
+    
+}
+  @keyframes MoveUpDown {
+    0%, 100% {
+      top: 20%;
+    }
+    50% {
+      top: 110px;
+    }
+  }

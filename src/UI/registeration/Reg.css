@@ -1,12 +1,32 @@
  
 .loginContainer{
-    background-color: rgb(254, 254, 254) !important;
+    background-color: #ffffff !important;
+}
+.loginPage
+{z-index: 1;
+    position: sticky;
+    margin-top: 10%;
 }
 .paperStyle{
-    
+   
+    /* padding: 20px;
+    margin: 20px; */
     padding: 20px;
-    margin: 20px;
     height: auto;
+    
+}
+.regForm{
+    position: sticky;
+    z-index: 2;
+}
+.imgSection{
+    padding-top: 5%;
+    width: 100%;
+    background-color: #ffffff;
+}
+.mainContainer{
+    justify-content: center;
+    
 }
 .textFields{
     margin-top: 25px !important;
@@ -39,3 +59,20 @@
     margin-top: 20px;
     color: #64c5b1 !important;
 }
+/*//////////////////// 
+///////////////////////
+//                   //
+//                   //
+//     Media Query   //
+//                   //
+//                   //
+///////////////////////
+////////////////////*/
+
+
+@media screen and (max-width: 480px) {
+  
+    .imgSection{
+        display: none;
+    }
+  }

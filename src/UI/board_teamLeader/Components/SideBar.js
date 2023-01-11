@@ -1,5 +1,4 @@
 import { Box, Button, Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar, Typography } from "@mui/material";
-import React from "react";
 import { Link } from "react-router-dom";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import AddBoxIcon from '@mui/icons-material/AddBox';
@@ -10,8 +9,10 @@ import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
 import DateRangeOutlinedIcon from '@mui/icons-material/DateRangeOutlined';
 import FlagCircleOutlinedIcon from '@mui/icons-material/FlagCircleOutlined';
 import WorkspacesOutlinedIcon from '@mui/icons-material/WorkspacesOutlined';
+import React from "react";
 
 const SideBar = () => {
+
   return (
     <div>
       <Drawer variant="permanent" sx={{ zIndex: 11111, width: "13rem" }}>
@@ -48,7 +49,7 @@ const SideBar = () => {
 
 
             <List
-            component={Link} to="/post"
+            component={Link} to="post"
             sx={{
               color: "rgb(20,67,57)",
               backgroundColor: " rgba(0,0,0,0)",
@@ -70,7 +71,7 @@ const SideBar = () => {
 
             <List
             component={Link}
-            to="/discussion"
+            to="discussion"
             sx={{
               color: "rgb(20,67,57)",
               backgroundColor: " rgba(0,0,0,0)",
@@ -92,7 +93,7 @@ const SideBar = () => {
 
             <List
             component={Link}
-            to="/task"
+            to="task"
             sx={{
               color: "rgb(20,67,57)",
               backgroundColor: " rgba(0,0,0,0)",
@@ -114,7 +115,7 @@ const SideBar = () => {
 
             <List
             component={Link}
-            to="/timetracking"
+            to="timetracking"
             sx={{
               color: "rgb(20,67,57)",
               backgroundColor: " rgba(0,0,0,0)",
@@ -137,7 +138,7 @@ const SideBar = () => {
 
             <List
             component={Link}
-            to="/scheduling"
+            to="scheduling"
             sx={{
               color: "rgb(20,67,57)",
               backgroundColor: " rgba(0,0,0,0)",
@@ -159,7 +160,7 @@ const SideBar = () => {
 
             <List
             component={Link}
-            to="/reporting"
+            to="reporting"
             sx={{
               color: "rgb(20,67,57)",
               backgroundColor: " rgba(0,0,0,0)",

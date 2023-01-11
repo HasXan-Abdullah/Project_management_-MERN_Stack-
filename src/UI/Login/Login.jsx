@@ -16,14 +16,16 @@ import {
     Input,
     InputLabel,
     Alert,
-
+    
     Container
 
 } from '@mui/material';
-import bg from '../../assets/4380.jpg'
+import Pic1 from '../../assets/images/pic1.jpg'
 import LockOutlined from '@material-ui/icons/LockOutlined';
 import '../registeration/Reg.css'
 import { Link } from 'react-router-dom';
+import { CLEAR_MESSAGE } from "../../actions/types";
+import Particle from "../../Particle";
 const required = (value) => {
     if (!value) {
       return (
@@ -38,7 +40,7 @@ const Login = () => {
 
     const form = useRef();
     const checkBtn = useRef();
-    const { message } = useSelector(state => state.message);
+    let { message } = useSelector(state => state.message);
     const [email, setemail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
@@ -71,8 +73,10 @@ const Login = () => {
         
           .then(() => {
           
-            navigate('/home')
-           
+            navigate('/leader-board')
+            dispatch({
+              type:CLEAR_MESSAGE,
+            })
           })
           .catch((err) => {
             setLoading(false);
@@ -81,7 +85,7 @@ const Login = () => {
           });
       } else {
         setLoading(false);
-        
+        message = null;
       }
     };
   
@@ -92,85 +96,107 @@ const Login = () => {
 
 
     return (
+      
     <>
+    <Particle/>
     <div className='loginPage'>
-    <Container maxWidth="sm" >
-            <Grid align="center" className="loginContainer">
-              <Paper elevation={10} className="paperStyle loginContainer" >
+    <Container >
+      <Paper elevation={10}>    
+        
+      <Grid className="mainContainer" container spacing={0} columns={16}>
+  <Grid item xs={8} className="imgSection" >
+ <img  width="100%" src={Pic1} alt="bg"/>
+  </Grid>
+  <Grid item xs={8} align="center" className="loginContainer">
+  <Paper   className="paperStyle loginContainer" >
     
-              <Grid>
-                  <Avatar className='avatarLock'>
-                      <LockOutlined />
-                  </Avatar>
-                  <h2>
-                      Sign in
-                  </h2>
-              </Grid>
-              <Form onSubmit={handleLogin} ref={form}>
-                  <FormGroup>
-                      <FormControl className='textFields'>
-                          <InputLabel className='inputLabel' htmlFor="email">Email address</InputLabel>
-                          <Input id="email" 
-                           name="email"
-                           type="email"
-                           value={email}
-                           onChange={onChangeemail}
-                           validations={[required]}
-                          aria-describedby="email-text" />
+    <Grid>
+        <Avatar className='avatarLock'>
+            <LockOutlined />
+        </Avatar>
+        <h2 className="">
+            Sign in
+        </h2>
+    </Grid>
+    <Form onSubmit={handleLogin} ref={form}>
+        <FormGroup>
+            <FormControl className='textFields'>
+                <InputLabel className='inputLabel' htmlFor="email">Email address</InputLabel>
+                <Input id="email" 
+                 name="email"
+                 type="email"
+                 value={email}
+                 onChange={onChangeemail}
+                 validations={[required]}
+                aria-describedby="email-text"
+                required />
 
-                      </FormControl>
-                      <FormControl className='textFields'>
-                          <InputLabel className='inputLabel' htmlFor="password">Password</InputLabel>
-                          <Input id="password"
-                          name="password"
-                          type="password"
-                          value={password}
-                          onChange={onChangePassword}
-                          validations={[required]}
-                          aria-describedby="password-text" />
+            </FormControl>
+            <FormControl className='textFields'>
+                <InputLabel className='inputLabel' htmlFor="password">Password</InputLabel>
+                <Input id="password"
+                name="password"
+                type="password"
+                value={password}
+                onChange={onChangePassword}
+                validations={[required]}
+                aria-describedby="password-text" 
+                required/>
 
-                      </FormControl>
-                      <FormGroup className='textFields'>
-                          <FormControlLabel control={<Checkbox defaultChecked style={{ "color": "#64c5b1" }} />} label="Remmber Me" />
+            </FormControl>
+            <FormGroup className='textFields'>
+                <FormControlLabel control={<Checkbox defaultChecked style={{ "color": "#64c5b1" }} />} label="Remmber Me" />
 
-                      </FormGroup>
-                  </FormGroup>
-                  <Button className='submitBtn' variant="contained" type="submit"disabled={loading}>
-              {loading && (
-                <span className="spinner-border spinner-border-sm"></span>
-              )}
-                <span>Sign In</span>
+            </FormGroup>
+        </FormGroup>
+        <Button className='submitBtn' variant="contained" type="submit"disabled={loading}>
+    {loading && (
+      <span className="spinner-border spinner-border-sm"></span>
+    )}
+      <span>Sign In</span>
 
-              </Button>
-              {message && (
-                <Alert severity="error">  
-                 {message}
-                </Alert>
-             
-            )}
-              
-            
-                  <CheckButton style={{ display: "none" }} ref={checkBtn} />
-               
-              </Form>
-              <FormGroup className='textFields'>
-                  <span >
+    </Button>
+    {
+      message && (
+        <Alert severity="error">  
+         {message}
+        </Alert>
+     
+    )
 
-                      haven't Created account Yet ?
-                      <Link
-                            to="/reg"
+    }
+     {
+      !message && (
+        null
+     
+    )
+    
+    }
+    
+  
+        <CheckButton style={{ display: "none" }} ref={checkBtn} />
+     
+    </Form>
+    <FormGroup className='textFields'>
+        <span >
 
-                          onClick={() => {
-                              console.info("I'm a button.");
-                          }}
-                      >
-                          Create Account
-                      </Link>
-                  </span></FormGroup>
+            haven't Created account Yet ?
+            <Link
+                  to="/reg"
+
+                onClick={() => {
+                    console.info("I'm a button.");
+                }}
+            >
+                Create Account
+            </Link>
+        </span></FormGroup>
 
 
-          </Paper>
-      </Grid>
+</Paper>
+  </Grid>
+</Grid>
+</Paper>
 
     </Container>
     </div>

@@ -30,7 +30,7 @@ const logout = ()=>{
 
 /// register Method
 
-const register = (username,email,phone,address,gender,password)=>{
+const register = (username,email,phone,address,gender,password,role)=>{
   const API_URL = "http://localhost:4000/users/signup";
 console.log("sigin UP method");
 return axios.post(API_URL, {
@@ -40,6 +40,7 @@ return axios.post(API_URL, {
   address,
   gender,
   password,
+  role
 });
 }
 const AuthService= {

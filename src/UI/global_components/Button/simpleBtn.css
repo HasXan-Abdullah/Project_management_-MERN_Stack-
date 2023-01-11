@@ -1,0 +1,20 @@
+.Btn{
+    text-decoration: none !important;
+    border: 2px solid #83d0c0 !important;
+    background: none;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #83d0c0;
+    border-radius: 18px;
+}
+.Btn:hover{
+    border: none;
+    background: #83d0c0;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    border-radius: 18px;
+    transition: all 0.5s;
+}
