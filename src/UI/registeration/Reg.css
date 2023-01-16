@@ -15,12 +15,15 @@
     height: auto;
     
 }
+.mainRegform{
+    margin-top: 2%;
+}
 .regForm{
     position: sticky;
     z-index: 2;
 }
 .imgSection{
-    padding-top: 5%;
+    padding-top: 15%;
     width: 100%;
     background-color: #ffffff;
 }

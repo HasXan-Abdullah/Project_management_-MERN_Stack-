@@ -21,13 +21,13 @@
 
 .card .btn {
     border-radius: 2em;
-    background-color: teal;
+    background-color: #83d0c0;
     color: #ffffff;
     padding: 0.5em 1.5em;
 }
 
 .card .btn:hover {
-    background-color: rgba(0, 128, 128, 0.7);
+    background-color: #83d0c0;
     color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }

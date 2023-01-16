@@ -1,6 +1,8 @@
 .teamSection{
-    position: sticky;
+    position: relative;
  background-color: white !important;
+ padding-bottom: 50px;
+ 
 }
 .member1{
  

@@ -1,4 +1,5 @@
 
+import Features from './features/Features';
 import Footer from './Footer/Footer';
 import HeroSection from './HeroSection';
 import LandingNavber from './navbar/LandingNavber';
@@ -15,13 +16,14 @@ const LandingPage = () => {
         data-bs-target="#navbar-example2"
         data-bs-offset="0"
         className="scrollspy-example"
-        tabindex="0"
+        tabIndex="0"
       >
        
           <HeroSection />
       
 
             <Team/>
+            <Features/>
       </div>
 
       <footer>

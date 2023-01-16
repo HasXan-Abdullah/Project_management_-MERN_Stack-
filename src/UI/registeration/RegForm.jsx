@@ -121,11 +121,11 @@ const Regform = () => {
   return (
     <>
         <Particle/>
-        <Container  className="regForm">
+        <Container  className="regForm mainRegform">
         <Paper elevation={10} align="center">      
         <Grid className="mainContainer" container spacing={0} columns={16} align="center">
     <Grid item xs={8} className="imgSection" >
-   {/* <img  width="100%" src={Pic2} alt="bg"/> */}
+   <img  width="100%" src={Pic2} alt="bg"/>
     </Grid>
     <Grid item xs={8} align="center" className="loginContainer">
     <Paper elevation={0} className="paperStyle">

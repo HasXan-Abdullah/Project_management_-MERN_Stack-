@@ -21,7 +21,7 @@ const HeroSection = () => {
         </div> */}
 
           <div>
-            <div className="container mainDiv mt--40">
+            <div className="container mainDiv mt--40 ">
               <div className="row">
                 <div className="col headingText">
                   <h1>
