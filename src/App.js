@@ -24,6 +24,7 @@ import { Particles } from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import Particle from "./Particle";
 import LandingPage from "./landing_page/LandingPage";
+import BoardMember from './UI/board_teamMember/BoardMember'
 
 function App() {
   const theme = createTheme({
@@ -44,8 +45,12 @@ function App() {
           <Routes>
             <Route exact path="/" element={<LandingPage />} />
             <Route exact path="/login" element={<Login />} />
+
+            <Route exact path="/main" element={<Home />} />
             <Route exact path="/reg" element={<RegForm />} />
-            
+
+            <Route exact path="/member" element={<BoardMember />} />
+
             <Route path="/home/*" element={<MainLayout />}>
               <Route exact path="post" element={<MyPost />} />
               <Route exact path="overview" element={<MyOverview />} />

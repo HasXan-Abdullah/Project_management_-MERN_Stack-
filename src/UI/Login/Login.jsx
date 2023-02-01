@@ -73,7 +73,7 @@ const Login = () => {
         
           .then(() => {
           
-            navigate('/leader-board')
+            navigate('/main')
             dispatch({
               type:CLEAR_MESSAGE,
             })
@@ -90,7 +90,7 @@ const Login = () => {
     };
   
     if (isLoggedIn) {
-      return <Navigate to="/home" />;
+      return <Navigate to="/main" />;
     }
 
 

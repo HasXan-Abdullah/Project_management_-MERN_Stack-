@@ -1,39 +1,30 @@
-import React, { useState, useEffect } from "react";
 
-import UserService from "../services/auth-service";
-import EventBus from "../common/EventBus";
-
+import { Link } from "react-router-dom";
+import React, { useState, useEffect, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Navigate, useNavigate  } from 'react-router-dom';
+import { logout } from '../../actions/auth';
+import SideBar from "../board_teamLeader/Components/SideBar";
+import MyHeader from "../board_teamLeader/Components/MyHeader";
 const BoardMember = () => {
+  let navigate = useNavigate();
   const [content, setContent] = useState("");
-
-  useEffect(() => {
-    UserService.getUserBoard().then(
-      (response) => {
-        setContent(response.data);
-      },
-      (error) => {
-        const _content =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-
-        setContent(_content);
-
-        if (error.response && error.response.status === 401) {
-          EventBus.dispatch("logout");
-        }
-      }
-    );
-  }, []);
-
+  const dispatch = useDispatch();
+  const logOut = useCallback(() => {
+    dispatch(logout());
+  }, [dispatch]);
   return (
-    <div className="container">
+    <>
+
+  <SideBar/>
+    <div className="container mt-4">
+
       <header className="jumbotron">
-        <h3>{content}</h3>
+      <h3>Team member profile</h3>
       </header>
+      <Link to='/login' onClick={logOut}>logout</Link>
     </div>
+    </>
   );
 };
 
