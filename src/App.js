@@ -42,8 +42,8 @@ function App() {
       <ThemeProvider theme={theme}>
         <Router>
           <Routes>
-            {/* <Route exact path="/" element={<LandingPage />} /> */}
-            <Route exact path="/" element={<Login />} />
+            <Route  path="/" element={<LandingPage />} />
+
             <Route exact path="/login" element={<Login />} />
 
             <Route exact path="/main" element={<Home />} />

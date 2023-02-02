@@ -6,7 +6,7 @@ const LandingNavber = () => {
     <div>
       <nav id="navbar-example2" className="navbar navbar-expand-lg">
         <div className="container">
-          <Link className="navbar-brand" href="/">
+          <Link className="navbar-brand" to="/">
             <span className="logo">Logo</span>
           </Link>
           <button

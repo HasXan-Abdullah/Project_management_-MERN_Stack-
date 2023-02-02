@@ -40,8 +40,12 @@ const AssignedTask = () => {
   
     return (
       <ul>
-        {matchingData.map(data => (
-          <li key={data._id}>{data.project_description} given by Leader Id : {data.leaderId} </li>
+        {matchingData.map((data) => (
+          <li key={data._id}>
+            {data.project_description} given by Leader Id : {data.leaderId} .
+            Leader name : {data.leaderId}
+            
+          </li>
         ))}
       </ul>
     );

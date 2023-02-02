@@ -23,7 +23,7 @@ const MainLayout = () => {
           
       
         <Route index element={<MyDashboard />} />
-        <Route path="/" element={<MyDashboard />} />
+        {/* <Route path="/" element={<MyDashboard />} /> */}
         <Route path="post" element={<MyPost />} />
         <Route path="overview" element={<MyOverview />} />
         <Route exact path="discussion" element={<MyDiscussion />} />

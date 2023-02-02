@@ -42,6 +42,28 @@ const MyPost = () => {
         })
         .catch(err => console.error(err));
     }, []);
+
+    const [team_members, setTeam_members] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+      setLoading(true);
+      axios
+        .post("http://localhost:4000/users/view_users")
+        .then((response) => {
+          setTeam_members(response.data.result);
+          setLoading(false);
+        })
+        .catch((error) => {
+          setError(error.message);
+          setLoading(false);
+        });
+    }, []);
+    console.log(team_members)
+    const filteredTeam_members = team_members.filter(
+      (member) => member.role ==="Member"
+    );
     const dispatch = useDispatch();
 
     const [project_description, setProjectDesc] = useState("");
@@ -75,44 +97,62 @@ const MyPost = () => {
     
   return (
     <>
-    <SecHeader>Create Project</SecHeader>
-    <div style={{padding:'10rem', marginLeft:'260px', marginTop:'0%',width:"52.5%",  backgroundColor:'#F3F4F3'}}>
-      <h1>Post a project </h1>
+      <SecHeader>Create Project</SecHeader>
+      <div
+        style={{
+          padding: "10rem",
+          marginLeft: "260px",
+          marginTop: "0%",
+          width: "52.5%",
+          backgroundColor: "#F3F4F3",
+        }}
+      >
+        <h1>Post a project </h1>
+        <div>
+          {loading && <p>Loading...</p>}
+          {error && <p>Error: {error}</p>}
+          <ul>
+            {filteredTeam_members.map((member) => (
+              <li key={member._id}>
+                {member.username}
+                : Ids : 
+                {member._id}
+              </li>
+            ))}
+          </ul>
+        </div>
 
-    <form onSubmit={handleSubmit}>
-      <label>Project Description: </label>
-      <input 
-      id="p_desc"
-      name="p_desc"
-      value={project_description}
-      onChange={onChangeProjectDesc}
-
-      />
-      <br/><br/>
-            <label>Member Id: </label>
-      <input 
-      id="memberId"
-      name="memberId"
-      value={memberId}
-      onChange={onChangeMemberId}
-
-      />
-      <br/><br/>
-            <label>Leader ID: </label>
-      <input 
-      id="LeaderId"
-      name="LeaderId"
-      value={leaderId}
-      onChange={onChangeLeaderId}
-
-      />
-      <input  type="submit"/>
-    </form>
-
-
-    </div>
+        <form onSubmit={handleSubmit}>
+          <label>Project Description: </label>
+          <input
+            id="p_desc"
+            name="p_desc"
+            value={project_description}
+            onChange={onChangeProjectDesc}
+          />
+          <br />
+          <br />
+          <label>Member Id: </label>
+          <input
+            id="memberId"
+            name="memberId"
+            value={memberId}
+            onChange={onChangeMemberId}
+          />
+          <br />
+          <br />
+          <label>Leader ID: </label>
+          <input
+            id="LeaderId"
+            name="LeaderId"
+            value={leaderId}
+            onChange={onChangeLeaderId}
+          />
+          <input type="submit" />
+        </form>
+      </div>
     </>
-  )
+  );
 }
 
 export default MyPost
