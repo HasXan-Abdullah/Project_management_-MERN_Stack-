@@ -7,3 +7,7 @@ export const LOGOUT = "LOGOUT";
 //MESSAGE TYPES 
 export const SET_MESSAGE = "SET_MESSAGE";
 export const CLEAR_MESSAGE  = "CLEAR_MESSAGE";
+//actions type for project
+export const  PROJECT_CREATED = "PROJECT_CREATED";
+export const  PROJECT_DELETED = "PROJECT_DELETED";
+export const  PROJECT_UPDATED = "PROJECT_UPDATED";

@@ -12,7 +12,7 @@ const Features = () => {
           </div>
           <div className="row1-container">
             <div className="box box-down cyan">
-              <h2>Supervisor</h2>
+              <h2>Leaders</h2>
               <p>Monitors activity to identify project roadblocks</p>
               <img
                 className="f-right"
@@ -22,7 +22,7 @@ const Features = () => {
             </div>
 
             <div className="box red">
-              <h2>Team Builder</h2>
+              <h2>Projects</h2>
               <p>
                 Scans our talent network to create the optimal team for your
                 project
@@ -35,7 +35,7 @@ const Features = () => {
             </div>
 
             <div className="box box-down blue">
-              <h2>Calculator</h2>
+              <h2>Members</h2>
               <p>
                 Uses data from past projects to provide better delivery
                 estimates
@@ -49,7 +49,7 @@ const Features = () => {
           </div>
           <div className="row2-container">
             <div className="box orange">
-              <h2>Karma</h2>
+              <h2>Tasks</h2>
               <p>Regularly evaluates our talent to ensure quality</p>
               <img
                 className="f-right"

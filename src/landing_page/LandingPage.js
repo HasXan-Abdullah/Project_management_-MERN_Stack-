@@ -22,8 +22,8 @@ const LandingPage = () => {
           <HeroSection />
       
 
-            <Team/>
-            <Features/>
+            <Team />
+            <Features />
       </div>
 
       <footer>
