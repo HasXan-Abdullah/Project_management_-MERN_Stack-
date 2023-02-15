@@ -71,11 +71,26 @@ const MyPost = () => {
       const p_Desc = e.target.value;
       setProjectDesc(p_Desc);
     };
-    const [memberId, setMemberId] = useState("");
-    const onChangeMemberId = (e) => {
-      const member_Id = e.target.value;
-      setMemberId(member_Id);
+      const [project_name, setProjectName] = useState("");
+      const onChangeProjectName = (e) => {
+        const p_Name = e.target.value;
+        setProjectName(p_Name);
+      };
+    const [memberId1, setMemberId1] = useState("");
+    const onChangeMemberId1 = (e) => {
+      const member_Id1 = e.target.value;
+      setMemberId1(member_Id1);
     };
+     const [memberId2, setMemberId2] = useState("");
+     const onChangeMemberId2 = (e) => {
+       const member_Id2 = e.target.value;
+       setMemberId2(member_Id2);
+     };
+      const [memberId3, setMemberId3] = useState("");
+      const onChangeMemberId3 = (e) => {
+        const member_Id3 = e.target.value;
+        setMemberId3(member_Id3);
+      };
     const [leaderId, setLeaderId] = useState("");
     const onChangeLeaderId = (e) => {
       const leader_Id = e.target.value;
@@ -83,16 +98,26 @@ const MyPost = () => {
     };
     const handleSubmit = (e) => {
    
-  
+ 
 
-        dispatch(addproject(project_description,memberId,leaderId))
+        dispatch(
+          
+          addproject(
+            project_name,
+            project_description,
+            memberId1,
+            memberId2,
+            memberId3,
+            leaderId
+          )
+        )
           .then(() => {
-            alert("data Entered")
+            alert("data Entered");
           })
           .catch((err) => {
-           
             console.log({ err });
           });
+        
       } 
     
   return (
@@ -114,15 +139,22 @@ const MyPost = () => {
           <ul>
             {filteredTeam_members.map((member) => (
               <li key={member._id}>
-                {member.username}
-                : Ids : 
-                {member._id}
+                {member.username}: Ids :{member._id}
               </li>
             ))}
           </ul>
         </div>
 
         <form onSubmit={handleSubmit}>
+          <label>Project Name: </label>
+          <input
+            id="p_name"
+            name="p_name"
+            value={project_name}
+            onChange={onChangeProjectName}
+          />
+          <br />
+          <br />
           <label>Project Description: </label>
           <input
             id="p_desc"
@@ -132,12 +164,30 @@ const MyPost = () => {
           />
           <br />
           <br />
-          <label>Member Id: </label>
+          <label>Member Id1: </label>
           <input
-            id="memberId"
-            name="memberId"
-            value={memberId}
-            onChange={onChangeMemberId}
+            id="memberId1"
+            name="memberId1"
+            value={memberId1}
+            onChange={onChangeMemberId1}
+          />
+          <br />
+          <br />
+          <label>Member Id2: </label>
+          <input
+            id="memberId2"
+            name="memberId2"
+            value={memberId2}
+            onChange={onChangeMemberId2}
+          />
+          <br />
+          <br />
+          <label>Member Id3: </label>
+          <input
+            id="memberId3"
+            name="memberId3"
+            value={memberId3}
+            onChange={onChangeMemberId3}
           />
           <br />
           <br />

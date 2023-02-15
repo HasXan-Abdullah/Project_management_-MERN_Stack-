@@ -28,7 +28,11 @@ const AssignedTask = () => {
           const apiData = res.data.result;
           let matchingData = [];
           for (let i = 0; i < apiData.length; i++) {
-            if (storedId === apiData[i].memberId) {
+            if (
+              storedId === apiData[i].memberId1 ||
+              storedId === apiData[i].memberId2 ||
+              storedId === apiData[i].memberId3
+            ) {
               matchingData.push(apiData[i]);
             }
           }
@@ -39,15 +43,16 @@ const AssignedTask = () => {
     }, []);
   
     return (
-      <ul>
+      <div>
         {matchingData.map((data) => (
-          <li key={data._id}>
+          <div key={data._id}>
             {data.project_description} given by Leader Id : {data.leaderId} .
             Leader name : {data.leaderId}
             
-          </li>
+          </div>
         ))}
-      </ul>
+        
+      </div>
     );
 }
 

@@ -3,13 +3,25 @@ import axios from 'axios'
 
 
 /// create a project
-const add_project = (project_description,memberId,leaderId)=>{
-    const API_URL = "http://localhost:4000/users/addproject";
+const add_project = (
+  project_name,
+  project_description,
+  memberId1,
+  memberId2,
+  memberId3,
+  leaderId
+) => {
+  const API_URL = "http://localhost:4000/users/addproject";
 
-return axios.post(API_URL, {
-    project_description,memberId,leaderId
-});
-}
+  return axios.post(API_URL, {
+    project_name,
+    project_description,
+    memberId1,
+    memberId2,
+    memberId3,
+    leaderId
+  });
+};
 const ProjectService= {
 
   add_project,
