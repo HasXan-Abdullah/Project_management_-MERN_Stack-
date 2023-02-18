@@ -34,7 +34,7 @@ const MyHeader = () => {
   return (
     <div>
       <AppBar elevation={0}>
-            <Toolbar sx={{ml:'15rem', bgcolor:'rgb(255, 255, 255)' , color:'black'}}>
+            <Toolbar sx={{ bgcolor:'rgb(255, 255, 255)' , color:'black'}}>
                 {/* FYP */}
                 {/* <SearchBar/> */} 
                 <MySearch/>
@@ -68,7 +68,7 @@ const MyHeader = () => {
                  ml:12 ,mr:12}} 
                  onClick={logOut} variant="outlined">Logout</Button>
               </Link>
-              <p>{content.username}</p>
+              <p>{content.name}</p>
             </Toolbar>
 
               

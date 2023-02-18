@@ -9,5 +9,5 @@ export const SET_MESSAGE = "SET_MESSAGE";
 export const CLEAR_MESSAGE  = "CLEAR_MESSAGE";
 //actions type for project
 export const  PROJECT_CREATED = "PROJECT_CREATED";
-export const  PROJECT_DELETED = "PROJECT_DELETED";
+export const DELETE_PROJECT_SUCCESS = "DELETE_PROJECT_SUCCESS";
 export const  PROJECT_UPDATED = "PROJECT_UPDATED";

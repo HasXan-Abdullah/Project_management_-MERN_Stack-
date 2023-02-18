@@ -11,7 +11,7 @@ const add_project = (
   memberId3,
   leaderId
 ) => {
-  const API_URL = "http://localhost:4000/users/addproject";
+  const API_URL = "http://localhost:3000/v1/projects/createProject";
 
   return axios.post(API_URL, {
     project_name,
@@ -22,8 +22,19 @@ const add_project = (
     leaderId
   });
 };
-const ProjectService= {
 
+/// delete  project 
+
+const delete_project = (projectId) => {
+  const API_URL = `http://localhost:3000/v1/projects/updateproject/${projectId}`;
+
+  return axios.delete(API_URL);
+};
+
+
+
+const ProjectService= {
+delete_project,
   add_project,
 }
 export default ProjectService;

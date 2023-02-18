@@ -1,5 +1,5 @@
 import ProjectService from "../services/ProjectService";
-import { PROJECT_CREATED, PROJECT_DELETED,SET_MESSAGE} from "./types";
+import { DELETE_PROJECT_SUCCESS, PROJECT_CREATED, PROJECT_DELETED,SET_MESSAGE} from "./types";
 
 export const addproject =
   (
@@ -40,7 +40,7 @@ export const addproject =
           error.toString();
 
         dispatch({
-          type: PROJECT_DELETED,
+          type: DELETE_PROJECT_SUCCESS,
         });
 
         dispatch({
@@ -52,3 +52,10 @@ export const addproject =
       }
     );
   };
+  
+export const delete_project = (projectId) => ({
+  type: DELETE_PROJECT_SUCCESS,
+  payload: {
+    projectId,
+  },
+});

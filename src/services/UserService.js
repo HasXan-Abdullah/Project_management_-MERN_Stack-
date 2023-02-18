@@ -4,7 +4,7 @@ import AuthHeader from "./AuthHeader";
 
 
 ///API
-const API_URL = "http://localhost:4000/users/";
+const API_URL = "http://localhost:3000/users/";
 
 const getPublicContent= ()=>{
     const config =AuthHeader();

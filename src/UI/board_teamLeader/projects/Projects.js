@@ -8,7 +8,9 @@ import Typography from "@mui/material/Typography";
 import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Navigate, useNavigate } from "react-router-dom";
+import { delete_project } from "../../../actions/project";
 const Projects = () => {
+      const dispatch = useDispatch();
      let navigate = useNavigate();
      const [content, setContent] = useState("");
      let user = window.localStorage.getItem("user");
@@ -18,16 +20,19 @@ const Projects = () => {
 
        setContent(user.user);
 
-       console.log(user.user._id);
+      
      }, []);
      const [matchingData, setMatchingData] = useState([]);
      useEffect(() => {
-       const storedId = user.user._id;
-       const apiUrl = "http://localhost:4000/users/viewproject";
+       const storedId = user.user.id;
+       console.log(storedId);
+       const apiUrl = "http://localhost:3000/v1/projects/getProjects";
+
        axios
-         .post(apiUrl)
-         .then((res) => {
-           const apiData = res.data.result;
+         .get(apiUrl)
+         .then((results) => {
+           const apiData = results.data.results;
+           console.log(apiData);
            let matchingData = [];
            for (let i = 0; i < apiData.length; i++) {
              if (storedId === apiData[i].leaderId) {
@@ -38,11 +43,11 @@ const Projects = () => {
            console.log(matchingData);
          })
          .catch((err) => console.error(err));
-     }, []);
+     }, [setMatchingData]);
   return (
     <div>
       {matchingData.map((data) => (
-        <div key={data._id}>
+        <div key={data.id}>
           
             <Card sx={{ maxWidth: 600 }}>
               <CardContent>
@@ -67,7 +72,11 @@ const Projects = () => {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small">Card Button</Button>
+                <Button size="small" onClick={()=>{
+                    dispatch(
+                      delete_project(data.id)
+                    )
+                }} >Delete</Button>
               </CardActions>
             </Card>
          

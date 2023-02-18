@@ -15,30 +15,33 @@ const Home = () => {
     dispatch(logout());
   }, [dispatch]);
   useEffect(() => {
-    let user = window.localStorage.getItem("user")
+    let user = window.localStorage.getItem("user");
+    console.log(user);
     user = user ? JSON.parse(user) : navigate('/login');
    
     setContent(user.user);
 
 
 
-    console.log(user);
+    
   
 
    
    
   }, []);
 
-
-      if (content.role === "Leader"){
-    console.log(content.role)
+  console.log(content.category)
+      if (content.category === "leader"){
+    console.log(content.category)
     return <Navigate to="/home" />;
     }
-  else  if (content.role === "Member"){
-    console.log(content.role)
+  else  if (content.category === "member"){
+    console.log(content.category)
     return <Navigate to="/member" />;
     }
-  
-}
+
+
+
+};
 
 export default Home

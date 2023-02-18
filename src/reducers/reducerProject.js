@@ -1,4 +1,5 @@
 import {
+  DELETE_PROJECT_SUCCESS,
    PROJECT_CREATED
   } from "../actions/types";
   
@@ -12,25 +13,20 @@ import {
   
   export default function (state = initialState, action) {
     switch (action.type) {
-    //   case "POST_TODO_REQUEST":
-    //     return {
-    //       ...state,
-    //       loading: true,
-    //       error: null
-    //     };
       case PROJECT_CREATED:
         return {
           ...state,
           projects: [...state.projects, action.projects],
           loading: false,
-          error: null
+          error: null,
         };
-    //   case "POST_TODO_FAILURE":
-    //     return {
-    //       ...state,
-    //       loading: false,
-    //       error: action.error
-    //     };
+      case DELETE_PROJECT_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+          error:null,
+          deletedProjectId: action.payload.projectId,
+        };
       default:
         return state;
     }

@@ -13,7 +13,7 @@ const AssignedTask = () => {
      
       setContent(user.user);
   
-      console.log(user.user._id);
+    
     
   
      
@@ -21,11 +21,13 @@ const AssignedTask = () => {
     }, []);
     const [matchingData, setMatchingData] = useState([]);
     useEffect(() => {
-      const storedId = user.user._id;
-      const apiUrl="http://localhost:4000/users/viewproject";
-      axios.post(apiUrl)
-        .then(res => {
-          const apiData = res.data.result;
+          const storedId = user.user.id;
+          console.log(storedId);
+      const apiUrl = "http://localhost:3000/v1/projects/getProjects";
+      axios
+        .get(apiUrl)
+        .then((results) => {
+          const apiData = results.data.results;
           let matchingData = [];
           for (let i = 0; i < apiData.length; i++) {
             if (
@@ -37,15 +39,15 @@ const AssignedTask = () => {
             }
           }
           setMatchingData(matchingData);
-          console.log(matchingData)
+          console.log(matchingData);
         })
-        .catch(err => console.error(err));
+        .catch((err) => console.error(err));
     }, []);
   
     return (
       <div>
         {matchingData.map((data) => (
-          <div key={data._id}>
+          <div key={data.id}>
             {data.project_description} given by Leader Id : {data.leaderId} .
             Leader name : {data.leaderId}
             

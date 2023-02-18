@@ -33,7 +33,7 @@ import "./Reg.css";
 const required = (value) => {
   if (!value) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div className="alert alert-danger" category="alert">
         This field is required!
       </div>
     );
@@ -50,7 +50,8 @@ const Regform = () => {
   const form = useRef();
   const checkBtn = useRef();
   const { message } = useSelector((state) => state.message);
-  const [role, setRole] = useState("");
+  const [category, setcategory] = useState("");
+  const [role, setrole] = useState("");
   const [gender, setGender] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
@@ -90,22 +91,27 @@ const Regform = () => {
     const password = e.target.value;
     setPassword(password);
   };
-  const handleRoleChange = (e) => {
-    const role = e.target.value;
-    setRole(role);
+  const handlecategoryChange = (e) => {
+    const category = e.target.value;
+    setcategory(category);
   
+  };
+  const handleroleChange = (e) => {
+    const role = e.target.value;
+    setrole(role);
+
   };
 
   const handleRegister = (e) => {
     e.preventDefault();
-    console.log(role)
+    console.log(category)
     setLoading(true);
 
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
       console.log(" to register");
-      dispatch(register(name, email, phone, address, gender, password,role))
+      dispatch(register(name, email, phone, address, gender, password, category, role))
         .then(() => {
           navigate("/login");
         })
@@ -213,22 +219,40 @@ const Regform = () => {
                 />
               </FormControl>
               <FormControl className="textFields">
-                <InputLabel className="inputLabel" id="demo-simple-select-label">Role</InputLabel>
+                <InputLabel className="inputLabel" id="demo-simple-select-label">category</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
-                  id="role"
-                  name="role"
+                  id="category"
+                  name="category"
                   className="inputLabel"
-                  value={role}
-                  label="Role"
-                  onChange={handleRoleChange}
+                  value={category}
+                  label="category"
+                  onChange={handlecategoryChange}
                   validations={[required]}
                   required
                 >
-                  <MenuItem className="inputLabel" value="Leader">Team Leader</MenuItem>
-                  <MenuItem  className="inputLabel" value="Member">Team Member</MenuItem>
+                  <MenuItem className="inputLabel" value="leader">Team Leader</MenuItem>
+                  <MenuItem  className="inputLabel" value="member">Team Member</MenuItem>
                 </Select>
               </FormControl>
+                      <FormControl className="textFields">
+                        <InputLabel className="inputLabel" id="demo-simple-select-label">role</InputLabel>
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="role"
+                          name="role"
+                          className="inputLabel"
+                          value={role}
+                          label="role"
+                          onChange={handleroleChange}
+                          validations={[required]}
+                          required
+                        >
+                          <MenuItem className="inputLabel" value="admin">admin</MenuItem>
+                          <MenuItem className="inputLabel" value="user">user</MenuItem>
+                        </Select>
+                      </FormControl>
+             
               <FormControl
                 name="gender"
                 value={gender}

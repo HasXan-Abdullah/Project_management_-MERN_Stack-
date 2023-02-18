@@ -4,7 +4,7 @@ import axios from 'axios'
 
 /// API for users Auth
 
-const API_URL = "http://localhost:4000/users/signin";
+const API_URL = "http://localhost:3000/v1/auth/login";
 
 /// Login method 
 const login = (email,password) => {
@@ -14,11 +14,11 @@ const login = (email,password) => {
     email,password,
   }).then((response)=>{
     console.log({response})
-    
-    if(response.data.token){
+    console.log(response.data)
+    if(response.data.tokens){
       window.localStorage.setItem("user",JSON.stringify(response.data));
     }
-    return response.data;
+    return response.data; 
   });
 };
 
@@ -30,19 +30,29 @@ const logout = ()=>{
 
 /// register Method
 
-const register = (username,email,phone,address,gender,password,role)=>{
-  const API_URL = "http://localhost:4000/users/signup";
-console.log("sigin UP method");
-return axios.post(API_URL, {
-  username,
+const register = (
+  name,
   email,
   phone,
   address,
   gender,
   password,
+  category,
   role
-});
-}
+) => {
+  const API_URL = "http://localhost:3000/v1/auth/register";
+  console.log("sigin UP method");
+  return axios.post(API_URL, {
+    name,
+    email,
+    phone,
+    address,
+    gender,
+    password,
+    category,
+    role
+  });
+};
 const AuthService= {
   login,
   logout,
