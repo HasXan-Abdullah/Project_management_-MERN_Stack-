@@ -10,10 +10,10 @@ const Footer = () => {
         <div className="row">
           <div className="col-sm-12 col-md-6">
             <h6>About</h6>
-            <p className="text-justify">Scanfcode.com <i>CODE WANTS TO BE SIMPLE </i> is an initiative  to help the upcoming programmers with the code. Scanfcode focuses on providing the most efficient code or snippets as the code wants to be simple. We will help programmers build up concepts in different programming languages that include C, C++, Java, HTML, CSS, Bootstrap, JavaScript, PHP, Android, SQL and Algorithm.</p>
+            <p className="text-justify">Projectify provides structure and control of the project environment so that the agreed activities will produce the right services to meet the expectations. It enabling more accurate reporting and a more efficient, collaboration-based and data-driven work environment. It includes scheduling, reporting, submission, to do list, updates about projects, meetups to easily.</p>
           </div>
 
-          <div className="col-xs-6 col-md-3">
+          {/* <div className="col-xs-6 col-md-3">
             <h6>Categories</h6>
             <ul className="footer-links">
               <li><a href="http://scanfcode.com/category/c-language/">C</a></li>
@@ -23,7 +23,7 @@ const Footer = () => {
               <li><a href="http://scanfcode.com/category/android/">Android</a></li>
               <li><a href="http://scanfcode.com/category/templates/">Templates</a></li>
             </ul>
-          </div>
+          </div> */}
 
           <div className="col-xs-6 col-md-3">
             <h6>Quick Links</h6>
@@ -41,19 +41,19 @@ const Footer = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-8 col-sm-6 col-xs-12">
-            <p className="copyright-text">Copyright &copy; 2017 All Rights Reserved by 
-         <a href="#">Scanfcode</a>.
+            <p className="copyright-text">Copyright &copy; 2023 All Rights Reserved by 
+         <b> FYP-BCSM-F22-059</b>
             </p>
           </div>
 
-          <div className="col-md-4 col-sm-6 col-xs-12">
+          {/* <div className="col-md-4 col-sm-6 col-xs-12">
             <ul className="social-icons">
               <li><a className="facebook" href="#"><i className="fa fa-facebook"></i></a></li>
               <li><a className="twitter" href="#"><i className="fa fa-twitter"></i></a></li>
               <li><a className="dribbble" href="#"><i className="fa fa-dribbble"></i></a></li>
               <li><a className="linkedin" href="#"><i className="fa fa-linkedin"></i></a></li>   
             </ul>
-          </div>
+          </div> */}
         </div>
       </div>
 </footer>

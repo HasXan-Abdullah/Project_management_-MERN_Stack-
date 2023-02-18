@@ -22,7 +22,7 @@ const LandingPage = () => {
           <HeroSection />
       
 
-            <Team />
+            {/* <Team /> */}
             <Features />
       </div>
 

@@ -7,7 +7,8 @@ const LandingNavber = () => {
       <nav id="navbar-example2" className="navbar navbar-expand-lg">
         <div className="container">
           <Link className="navbar-brand" to="/">
-            <span className="logo">Logo</span>
+            {/* <span className="logo">Logo</span> */}
+            <img src='proj.svg' />
           </Link>
           <button
             className="navbar-toggler"
@@ -28,11 +29,11 @@ const LandingNavber = () => {
                   Home
                 </a>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <a className="nav-link" href="#scrollspyHeading2">
                   Team
                 </a>
-              </li>
+              </li> */}
               <li className="nav-item">
                 <a className="nav-link" href="#scrollspyHeading3">
                   Features
