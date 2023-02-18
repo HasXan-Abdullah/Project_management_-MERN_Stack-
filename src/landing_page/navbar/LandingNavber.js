@@ -38,11 +38,11 @@ const LandingNavber = () => {
                   Features
                 </a>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <a className="nav-link" href="#scrollspyHeading4">
                   Contact Us
                 </a>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
