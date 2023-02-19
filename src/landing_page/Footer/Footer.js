@@ -7,7 +7,7 @@ const Footer = () => {
        
     <footer className="site-footer">
       <div className="container">
-        <div className="row">
+        <div className="row justify-content-between" >
           <div className="col-sm-12 col-md-6">
             <h6>About</h6>
             <p className="text-justify">Projectify provides structure and control of the project environment so that the agreed activities will produce the right services to meet the expectations. It enabling more accurate reporting and a more efficient, collaboration-based and data-driven work environment. It includes scheduling, reporting, submission, to do list, updates about projects, meetups to easily.</p>
@@ -16,12 +16,13 @@ const Footer = () => {
           {/* <div className="col-xs-6 col-md-3">
             <h6>Categories</h6>
             <ul className="footer-links">
-              <li><a href="http://scanfcode.com/category/c-language/">C</a></li>
-              <li><a href="http://scanfcode.com/category/front-end-development/">UI Design</a></li>
-              <li><a href="http://scanfcode.com/category/back-end-development/">PHP</a></li>
-              <li><a href="http://scanfcode.com/category/java-programming-language/">Java</a></li>
-              <li><a href="http://scanfcode.com/category/android/">Android</a></li>
-              <li><a href="http://scanfcode.com/category/templates/">Templates</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML">HTML</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a></li>
+              <li><a href="https://mui.com/material-ui/getting-started/overview/">Material UI</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">Java Script</a></li>
+              <li><a href="https://reactjs.org/">ReactJS</a></li>
+              <li><a href="https://www.mongodb.com/cloud/atlas/lp/try4?utm_content=rlsavisitor&utm_source=google&utm_campaign=search_gs_pl_evergreen_atlas_core_retarget-brand_gic-null_emea-all_ps-all_desktop_eng_lead&utm_term=mongodb&utm_medium=cpc_paid_search&utm_ad=e&utm_ad_campaign_id=14412646455&adgroup=131761126492&cq_cmp=14412646455&gclid=Cj0KCQiArsefBhCbARIsAP98hXSAjzHB6ltJcXa-lN9GgjynnlIVKKKRNPGsoe1rdZT4m2qILczfeeQaAuZPEALw_wcB">Mongo DB</a></li>
+              <li><a href="https://nodejs.org/en/">Node JS</a></li>
             </ul>
           </div> */}
 
@@ -42,7 +43,7 @@ const Footer = () => {
         <div className="row">
           <div className="col-md-8 col-sm-6 col-xs-12">
             <p className="copyright-text">Copyright &copy; 2023 All Rights Reserved by 
-         <b> FYP-BCSM-F22-059</b>
+         <i> Projectify</i>
             </p>
           </div>
 

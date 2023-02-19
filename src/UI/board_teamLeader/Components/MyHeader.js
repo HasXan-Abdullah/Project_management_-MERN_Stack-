@@ -12,6 +12,8 @@ import SimpleButton from '../../global_components/Button/SimpleButton'
 import { Link, Navigate, useNavigate  } from 'react-router-dom';
 import { logout } from "../../../actions/auth";
 
+
+import './component.css'
 const MyHeader = () => {
   let navigate = useNavigate();
   const [content, setContent] = useState("");
@@ -37,9 +39,10 @@ const MyHeader = () => {
             <Toolbar sx={{ bgcolor:'rgb(255, 255, 255)' , color:'black'}}>
                 {/* FYP */}
                 {/* <SearchBar/> */} 
-                <MySearch/>
+                {/* <MySearch/> */}
+                
                 <Box sx={{
-                          ml:65 ,
+                          ml:20 ,
                           display:'flex',
                           justifyContent:'space-between',
                           width:'5%',
@@ -48,18 +51,17 @@ const MyHeader = () => {
                           
                          }}>
                 <NotificationsNoneIcon sx ={{color:'rgb(153,153,153)' , fontSize:'1.3rem', "fontWeightLight": 300, cursor:'pointer'}}/>
-                <MailOutlineIcon sx ={{color:'rgb(153,153,153)' , fontSize:'1.3rem', cursor:'pointer'}}/>
                 
                 </Box>
-                <Avatar 
+                {/* <Avatar 
                     alt="?"
                     src="/static/images/avatar/1.jpg"
                     sx={{width: 30, height: 30, ml:12 ,mr:12}}
-                />
+                /> */}
                             <Link style={{
                               textDecoration:'none',
                             }} to="/login" className="nav-link">
-            
+                
                 <Button sx={{
                  color:"#64c5b1",
                  

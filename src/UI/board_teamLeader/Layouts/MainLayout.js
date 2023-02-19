@@ -13,12 +13,24 @@ import MyTask from '../Views/MyTask'
 import TimeTracking from '../Views/TimeTracking'
 import Scheduling from '../Views/Scheduling'
 import Reporting from '../Views/Reporting'
+import SideLink from '../../global_components/SideLinks/SideLink'
+// import MyDashboard from '../board_teamLeader/Views/MyDashboard'
+// import MyPost from '../board_teamLeader/Views/MyPost'
+// import MyOverview from '../board_teamLeader/Views/MyOverview'
+// import MyDiscussion from '../board_teamLeader/Views/MyDiscussion'
+// import MyTask from '../board_teamLeader/Views/MyTask'
+// import TimeTracking from '../board_teamLeader/Views/TimeTracking'
+// import Scheduling from '../board_teamLeader/Views/Scheduling'
+// import Reporting from '../board_teamLeader/Views/Reporting'
+// import SideLink from '../../global_components/SideLinks/SideLink'
+
 
 const MainLayout = () => {
   return (
     <div>
-       <SideBar/>
-          <MyHeader/>
+      <SideLink/>
+       {/* <SideBar/> */}
+          {/* <MyHeader/> */}
         <Routes> 
           
       
