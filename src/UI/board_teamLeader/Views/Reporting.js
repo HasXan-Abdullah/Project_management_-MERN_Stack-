@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material'
 import React from 'react'
-import SecHeader from '../Components/SecHeader'
+import SecHeader from "../../Components/SecHeader";
 
 const Reporting = () => {
   return (

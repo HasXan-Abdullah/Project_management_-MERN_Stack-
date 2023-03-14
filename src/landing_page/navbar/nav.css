@@ -1,16 +1,17 @@
+
+/* .logo{
+  width: 20% !important;
+} */
 .navbar{
 position: fixed;
     top: 0;
-  background-color: white;
-  
+  background-color: rgb(255, 255, 255);
+  margin: 0px;
     width: 100%;
-    padding-top: 20px;
+    padding: 0px;
     z-index: 9;
 }
-.logo{
-    font-size: 34px !important;
-    color: #83d0c0;
-}
+
  .nav-pills .nav-link.active,
  .nav-pills .show>.nav-link{
     color: black;

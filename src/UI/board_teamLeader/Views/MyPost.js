@@ -1,20 +1,21 @@
-import { Typography } from '@mui/material';
-import SecHeader from '../Components/SecHeader'
-import axios from "axios";
 
-import React, { useState, useEffect, useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, Navigate, useNavigate  } from 'react-router-dom';
-import { addproject } from '../../../actions/project';
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import {  useNavigate  } from 'react-router-dom';
+import {  add_project } from '../../../actions/project';
+import Select from '@mui/material/Select';
+import { MenuItem } from "@mui/material";
+import GetTeamMember from "../projects/GetTeamMember";
 
 const MyPost = () => {
-
+const members = GetTeamMember().members;
+console.log(members);
     let navigate = useNavigate();
     const [content, setContent] = useState("");
     let user = window.localStorage.getItem("user")
   
     useEffect(() => {
-      user = user ? JSON.parse(user) : navigate('/login');
+      user = user ? JSON.parse(user) : navigate('/login'); 
      
       setContent(user.user);
   
@@ -24,42 +25,12 @@ const MyPost = () => {
      
      
     }, []);
-    const [matchingData, setMatchingData] = useState([]);
-    useEffect(() => {
-      const storedId = user.user._id;
-      const apiUrl="http://localhost:4000/users/viewproject";
-      axios.post(apiUrl)
-        .then(res => {
-          const apiData = res.data.result;
-          let matchingData = [];
-          for (let i = 0; i < apiData.length; i++) {
-            if (storedId === apiData[i].member) {
-              matchingData.push(apiData[i]);
-            }
-          }
-          setMatchingData(matchingData);
-          console.log(matchingData)
-        })
-        .catch(err => console.error(err));
-    }, []);
 
     const [team_members, setTeam_members] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-      setLoading(true);
-      axios
-        .post("http://localhost:4000/users/view_users")
-        .then((response) => {
-          setTeam_members(response.data.result);
-          setLoading(false);
-        })
-        .catch((error) => {
-          setError(error.message);
-          setLoading(false);
-        });
-    }, []);
+
     console.log(team_members)
     const filteredTeam_members = team_members.filter(
       (member) => member.role ==="Member"
@@ -102,7 +73,7 @@ const MyPost = () => {
 
         dispatch(
           
-          addproject(
+          add_project(
             project_name,
             project_description,
             memberId1,
@@ -122,16 +93,7 @@ const MyPost = () => {
     
   return (
     <>
-      <SecHeader>Create Project</SecHeader>
-      <div
-        style={{
-          padding: "10rem",
-          marginLeft: "260px",
-          marginTop: "0%",
-          width: "52.5%",
-          backgroundColor: "#F3F4F3",
-        }}
-      >
+      <div className="mt-5">
         <h1>Post a project </h1>
         <div>
           {loading && <p>Loading...</p>}
@@ -200,6 +162,19 @@ const MyPost = () => {
           />
           <input type="submit" />
         </form>
+
+        {/* example  */}
+        <div>
+          <Select>
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            {Array.isArray(members) &&
+              members.map((member) => (
+                <MenuItem value={member.id}>{member.email}</MenuItem>
+              ))}
+          </Select>
+        </div>
       </div>
     </>
   );

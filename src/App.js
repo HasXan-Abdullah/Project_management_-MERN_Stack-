@@ -1,13 +1,12 @@
-import { TextField, Typography } from "@mui/material";
+
 import "./App.css";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
+
 import RegForm from "./UI/registeration/RegForm";
-import ReactDOM from "react-dom";
+
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./UI/Login/Login";
 import Home from "./UI/home/Home";
-import MyDashboard from "./UI/board_teamLeader/Views/MyDashboard";
+
 import MyPost from "./UI/board_teamLeader/Views/MyPost";
 import MyOverview from "./UI/board_teamLeader/Views/MyOverview";
 import MyTask from "./UI/board_teamLeader/Views/MyTask";
@@ -18,11 +17,6 @@ import MyDiscussion from "./UI/board_teamLeader/Views/MyDiscussion";
 import MainLayout from "./UI/board_teamLeader/Layouts/MainLayout";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import typography from "./typography";
-import BoardLeader from "./UI/board_teamLeader/BoardLeader";
-import { useCallback } from "react";
-import { Particles } from "react-tsparticles";
-import { loadFull } from "tsparticles";
-import Particle from "./Particle";
 import LandingPage from "./landing_page/LandingPage";
 import BoardMember from './UI/board_teamMember/BoardMember';
 function App() {

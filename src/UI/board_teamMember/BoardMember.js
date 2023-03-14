@@ -2,11 +2,13 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Navigate, useNavigate  } from 'react-router-dom';
 import { logout } from '../../actions/auth';
-import SideBar from "../board_teamLeader/Components/SideBar";
-import MyHeader from "../board_teamLeader/Components/MyHeader";
+
 import axios from "axios";
 import AssignedTask from "./AssignedTask";
 import { Button } from "@mui/material";
+import ProjectList from "../board_teamLeader/projects/ProjectList";
+import ProjectData from "../board_teamLeader/projects/ProjectData";
+import { getProjects } from "../../actions/project";
 
 const BoardMember = () => {
   let navigate = useNavigate();
@@ -18,17 +20,15 @@ const BoardMember = () => {
   let user = window.localStorage.getItem("user")
 
   useEffect(() => {
-    user = user ? JSON.parse(user) : navigate('/login');
-   
+    user = user ? JSON.parse(user) : navigate("/login");
+
     setContent(user.user);
 
-    console.log(user.user._id);
-  
+    console.log(user.user.id);
+  }, [user]);
 
-   
-   
-  }, []);
-  const [project, setProject] = useState([]);
+  
+  // const [project, setProject] = useState([]);
   return (
     <>
       <div className="container mt-4">
@@ -61,6 +61,7 @@ const BoardMember = () => {
         </header>
         <h3>Your tasks</h3>
         <AssignedTask />
+              
       </div>
     </>
   );

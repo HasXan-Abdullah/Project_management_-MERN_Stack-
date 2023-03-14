@@ -1,22 +1,38 @@
-import { Typography } from '@mui/material'
+
+import { Container } from '@mui/system'
 import React from 'react'
-import SecHeader from '../Components/SecHeader'
+import SecHeader from '../../Components/SecHeader'
 import MyCard from '../DASHBOARD/MyCard'
+import InfoCards from '../leader_components/infocards/InfoCards'
+import ProjectList from '../projects/ProjectList'
+import Test from '../projects/ProjectData'
+import ProjectData from '../projects/ProjectData'
+
+
 
 const MyDashboard = () => {
+
+ const projects = ProjectData().projects;
   return (
     <>
-    <SecHeader>Dashboard</SecHeader>
-    <div style={{padding:'10rem',
-     marginTop:'0%',width:"70%", 
-    //  border:'1px solid red', 
-     backgroundColor:'#F3F4F3', height:200}}>
-      {/* <h1>Hello from dashboard</h1> */}
-      
-    <MyCard/>
-    </div>
+      <div
+        className="mt-5"
+        style={{
+          overflow: "visible",
+        }}
+      >
+        <h3>Dashboard</h3>
+        <div>
+          <InfoCards
+            card_title="No of projects"
+            card_content={projects.length}
+          />
+        </div>
+       
+        <ProjectList />
+      </div>
     </>
-  )
+  );
 }
 
 export default MyDashboard

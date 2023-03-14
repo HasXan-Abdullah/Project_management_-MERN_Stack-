@@ -1,0 +1,11 @@
+.card_div {
+  background-color: #83d0c0;
+  width: fit-content;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  border-radius: 15px;
+}
+.card_content{
+    font-size: 1.5rem;
+}

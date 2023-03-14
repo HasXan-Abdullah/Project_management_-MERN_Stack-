@@ -1,5 +1,5 @@
 import React from 'react'
-import SecHeader from '../Components/SecHeader'
+import SecHeader from "../../Components/SecHeader";
 
 const Scheduling = () => {
   return (

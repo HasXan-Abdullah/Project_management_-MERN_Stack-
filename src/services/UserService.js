@@ -11,8 +11,16 @@ const getPublicContent= ()=>{
     console.log({config})
     return axios.get(API_URL,{headers:config});
 };
+///get projects
 
+const getTeamMembers = () => {
+
+  return axios.get('http://localhost:3000/v1/users/getTeamMember/', {
+
+  });
+};
 export default { 
+    getTeamMembers,
     getPublicContent,
 }
 // define a service for accessing data in UserService.js

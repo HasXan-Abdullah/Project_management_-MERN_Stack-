@@ -1,15 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import "./nav.css";
+import logo from '../../assets/images/logo.png';
 const LandingNavber = () => {
   return (
     <div>
       <nav id="navbar-example2" className="navbar navbar-expand-lg">
         <div className="container">
-          <Link className="navbar-brand" to="/">
-            {/* <span className="logo">Logo</span> */}
-            <img src='proj.svg' />
-          </Link>
+          <a className="navbar-brand logo" href="#scrollspyHeading1">
+            <img width="100px" src={logo} alt="logo" />
+          </a>
           <button
             className="navbar-toggler"
             type="button"
@@ -21,8 +21,10 @@ const LandingNavber = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
- 
+          <div
+            className="collapse navbar-collapse justify-content-end"
+            id="navbarNav"
+          >
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
                 <a className="nav-link" href="#scrollspyHeading1">
