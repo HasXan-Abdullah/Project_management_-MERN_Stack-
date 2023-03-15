@@ -69,25 +69,11 @@ export const getProjects = () => (dispatch) => {
   );
 };
 // Add project
-export const add_project = (
-  project_name,
-  project_description,
-  memberId1,
-  memberId2,
-  memberId3,
-  leaderId
-) => {
+export const add_project = (project) => {
   return (dispatch) => {
     dispatch({ type: ADD_PROJECT_REQUEST });
 
-    return ProjectService.add_project(
-      project_name,
-      project_description,
-      memberId1,
-      memberId2,
-      memberId3,
-      leaderId
-    ).then(
+    return ProjectService.add_project(project).then(
       (response) => {
         dispatch({
           type: ADD_PROJECT_SUCCESS,

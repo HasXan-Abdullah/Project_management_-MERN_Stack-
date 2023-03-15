@@ -70,9 +70,15 @@ const AssignedTask = () => {
       <div>
         {projects.map((data) => (
           <div key={data.id}>
-            {data.project_description} given by Leader Id : {data.leaderId} .
+            {data.project_description} given by Leader Id : {data.project_name} .
             Leader name : {data.leaderId}
-            
+
+            {data.members.map((el)=>(
+              <div key={el._id}>
+                {el.email}
+              </div>
+              )
+          )}
           </div>
         ))}
         

@@ -12,39 +12,31 @@ const get_projects = () => {
 
   user = JSON.parse(user);
   let userId = user.user.id;
-  return axios.get(
-    API_URL + `getProjectByUserId/${userId}` ,
-    {
-      headers: AuthHeader(),
-    }
-  );
+  return axios.get(API_URL + `getProjectByMemberId/${userId}`, {
+    headers: AuthHeader(),
+  });
 };
 //get project by Id
 
 const get_project_Id = (id) => {
   return axios.get(API_URL + `getProject/${id}`);
 };
+//
 
+const add_project = async (project) => {
+    const response = await axios.post(API_URL + "createProject", project);
+    return response;
+  }
 ///
-const add_project = (
-  project_name,
-  project_description,
-  memberId1,
-  memberId2,
-  memberId3,
-  leaderId
-) => {
-debugger
-  return axios.post(API_URL + "createProject", {
-    project_name,
-    project_description,
-    memberId1,
-    memberId2,
-    memberId3,
-    leaderId,
-    
-  });
-};
+// const add_project = (
+// project
+// ) => {
+// debugger
+
+//   return axios.post(API_URL + "createProject", {
+//     project,
+//   });
+// };
 
 /// create a project
 // const add_project = (

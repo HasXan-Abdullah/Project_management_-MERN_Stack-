@@ -8,34 +8,16 @@ import { MenuItem } from "@mui/material";
 import GetTeamMember from "../projects/GetTeamMember";
 
 const MyPost = () => {
-const members = GetTeamMember().members;
-console.log(members);
+
     let navigate = useNavigate();
     const [content, setContent] = useState("");
     let user = window.localStorage.getItem("user")
   
     useEffect(() => {
       user = user ? JSON.parse(user) : navigate('/login'); 
-     
       setContent(user.user);
-  
-      console.log(user.user._id);
-    
-  
-     
-     
+      console.log(user.user.id);
     }, []);
-
-    const [team_members, setTeam_members] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-
-
-    console.log(team_members)
-    const filteredTeam_members = team_members.filter(
-      (member) => member.role ==="Member"
-    );
-    const dispatch = useDispatch();
 
     const [project_description, setProjectDesc] = useState("");
     const onChangeProjectDesc = (e) => {
@@ -47,67 +29,192 @@ console.log(members);
         const p_Name = e.target.value;
         setProjectName(p_Name);
       };
-    const [memberId1, setMemberId1] = useState("");
-    const onChangeMemberId1 = (e) => {
-      const member_Id1 = e.target.value;
-      setMemberId1(member_Id1);
-    };
-     const [memberId2, setMemberId2] = useState("");
-     const onChangeMemberId2 = (e) => {
-       const member_Id2 = e.target.value;
-       setMemberId2(member_Id2);
-     };
-      const [memberId3, setMemberId3] = useState("");
-      const onChangeMemberId3 = (e) => {
-        const member_Id3 = e.target.value;
-        setMemberId3(member_Id3);
-      };
-    const [leaderId, setLeaderId] = useState("");
-    const onChangeLeaderId = (e) => {
-      const leader_Id = e.target.value;
-      setLeaderId(leader_Id);
-    };
+    let userId =content.id
+     console.log(userId);
+    const dispatch = useDispatch();
+    const [documentFile, setDocumentFile] = useState("");
+    const [members, setMembers] = useState([
+      { email: "", id: "", isLeader: true },
+    ]);
+ const [tasks, setTasks] = useState([
+   {
+     taskname: "",
+     taskdescription: "",
+     givento: "",
+     taskstatus: "",
+     taskinstructionfile: "",
+   },
+ ]);
     const handleSubmit = (e) => {
-   
- 
+      let project = {
+        project_name,
+        project_description,
+        documentFile,
+        members,
+        tasks,
+      };
+      e.preventDefault();
+      dispatch(add_project(project));
+    };
 
-        dispatch(
-          
-          add_project(
-            project_name,
-            project_description,
-            memberId1,
-            memberId2,
-            memberId3,
-            leaderId
-          )
-        )
-          .then(() => {
-            alert("data Entered");
-          })
-          .catch((err) => {
-            console.log({ err });
-          });
-        
-      } 
-    
+    const handleAddMember = () => {
+      setMembers([...members, { email: "", id: "", isLeader: false }]);
+    };
+     const handleDeleteMember = (index) => {
+       const list = [...members];
+       list.splice(index, 1);
+       setMembers(list);
+     };
+
+    const handleMemberChange = (index, e) => {
+      const updatedMembers = [...members];
+      updatedMembers[index][e.target.name] = e.target.value;
+      setMembers(updatedMembers);
+    };
+    // 
+     const handleAddTask = () => {
+       setTasks([
+         ...tasks,
+         {
+           taskname: "",
+           taskdescription: "",
+           givento: "",
+           taskstatus: "",
+           taskinstructionfile: "",
+         },
+       ]);
+     };
+     const handleDeleteTask = (index) => {
+       const list = [...tasks];
+       list.splice(index, 1);
+       setTasks(list);
+     };
+
+     const handleTaskChange = (index, e) => {
+       const updatedTasks = [...tasks];
+       updatedTasks[index][e.target.name] = e.target.value;
+       setTasks(updatedTasks);
+     };
   return (
-    <>
-      <div className="mt-5">
-        <h1>Post a project </h1>
-        <div>
-          {loading && <p>Loading...</p>}
-          {error && <p>Error: {error}</p>}
-          <ul>
-            {filteredTeam_members.map((member) => (
-              <li key={member._id}>
-                {member.username}: Ids :{member._id}
-              </li>
-            ))}
-          </ul>
-        </div>
+    // <>
+    //   <div className="mt-5">
+    //     <h1>Post a project </h1>
+    //     <div>
+    //       {loading && <p>Loading...</p>}
+    //       {error && <p>Error: {error}</p>}
+    //       <ul>
+    //         {filteredTeam_members.map((member) => (
+    //           <li key={member._id}>
+    //             {member.username}: Ids :{member._id}
+    //           </li>
+    //         ))}
+    //       </ul>
+    //     </div>
 
-        <form onSubmit={handleSubmit}>
+    //     <form onSubmit={handleSubmit}>
+    //       <label>Project Name: </label>
+    //       <input
+    //         id="p_name"
+    //         name="p_name"
+    //         value={project_name}
+    //         onChange={onChangeProjectName}
+    //       />
+    //       <br />
+    //       <br />
+    //       <label>Project project_Description: </label>
+    //       <input
+    // id="p_desc"
+    // name="p_desc"
+    // value={project_description}
+    //         onChange={onChangeProjectDesc}
+    //       />
+    //       <br />
+    //       <br />
+    //       <label>Member Id1: </label>
+
+    //       {/* <input
+    //         id="memberId1"
+    //         name="memberId1"
+    //         value={memberId1}
+    //         onChange={onChangeMemberId1}
+    //       /> */}
+    //       <Select
+    //         name="memberId1"
+    //         value={memberId1}
+    //         onChange={onChangeMemberId1}
+    //       >
+    //         <MenuItem value="">
+    //           <em>None</em>
+    //         </MenuItem>
+    //         {Array.isArray(members) &&
+    //           members.map((member) => (
+    //             <MenuItem key={member.id} value={member.id}>
+    //               {member.email}
+    //             </MenuItem>
+    //           ))}
+    //       </Select>
+    //       <br />
+    //       <br />
+    //       <label>Member Id2: </label>
+
+    //       <Select
+    //         id="memberId2"
+    //         name="memberId2"
+    //         value={memberId2}
+    //         onChange={onChangeMemberId2}
+    //       >
+    //         <MenuItem value="">
+    //           <em>None</em>
+    //         </MenuItem>
+    //         {Array.isArray(members) &&
+    //           members.map((member) => (
+    //             <MenuItem key={member.id} value={member.id}>
+    //               {member.email}
+    //             </MenuItem>
+    //           ))}
+    //       </Select>
+    //       <br />
+    //       <br />
+    //       <label>Member Id3: </label>
+
+    // <Select
+    //   id="memberId3"
+    //   name="memberId3"
+    //   value={memberId3}
+    //   onChange={onChangeMemberId3}
+    // >
+    //   <MenuItem value="">
+    //     <em>None</em>
+    //   </MenuItem>
+    //   {Array.isArray(members) &&
+    //     members.map((member) => (
+    //       <MenuItem key={member.id} value={member.id}>
+    //         {member.email}
+    //       </MenuItem>
+    //     ))}
+    // </Select>
+    //       <br />
+    //       <br />
+    //       <label>Leader ID: </label>
+    //       <div
+
+    //         id="LeaderId"
+    //         name="LeaderId"
+    //         value={leaderId}
+
+    //       >
+    //         <p>
+    //         {content.id}
+    //       </p>
+    //       </div>
+
+    //       <input type="submit" />
+    //     </form>
+    //   </div>
+    // </>
+    <div className="mt-5">
+      <form onSubmit={handleSubmit}>
+        <div>
           <label>Project Name: </label>
           <input
             id="p_name"
@@ -117,66 +224,142 @@ console.log(members);
           />
           <br />
           <br />
-          <label>Project Description: </label>
+          <label>Project project_Description: </label>
           <input
             id="p_desc"
             name="p_desc"
             value={project_description}
             onChange={onChangeProjectDesc}
           />
-          <br />
-          <br />
-          <label>Member Id1: </label>
-          <input
-            id="memberId1"
-            name="memberId1"
-            value={memberId1}
-            onChange={onChangeMemberId1}
-          />
-          <br />
-          <br />
-          <label>Member Id2: </label>
-          <input
-            id="memberId2"
-            name="memberId2"
-            value={memberId2}
-            onChange={onChangeMemberId2}
-          />
-          <br />
-          <br />
-          <label>Member Id3: </label>
-          <input
-            id="memberId3"
-            name="memberId3"
-            value={memberId3}
-            onChange={onChangeMemberId3}
-          />
-          <br />
-          <br />
-          <label>Leader ID: </label>
-          <input
-            id="LeaderId"
-            name="LeaderId"
-            value={leaderId}
-            onChange={onChangeLeaderId}
-          />
-          <input type="submit" />
-        </form>
-
-        {/* example  */}
-        <div>
-          <Select>
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            {Array.isArray(members) &&
-              members.map((member) => (
-                <MenuItem value={member.id}>{member.email}</MenuItem>
-              ))}
-          </Select>
         </div>
-      </div>
-    </>
+        <div>
+          <label htmlFor="documentFile">Document File</label>
+          <input
+            type="text"
+            id="documentFile"
+            value={documentFile}
+            onChange={(e) => setDocumentFile(e.target.value)}
+          />
+        </div>
+        <div>
+          <h3>Members</h3>
+          {members.map((member, index) => (
+            <div key={index}>
+              <label htmlFor={`member-email-${index}`}>Email</label>
+              <input
+                type="email"
+                id={`member-email-${index}`}
+                name="email"
+                value={member.email}
+                onChange={(e) => handleMemberChange(index, e)}
+              />
+              {/* <Select
+                // id="memberId3"
+                // name="memberId3"
+                // value={memberId3}
+                // onChange={onChangeMemberId3}
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                {Array.isArray(member) &&
+                  member.map((data) => (
+                    <MenuItem key={data.id} value={data.id}>
+                      {data.email}
+                    </MenuItem>
+                  ))}
+              </Select> */}
+              <label htmlFor={`member-id-${index}`}>ID</label>
+              <input
+                type="text"
+                id={`member-id-${index}`}
+                name="id"
+                value={member.id}
+                onChange={(e) => handleMemberChange(index, e)}
+              />
+              <label htmlFor={`member-leader-${index}`}>Is Leader</label>
+              <input
+                type="checkbox"
+                id={`member-leader-${index}`}
+                name="isLeader"
+                checked={member.isLeader}
+                onChange={(e) => handleMemberChange(index, e)}
+              />
+            </div>
+          ))}
+          <button type="button" onClick={handleAddMember}>
+            Add Member
+          </button>
+          <button type="button" onClick={(index) => handleDeleteMember(index)}>
+            Delete Member
+          </button>
+        </div>
+
+        {/*  */}
+
+        <div>
+          <h3>tasks</h3>
+          {tasks.map((task, index) => (
+            <div key={index}>
+              <label htmlFor={`task-name-${index}`}>Task name</label>
+              <input
+                type="text"
+                id={`task-name-${index}`}
+                name="taskname"
+                value={task.taskname}
+                onChange={(e) => handleTaskChange(index, e)}
+              />
+              <label htmlFor={`givento-member-id-${index}`}>givento ID</label>
+              <input
+                type="text"
+                id={`givento-member-id-${index}`}
+                name="givento"
+                value={task.givento}
+                onChange={(e) => handleTaskChange(index, e)}
+              />
+              <label htmlFor={`taskdescription-member-id-${index}`}>
+                taskdescription
+              </label>
+              <input
+                type="text"
+                id={`taskdescription-member-id-${index}`}
+                name="taskdescription"
+                value={task.taskdescription}
+                onChange={(e) => handleTaskChange(index, e)}
+              />
+              <label htmlFor={`taskstatus-member-id-${index}`}>
+                taskstatus
+              </label>
+              <input
+                type="text"
+                id={`taskstatus-member-id-${index}`}
+                name="taskstatus"
+                value={task.taskstatus}
+                onChange={(e) => handleTaskChange(index, e)}
+              />
+              <label htmlFor={`taskinstructionfile-member-id-${index}`}>
+                taskinstructionfile
+              </label>
+              <input
+                type="text"
+                id={`taskinstructionfile-member-id-${index}`}
+                name="taskinstructionfile"
+                value={task.taskinstructionfile}
+                onChange={(e) => handleTaskChange(index, e)}
+              />
+            </div>
+          ))}
+          <button type="button" onClick={handleAddTask}>
+            Add Task
+          </button>
+          <button type="button" onClick={(index) => handleDeleteTask(index)}>
+            Delete Task
+          </button>
+        </div>
+        {/*  */}
+        <button type="submit">Submit</button>
+      </form>
+    </div>
   );
 }
 
