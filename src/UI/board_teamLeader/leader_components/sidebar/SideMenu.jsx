@@ -144,7 +144,7 @@ export default function SideMenu() {
                         <Route path="post" element={<MyPost />} />
                         <Route path="overview" element={<MyOverview />} />
                         <Route exact path="discussion" element={<MyDiscussion />} />
-                        <Route exact path="task" element={<MyTask />} />
+                        <Route exact path="projects" element={<MyTask />} />
                         <Route exact path="timetracking" element={<TimeTracking />} />
                         <Route exact path="scheduling" element={<Scheduling />} />
                         <Route exact path="reporting" element={<Reporting />} />

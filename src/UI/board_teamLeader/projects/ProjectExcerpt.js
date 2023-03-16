@@ -20,28 +20,11 @@ const ProjectExcerpt = (data) => {
   return (
     <div>
       <div key={project.id}>
-        <Link to={`/home/update/${project.id}`}>Update</Link>
-        <br></br>
-        <Link to={`/home/view/${project.id}`}>View</Link>
-        <Card sx={{ maxWidth: 600 }}>
+        <Card>
           <CardContent>
-            <Typography variant="h4" gutterBottom>
-              Project Name: {project.project_name}
+            <Typography variant="h5" gutterBottom>
+              {project.project_name}
             </Typography>
-            {/* <Typography variant="h5">Details</Typography>
-            <Typography sx={{ mb: 1.5 }} color="text.secondary">
-              {project.project_description}
-            </Typography>
-            <Typography variant="body1">
-              Team Members
-              <br />
-              memberId1 name : {project.memberId1}
-              <br />
-              memberId2 name : {project.memberId2}
-              <br />
-              memberId3 name : {project.memberId3}
-              <br />
-            </Typography> */}
           </CardContent>
           <CardActions>
             <Button
@@ -52,6 +35,9 @@ const ProjectExcerpt = (data) => {
             >
               Delete
             </Button>
+            <Link to={`/home/update/${project.id}`}>Update</Link>
+            <br></br>
+            <Link to={`/home/view/${project.id}`}>View</Link>
           </CardActions>
         </Card>
       </div>

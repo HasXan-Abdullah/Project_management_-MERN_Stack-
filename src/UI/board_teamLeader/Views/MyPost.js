@@ -12,7 +12,8 @@ const MyPost = () => {
     let navigate = useNavigate();
     const [content, setContent] = useState("");
     let user = window.localStorage.getItem("user")
-  
+    let mem = GetTeamMember().members;
+    console.log(mem)
     useEffect(() => {
       user = user ? JSON.parse(user) : navigate('/login'); 
       setContent(user.user);
@@ -32,7 +33,7 @@ const MyPost = () => {
     let userId =content.id
      console.log(userId);
     const dispatch = useDispatch();
-    const [documentFile, setDocumentFile] = useState("");
+    const [documentFile, setDocumentFile] = useState();
     const [members, setMembers] = useState([
       { email: "", id: "", isLeader: true },
     ]);
@@ -235,10 +236,10 @@ const MyPost = () => {
         <div>
           <label htmlFor="documentFile">Document File</label>
           <input
-            type="text"
+            type="file"
             id="documentFile"
             value={documentFile}
-            onChange={(e) => setDocumentFile(e.target.value)}
+            onChange={(e) => setDocumentFile(e.target.files[0])}
           />
         </div>
         <div>
@@ -246,37 +247,55 @@ const MyPost = () => {
           {members.map((member, index) => (
             <div key={index}>
               <label htmlFor={`member-email-${index}`}>Email</label>
-              <input
+              {/* <input
                 type="email"
                 id={`member-email-${index}`}
                 name="email"
                 value={member.email}
                 onChange={(e) => handleMemberChange(index, e)}
-              />
-              {/* <Select
-                // id="memberId3"
-                // name="memberId3"
-                // value={memberId3}
-                // onChange={onChangeMemberId3}
+              /> */}
+              <Select
+                type="email"
+                id={`member-email-${index}`}
+                name="email"
+                value={member.email}
+                onChange={(e) => handleMemberChange(index, e)}
               >
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                {Array.isArray(member) &&
-                  member.map((data) => (
-                    <MenuItem key={data.id} value={data.id}>
+                {Array.isArray(mem) &&
+                  mem.map((data) => (
+                    <MenuItem key={data.id} value={data.email}>
                       {data.email}
                     </MenuItem>
                   ))}
-              </Select> */}
+              </Select>
               <label htmlFor={`member-id-${index}`}>ID</label>
-              <input
+              {/* <input
                 type="text"
                 id={`member-id-${index}`}
                 name="id"
                 value={member.id}
                 onChange={(e) => handleMemberChange(index, e)}
-              />
+              /> */}
+              <Select
+                type="text"
+                id={`member-id-${index}`}
+                name="id"
+                value={member.id}
+                onChange={(e) => handleMemberChange(index, e)}
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                {Array.isArray(mem) &&
+                  mem.map((data) => (
+                    <MenuItem key={data.id} value={data.id}>
+                      {data.name}
+                    </MenuItem>
+                  ))}
+              </Select>
               <label htmlFor={`member-leader-${index}`}>Is Leader</label>
               <input
                 type="checkbox"

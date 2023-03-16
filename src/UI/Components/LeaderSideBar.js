@@ -18,7 +18,7 @@ const LeaderSideBar = () => {
       />
 
       <SideLink
-        title="Post"
+        title="Post a Project"
         link="post"
         icon_name={<AddBoxOutlinedIcon />}
       />
@@ -35,7 +35,7 @@ const LeaderSideBar = () => {
         icon_name={<AccessTimeOutlinedIcon />}
       />
 
-      <SideLink title="Task" link="task" icon_name={<TaskAltOutlinedIcon />} />
+      <SideLink title="Projects" link="projects" icon_name={<TaskAltOutlinedIcon />} />
     </div>
   );
 };
