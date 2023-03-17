@@ -35,7 +35,8 @@ const MyPost = () => {
     const dispatch = useDispatch();
     const [documentFile, setDocumentFile] = useState();
     const [members, setMembers] = useState([
-      { email: "", id: "", isLeader: true },
+     
+       {email:"", id: "", isLeader: false },
     ]);
  const [tasks, setTasks] = useState([
    {
@@ -51,7 +52,7 @@ const MyPost = () => {
         project_name,
         project_description,
         documentFile,
-        members,
+        members: [{ email: content.email, id: content.id, isLeader: true }, ...members],
         tasks,
       };
       e.preventDefault();
@@ -59,7 +60,7 @@ const MyPost = () => {
     };
 
     const handleAddMember = () => {
-      setMembers([...members, { email: "", id: "", isLeader: false }]);
+      setMembers([...members, { email: "1212", id: "", isLeader: false }]);
     };
      const handleDeleteMember = (index) => {
        const list = [...members];
@@ -262,7 +263,7 @@ const MyPost = () => {
                 onChange={(e) => handleMemberChange(index, e)}
               >
                 <MenuItem value="">
-                  <em>None</em>
+                  <em>none</em>
                 </MenuItem>
                 {Array.isArray(mem) &&
                   mem.map((data) => (
@@ -296,14 +297,14 @@ const MyPost = () => {
                     </MenuItem>
                   ))}
               </Select>
-              <label htmlFor={`member-leader-${index}`}>Is Leader</label>
+              {/* <label htmlFor={`member-leader-${index}`}>Is Leader</label>
               <input
                 type="checkbox"
                 id={`member-leader-${index}`}
                 name="isLeader"
                 checked={member.isLeader}
                 onChange={(e) => handleMemberChange(index, e)}
-              />
+              /> */}
             </div>
           ))}
           <button type="button" onClick={handleAddMember}>
