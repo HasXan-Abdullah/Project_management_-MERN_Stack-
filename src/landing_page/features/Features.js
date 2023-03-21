@@ -7,7 +7,7 @@ const Features = () => {
         <div className="boxesDiv">
           <div className="text-center mb-5">
             <h1 className="fontSize">
-              <span className="colorText">Features</span>
+              <span className="colorText">Features of projectify</span>
             </h1>
           </div>
           <div className="row1-container">
