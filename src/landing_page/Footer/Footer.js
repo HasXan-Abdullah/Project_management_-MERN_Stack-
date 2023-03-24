@@ -46,6 +46,16 @@ const Footer = () => {
                     Features
                   </a>
                 </li>
+                <li className="nav-item">
+                  <a className="nav-link " href="#scrollspyHeading3">
+                    Team
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link " href="#scrollspyHeading3">
+                    Tools
+                  </a>
+                </li>
               
               </ul>
             </div>

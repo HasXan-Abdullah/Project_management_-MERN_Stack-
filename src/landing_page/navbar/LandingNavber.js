@@ -1,15 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import "./nav.css";
-import logo from '../../assets/images/logo.png';
+import perfectlogo from '../../assets/images/whlogo.png';
 const LandingNavber = () => {
   return (
     <div>
       <nav id="navbar-example2" className="navbar navbar-expand-lg">
         <div className="container">
-          <a className="navbar-brand logo" href="#scrollspyHeading1">
-            <img width="100px" src={logo} alt="logo" />
-          </a>
+          
           <button
             className="navbar-toggler"
             type="button"
@@ -22,7 +20,7 @@ const LandingNavber = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div
-            className="collapse navbar-collapse justify-content-end"
+            className="collapse navbar-collapse justify-content-center " 
             id="navbarNav"
           >
             <ul className="navbar-nav ml-auto">
@@ -31,16 +29,29 @@ const LandingNavber = () => {
                   Home
                 </a>
               </li>
-              {/* <li className="nav-item">
-                <a className="nav-link" href="#scrollspyHeading2">
-                  Team
-                </a>
-              </li> */}
+
               <li className="nav-item">
                 <a className="nav-link" href="#scrollspyHeading3">
                   Features
                 </a>
               </li>
+
+              <a className="navbar-brand logo" href="#scrollspyHeading1"> 
+              <img width="100px" src={perfectlogo} alt="logo" />  
+          </a>
+
+              <li className="nav-item">
+                <a className="nav-link" href="#scrollspyHeading2">
+                  Teams
+                </a>
+              </li>
+
+              <li className="nav-item">
+                <a className="nav-link" href="#scrollspyHeading2">
+                  Tools
+                </a>
+              </li>
+
               {/* <li className="nav-item">
                 <a className="nav-link" href="#scrollspyHeading4">
                   Contact Us

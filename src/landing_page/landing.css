@@ -6,7 +6,7 @@
 } */
 /*  */
 .mt--40{
-    margin-top:8%;
+    margin-top:3%;
 
 }
 .headingText{
@@ -83,3 +83,45 @@ margin-left: 10px;
       top: 110px;
     }
   }
+
+
+  .row{
+    margin-top: 0px;
+    /* border: 2px solid yellow; */
+  }
+.headingText{
+    height: 100%;
+    /* border: 2px solid black; */
+}
+  .imagesBox{
+    /* border: 2px solid pink; */
+    width: 550px;
+  }
+
+  @media screen and (max-width: 996px) {   
+  .imagesBox{ 
+    display: none; 
+    /* display: flex;
+    min-width: 100%;
+    text-align: center;
+    margin-top:15px; */
+} 
+.taskPic{
+    
+    margin-top: 250px;
+    margin-left: -38%;
+}
+
+  .headingText{ 
+    
+        position: relative;
+        /* maxwidth: 100%; */
+        min-width: 100%;
+        max-height: 30%;
+        text-align: center;
+        margin: 0 auto;
+        padding: 0 auto;
+}  
+}
+
+  

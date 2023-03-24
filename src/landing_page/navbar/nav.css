@@ -2,6 +2,22 @@
 /* .logo{
   width: 20% !important;
 } */
+.container{
+  padding:10px;
+
+}
+body, h1 ,h2 ,h3 ,h4 ,h5 ,h6 ,p{
+  font-weight: 800;
+  font-family: 'Raleway', sans-serif;
+}
+.my-logo{
+  display: flex;
+  align-items: center;
+}
+.my-logo > h2{
+  font-family: 'Raleway', sans-serif;
+  color: #83d0c0;
+}
 .navbar{
 position: fixed;
     top: 0;
@@ -19,10 +35,13 @@ position: fixed;
     border: 50px !important;
  }
  .nav-link{
-    color: #83d0c0;
+    color: #2b3634;
     font-size: 18px;
-    margin: 5px;
+    margin: 10px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bolder;
+    margin: 0 30px;
  }
  .nav-link:hover{
-
+  color: #83d0c0;
  }

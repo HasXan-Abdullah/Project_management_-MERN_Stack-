@@ -10,6 +10,9 @@
     --weight2: 400;
     --weight3: 600;
 }
+.pt---60{
+    margin-top:15%;
+}
 .fontSize{
     font-size: 3rem;
 }

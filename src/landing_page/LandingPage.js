@@ -1,4 +1,5 @@
 
+import Benefits from './benefits/Benefits';
 import Features from './features/Features';
 import Footer from './Footer/Footer';
 import HeroSection from './HeroSection';
@@ -22,8 +23,9 @@ const LandingPage = () => {
           <HeroSection />
       
 
-            {/* <Team /> */}
+            
             <Features />
+            {/* <Team /> */}
       </div>
 
       <footer>
