@@ -25,7 +25,8 @@ background-color: white !important;
    
 }
 .boxesDiv{
-padding-bottom: 10%;
+/* padding-bottom: 1%; */
+margin-bottom: 0;
 }
 
 

@@ -1,11 +1,22 @@
  
 .loginContainer{
     background-color: #ffffff !important;
+    
 }
+.BGimg{
+    margin-top: -20%;
+}
+
 .loginPage
 {z-index: 1;
     position: sticky;
     margin-top: 10%;
+}
+#linkColor{
+    color:#64c5b1;
+}
+a{
+    text-decoration: none;
 }
 .paperStyle{
    
@@ -34,6 +45,8 @@
 .textFields{
     margin-top: 25px !important;
     border: none;
+
+    font-family: 'Raleway', sans-serif;
 }
 
 .submitBtn{
@@ -56,11 +69,15 @@
 }
 .inputLabel{
     color: #64c5b1 !important;
+    font-family: 'Raleway', sans-serif;
 }
 .genderText{
     text-align: left;
     margin-top: 20px;
     color: #64c5b1 !important;
+}
+span, h5,h4, h3, p , Input, .textFields{
+    font-family: 'Raleway', sans-serif;
 }
 /*//////////////////// 
 ///////////////////////

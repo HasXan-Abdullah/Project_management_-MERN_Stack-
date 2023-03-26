@@ -25,6 +25,7 @@ const LandingPage = () => {
 
             
             <Features />
+            <Benefits/>
             {/* <Team /> */}
       </div>
 

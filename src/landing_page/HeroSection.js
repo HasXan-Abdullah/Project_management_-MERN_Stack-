@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const HeroSection = () => {
   return (
     <section>
-      <div className='pt--60' id="scrollspyHeading1">
+      <div className='pt--60' id="home">
        
           <Particle />
         

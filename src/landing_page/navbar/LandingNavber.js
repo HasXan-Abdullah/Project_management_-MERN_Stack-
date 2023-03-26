@@ -25,24 +25,24 @@ const LandingNavber = () => {
           >
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <a className="nav-link" href="#scrollspyHeading1">
+                <a className="nav-link" href="#home">
                   Home
                 </a>
               </li>
 
               <li className="nav-item">
-                <a className="nav-link" href="#scrollspyHeading3">
+                <a className="nav-link" href="#features">
                   Features
                 </a>
               </li>
 
-              <a className="navbar-brand logo" href="#scrollspyHeading1"> 
+              <a className="navbar-brand logo" href="#home"> 
               <img width="100px" src={perfectlogo} alt="logo" />  
           </a>
 
               <li className="nav-item">
-                <a className="nav-link" href="#scrollspyHeading2">
-                  Teams
+                <a className="nav-link" href="#benefits">
+                  Benefits
                 </a>
               </li>
 

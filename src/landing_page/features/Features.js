@@ -3,7 +3,7 @@ import  './feature.css';
 const Features = () => {
   return (
     <section className="featureSection">
-      <div id="scrollspyHeading3" className="pt---60 ">
+      <div id="features" className="pt---60 ">
         <div className="boxesDiv">
           <div className="text-center mb-5">
             <h1 className="fontSize">

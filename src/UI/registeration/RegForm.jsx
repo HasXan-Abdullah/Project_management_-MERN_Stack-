@@ -21,6 +21,7 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Pic2 from '../../assets/images/remote-project-manager-software.png';
 import { Link } from "react-router-dom";
 import LockOutlined from "@material-ui/icons/LockOutlined";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
@@ -127,11 +128,19 @@ const Regform = () => {
   return (
     <>
         <Particle/>
-        <Container  className="regForm mainRegform">
-        <Paper elevation={10} align="center">      
+        <Container  className="regForm mainRegform">           
+        <Paper elevation={10} align="center"> 
+            
+            <Link to="/home">
+            {/* <Avatar className="avatarLock" onClick={goBack} sx={{marginRight:125}}> */}
+              <ArrowBackIcon  sx={{marginRight:128, marginTop:2 ,color:'#64c5b1' , fontWeight:'bold' , fontSize:'2rem'}}/>
+            {/* </Avatar>   */}
+            </Link>
+
         <Grid className="mainContainer" container spacing={0} columns={16} align="center">
+
     <Grid item xs={8} className="imgSection" >
-   <img  width="100%" src={Pic2} alt="bg"/>
+   <img  width="100%" src={Pic2} alt="bg" className="bgimg"/>
     </Grid>
     <Grid item xs={8} align="center" className="loginContainer">
     <Paper elevation={0} className="paperStyle">
@@ -333,7 +342,7 @@ const Regform = () => {
                   console.info("I'm a button.");
                 }}
               >
-                Login
+               <span id="linkColor">Login</span>
               </Link>
             </span>
           </FormGroup>

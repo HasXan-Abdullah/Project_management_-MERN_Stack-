@@ -23,6 +23,7 @@ import {
 import Pic1 from '../../assets/images/pic1.jpg'
 import LockOutlined from '@material-ui/icons/LockOutlined';
 import '../registeration/Reg.css'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Link } from 'react-router-dom';
 import { CLEAR_MESSAGE } from "../../actions/types";
 import Particle from "../../Particle";
@@ -102,10 +103,12 @@ const Login = () => {
     <div className='loginPage'>
     <Container >
       <Paper elevation={10}>    
-        
+        <Link to="/home">  
+          <ArrowBackIcon sx={{marginRight:10, marginTop:2 ,color:'#64c5b1' , fontWeight:'bold' , fontSize:'2rem'}}/>
+        </Link>
       <Grid className="mainContainer" container spacing={0} columns={16}>
   <Grid item xs={8} className="imgSection" >
- <img  width="100%" src={Pic1} alt="bg"/>
+ <img  width="100%" src={Pic1} alt="bg" className="BGimg"/>
   </Grid>
   <Grid item xs={8} align="center" className="loginContainer">
   <Paper   className="paperStyle loginContainer" >
@@ -188,7 +191,7 @@ const Login = () => {
                     console.info("I'm a button.");
                 }}
             >
-                Create Account
+                <span id="linkColor">Create Account</span>
             </Link>
         </span></FormGroup>
 
