@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { add_project } from "../../../actions/project";
-import Select from "@mui/material/Select";
+import {  useNavigate  } from 'react-router-dom';
+import {  add_project } from '../../../actions/project';
+import Select from '@mui/material/Select';
 import { MenuItem } from "@mui/material";
 import GetTeamMember from "../projects/GetTeamMember";
 import FileBase64 from "react-file-base64";
@@ -102,21 +102,28 @@ const MyPost = () => {
     <div className="mt-5">
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Project Name: </label>
-          <input
+          {/* <label>Project Name: </label> */}
+          <TextField
+            label="Project Name"
             id="p_name"
             name="p_name"
             value={project_name}
             onChange={onChangeProjectName}
+            variant="outlined"
+            size="small"
+            sx={{color:'#64c5b1'}}
           />
           <br />
           <br />
-          <label>Project project_Description: </label>
-          <input
+          {/* <label>Project project_Description: </label> */}
+          <TextField
             id="p_desc"
             name="p_desc"
             value={project_description}
             onChange={onChangeProjectDesc}
+            label="Project description"
+            variant="outlined"
+            size="small"
           />
         </div>
         <div>
@@ -128,6 +135,8 @@ const MyPost = () => {
             onDone={({ base64 }) => setDocumentFile({ documentFile: base64 })}
           />
         </div>
+        <hr/>
+        {/* ------------------------- */}
         <div>
           <h3>Members</h3>
           {members.map((member, index) => (
@@ -170,60 +179,79 @@ const MyPost = () => {
               </Select>
             </div>
           ))}
-          <button type="button" onClick={handleAddMember}>
+          <Button type="button" onClick={handleAddMember} variant="contained" sx={{backgroundColor:'#64c5b1'}}>
             Add Member
-          </button>
-          <button type="button" onClick={(index) => handleDeleteMember(index)}>
+          </Button>
+          <Button type="button" onClick={(index) => handleDeleteMember(index)} variant="contained" sx={{backgroundColor:'#64c5b1'}}>
             Delete Member
-          </button>
+          </Button>
         </div>
 
         {/*  */}
-
+        <hr/>
         <div>
           <h3>tasks</h3>
           {tasks.map((task, index) => (
             <div key={index}>
               <label htmlFor={`task-name-${index}`}>Task name</label>
-              <input
+              <TextField
                 type="text"
                 id={`task-name-${index}`}
                 name="taskname"
                 value={task.taskname}
                 onChange={(e) => handleTaskChange(index, e)}
+                label="Task name"
+                variant="outlined"
+                size="small"
               />
               <label htmlFor={`givento-member-id-${index}`}>givento ID</label>
-              <input
+              <TextField
                 type="text"
                 id={`givento-member-id-${index}`}
                 name="givento"
                 value={task.givento}
                 onChange={(e) => handleTaskChange(index, e)}
+                label="Given to ID"
+                variant="outlined"
+                size="small"
+
               />
               <label htmlFor={`taskdescription-member-id-${index}`}>
                 taskdescription
               </label>
-              <input
+              <TextField
                 type="text"
                 id={`taskdescription-member-id-${index}`}
                 name="taskdescription"
                 value={task.taskdescription}
                 onChange={(e) => handleTaskChange(index, e)}
+                label="Task description"
+                variant="outlined"
+                size="small"
               />
               <label htmlFor={`taskstatus-member-id-${index}`}>
                 taskstatus
               </label>
-              <input
+              <TextField
                 type="text"
                 id={`taskstatus-member-id-${index}`}
                 name="taskstatus"
                 value={task.taskstatus}
                 onChange={(e) => handleTaskChange(index, e)}
+                label="Task Status"
+                variant="outlined"
+                size="small"
               />
               <label htmlFor={`taskinstructionfile-member-id-${index}`}>
                 taskinstructionfile
               </label>
-
+              {/* <input
+                type="text"
+                id={`taskinstructionfile-member-id-${index}`}
+                name="taskinstructionfile"
+                value={task.taskinstructionfile}
+                onChange={(e) => handleTaskChange(index, e)}
+              /> */}
               <FileBase64
                 id={`taskinstructionfile-member-id-${index}`}
                 name="taskinstructionfile"
@@ -241,15 +269,18 @@ const MyPost = () => {
               />
             </div>
           ))}
-          <button type="button" onClick={handleAddTask}>
+
+          <Button type="button" onClick={handleAddTask}  variant="contained" sx={{backgroundColor:'#64c5b1'}}>
             Add Task
-          </button>
-          <button type="button" onClick={(index) => handleDeleteTask(index)}>
+          </Button>
+          <Button type="button" onClick={(index) => handleDeleteTask(index)} variant="contained" 
+          sx={{backgroundColor:'#64c5b1', marginLeft:'10px'}}>
             Delete Task
-          </button>
+          </Button>
         </div>
         {/*  */}
-        <button type="submit">Submit</button>
+        <Button type="submit" variant="contained" sx={{backgroundColor:'#64c5b1' , width:'100%', marginTop:'15px'}}>
+          Submit</Button>
       </form>
     </div>
   );
