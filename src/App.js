@@ -38,8 +38,6 @@ function App() {
           <Routes>
             <Route  path="/" element={<LandingPage />} />
 
-            <Route path="/home" element={<LandingPage />} />
-
             <Route exact path="/login" element={<Login />} />
 
             <Route exact path="/main" element={<Home />} />
