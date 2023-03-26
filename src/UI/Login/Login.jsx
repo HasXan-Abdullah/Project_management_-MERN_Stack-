@@ -103,7 +103,7 @@ const Login = () => {
     <div className='loginPage'>
     <Container >
       <Paper elevation={10}>    
-        <Link to="/home">  
+        <Link to="/">  
           <ArrowBackIcon sx={{marginRight:10, marginTop:2 ,color:'#64c5b1' , fontWeight:'bold' , fontSize:'2rem'}}/>
         </Link>
       <Grid className="mainContainer" container spacing={0} columns={16}>

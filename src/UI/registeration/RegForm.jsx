@@ -131,7 +131,7 @@ const Regform = () => {
         <Container  className="regForm mainRegform">           
         <Paper elevation={10} align="center"> 
             
-            <Link to="/home">
+            <Link to="/">
             {/* <Avatar className="avatarLock" onClick={goBack} sx={{marginRight:125}}> */}
               <ArrowBackIcon  sx={{marginRight:128, marginTop:2 ,color:'#64c5b1' , fontWeight:'bold' , fontSize:'2rem'}}/>
             {/* </Avatar>   */}

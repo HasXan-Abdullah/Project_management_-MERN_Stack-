@@ -1,110 +1,103 @@
-
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import {  useNavigate  } from 'react-router-dom';
-import {  add_project } from '../../../actions/project';
-import Select from '@mui/material/Select';
+import { useNavigate } from "react-router-dom";
+import { add_project } from "../../../actions/project";
+import Select from "@mui/material/Select";
 import { MenuItem } from "@mui/material";
 import GetTeamMember from "../projects/GetTeamMember";
 import FileBase64 from "react-file-base64";
 const MyPost = () => {
+  let navigate = useNavigate();
+  const [content, setContent] = useState("");
+  let user = window.localStorage.getItem("user");
+  let mem = GetTeamMember().members;
+  console.log(mem);
+  useEffect(() => {
+    user = user ? JSON.parse(user) : navigate("/login");
+    setContent(user.user);
+    console.log(user.user.id);
+  }, []);
 
-    let navigate = useNavigate();
-    const [content, setContent] = useState("");
-    let user = window.localStorage.getItem("user")
-    let mem = GetTeamMember().members;
-    console.log(mem)
-    useEffect(() => {
-      user = user ? JSON.parse(user) : navigate('/login'); 
-      setContent(user.user);
-      console.log(user.user.id);
-    }, []);
-
-    const [project_description, setProjectDesc] = useState("");
-    const onChangeProjectDesc = (e) => {
-      const p_Desc = e.target.value;
-      setProjectDesc(p_Desc);
+  const [project_description, setProjectDesc] = useState("");
+  const onChangeProjectDesc = (e) => {
+    const p_Desc = e.target.value;
+    setProjectDesc(p_Desc);
+  };
+  const [project_name, setProjectName] = useState("");
+  const onChangeProjectName = (e) => {
+    const p_Name = e.target.value;
+    setProjectName(p_Name);
+  };
+  let userId = content.id;
+  console.log(userId);
+  const dispatch = useDispatch();
+  const [documentFile, setDocumentFile] = useState([]);
+  const [members, setMembers] = useState([
+    { email: "", id: "", isLeader: false },
+  ]);
+  const [tasks, setTasks] = useState([
+    {
+      taskname: "",
+      taskdescription: "",
+      givento: "",
+      taskstatus: "",
+      taskinstructionfile: [],
+    },
+  ]);
+  const handleSubmit = (e) => {
+    let project = {
+      project_name,
+      project_description,
+      documentFile,
+      members: [
+        { email: content.email, id: content.id, isLeader: true },
+        ...members,
+      ],
+      tasks,
     };
-      const [project_name, setProjectName] = useState("");
-      const onChangeProjectName = (e) => {
-        const p_Name = e.target.value;
-        setProjectName(p_Name);
-      };
-    let userId =content.id
-     console.log(userId);
-    const dispatch = useDispatch();
-    const [documentFile, setDocumentFile] = useState([]);
-    const [members, setMembers] = useState([
-     
-       {email:"", id: "", isLeader: false },
+    e.preventDefault();
+    dispatch(add_project(project));
+  };
+
+  const handleAddMember = () => {
+    setMembers([...members, { email: "1212", id: "", isLeader: false }]);
+  };
+  const handleDeleteMember = (index) => {
+    const list = [...members];
+    list.splice(index, 1);
+    setMembers(list);
+  };
+
+  const handleMemberChange = (index, e) => {
+    const updatedMembers = [...members];
+    updatedMembers[index][e.target.name] = e.target.value;
+    setMembers(updatedMembers);
+  };
+  //
+  const handleAddTask = () => {
+    setTasks([
+      ...tasks,
+      {
+        taskname: "",
+        taskdescription: "",
+        givento: "",
+        taskstatus: "",
+        taskinstructionfile: [],
+      },
     ]);
- const [tasks, setTasks] = useState([
-   {
-     taskname: "",
-     taskdescription: "",
-     givento: "",
-     taskstatus: "",
-     taskinstructionfile: [],
-   },
- ]);
-    const handleSubmit = (e) => {
-      let project = {
-        project_name,
-        project_description,
-        documentFile,
-        members: [{ email: content.email, id: content.id, isLeader: true }, ...members],
-        tasks,
-      };
-      e.preventDefault();
-      dispatch(add_project(project));
-    };
+  };
+  const handleDeleteTask = (index) => {
+    const list = [...tasks];
+    list.splice(index, 1);
+    setTasks(list);
+  };
 
-    const handleAddMember = () => {
-      setMembers([...members, { email: "1212", id: "", isLeader: false }]);
-    };
-     const handleDeleteMember = (index) => {
-       const list = [...members];
-       list.splice(index, 1);
-       setMembers(list);
-     };
-
-    const handleMemberChange = (index, e) => {
-      const updatedMembers = [...members];
-      updatedMembers[index][e.target.name] = e.target.value;
-      setMembers(updatedMembers);
-    };
-    // 
-     const handleAddTask = () => {
-       setTasks([
-         ...tasks,
-         {
-           taskname: "",
-           taskdescription: "",
-           givento: "",
-           taskstatus: "",
-           taskinstructionfile:[],
-         },
-       ]);
-     };
-     const handleDeleteTask = (index) => {
-       const list = [...tasks];
-       list.splice(index, 1);
-       setTasks(list);
-     };
-     
-
-    //  const handleTaskChange = (index, e) => {
-    //    const updatedTasks = [...tasks];
-    //    updatedTasks[index][e.target.name] = e.target.value;
-     
-    //    setTasks(updatedTasks);
-    //  };
-    const handleTaskChange = (index, e, data) => {
-      const { name, value } = e.target || data;
-      const updatedTasks = [...tasks];
-      updatedTasks[index][name] = value;
-      setTasks(updatedTasks);
-    };
+  const handleTaskChange = (index, e, data) => {
+    const { name, value } = e.target || data;
+    const updatedTasks = [...tasks];
+    updatedTasks[index][name] = value;
+    setTasks(updatedTasks);
+  };
   return (
     <div className="mt-5">
       <form onSubmit={handleSubmit}>
@@ -230,13 +223,7 @@ const MyPost = () => {
               <label htmlFor={`taskinstructionfile-member-id-${index}`}>
                 taskinstructionfile
               </label>
-              {/* <input
-                type="text"
-                id={`taskinstructionfile-member-id-${index}`}
-                name="taskinstructionfile"
-                value={task.taskinstructionfile}
-                onChange={(e) => handleTaskChange(index, e)}
-              /> */}
+
               <FileBase64
                 id={`taskinstructionfile-member-id-${index}`}
                 name="taskinstructionfile"
@@ -266,6 +253,6 @@ const MyPost = () => {
       </form>
     </div>
   );
-}
+};
 
-export default MyPost
+export default MyPost;
