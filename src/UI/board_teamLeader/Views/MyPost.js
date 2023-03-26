@@ -6,7 +6,7 @@ import {  add_project } from '../../../actions/project';
 import Select from '@mui/material/Select';
 import { MenuItem } from "@mui/material";
 import GetTeamMember from "../projects/GetTeamMember";
-
+import FileBase64 from "react-file-base64";
 const MyPost = () => {
 
     let navigate = useNavigate();
@@ -33,7 +33,7 @@ const MyPost = () => {
     let userId =content.id
      console.log(userId);
     const dispatch = useDispatch();
-    const [documentFile, setDocumentFile] = useState();
+    const [documentFile, setDocumentFile] = useState([]);
     const [members, setMembers] = useState([
      
        {email:"", id: "", isLeader: false },
@@ -44,7 +44,7 @@ const MyPost = () => {
      taskdescription: "",
      givento: "",
      taskstatus: "",
-     taskinstructionfile: "",
+     taskinstructionfile: [],
    },
  ]);
     const handleSubmit = (e) => {
@@ -82,7 +82,7 @@ const MyPost = () => {
            taskdescription: "",
            givento: "",
            taskstatus: "",
-           taskinstructionfile: "",
+           taskinstructionfile:[],
          },
        ]);
      };
@@ -91,129 +91,21 @@ const MyPost = () => {
        list.splice(index, 1);
        setTasks(list);
      };
+     
 
-     const handleTaskChange = (index, e) => {
-       const updatedTasks = [...tasks];
-       updatedTasks[index][e.target.name] = e.target.value;
-       setTasks(updatedTasks);
-     };
+    //  const handleTaskChange = (index, e) => {
+    //    const updatedTasks = [...tasks];
+    //    updatedTasks[index][e.target.name] = e.target.value;
+     
+    //    setTasks(updatedTasks);
+    //  };
+    const handleTaskChange = (index, e, data) => {
+      const { name, value } = e.target || data;
+      const updatedTasks = [...tasks];
+      updatedTasks[index][name] = value;
+      setTasks(updatedTasks);
+    };
   return (
-    // <>
-    //   <div className="mt-5">
-    //     <h1>Post a project </h1>
-    //     <div>
-    //       {loading && <p>Loading...</p>}
-    //       {error && <p>Error: {error}</p>}
-    //       <ul>
-    //         {filteredTeam_members.map((member) => (
-    //           <li key={member._id}>
-    //             {member.username}: Ids :{member._id}
-    //           </li>
-    //         ))}
-    //       </ul>
-    //     </div>
-
-    //     <form onSubmit={handleSubmit}>
-    //       <label>Project Name: </label>
-    //       <input
-    //         id="p_name"
-    //         name="p_name"
-    //         value={project_name}
-    //         onChange={onChangeProjectName}
-    //       />
-    //       <br />
-    //       <br />
-    //       <label>Project project_Description: </label>
-    //       <input
-    // id="p_desc"
-    // name="p_desc"
-    // value={project_description}
-    //         onChange={onChangeProjectDesc}
-    //       />
-    //       <br />
-    //       <br />
-    //       <label>Member Id1: </label>
-
-    //       {/* <input
-    //         id="memberId1"
-    //         name="memberId1"
-    //         value={memberId1}
-    //         onChange={onChangeMemberId1}
-    //       /> */}
-    //       <Select
-    //         name="memberId1"
-    //         value={memberId1}
-    //         onChange={onChangeMemberId1}
-    //       >
-    //         <MenuItem value="">
-    //           <em>None</em>
-    //         </MenuItem>
-    //         {Array.isArray(members) &&
-    //           members.map((member) => (
-    //             <MenuItem key={member.id} value={member.id}>
-    //               {member.email}
-    //             </MenuItem>
-    //           ))}
-    //       </Select>
-    //       <br />
-    //       <br />
-    //       <label>Member Id2: </label>
-
-    //       <Select
-    //         id="memberId2"
-    //         name="memberId2"
-    //         value={memberId2}
-    //         onChange={onChangeMemberId2}
-    //       >
-    //         <MenuItem value="">
-    //           <em>None</em>
-    //         </MenuItem>
-    //         {Array.isArray(members) &&
-    //           members.map((member) => (
-    //             <MenuItem key={member.id} value={member.id}>
-    //               {member.email}
-    //             </MenuItem>
-    //           ))}
-    //       </Select>
-    //       <br />
-    //       <br />
-    //       <label>Member Id3: </label>
-
-    // <Select
-    //   id="memberId3"
-    //   name="memberId3"
-    //   value={memberId3}
-    //   onChange={onChangeMemberId3}
-    // >
-    //   <MenuItem value="">
-    //     <em>None</em>
-    //   </MenuItem>
-    //   {Array.isArray(members) &&
-    //     members.map((member) => (
-    //       <MenuItem key={member.id} value={member.id}>
-    //         {member.email}
-    //       </MenuItem>
-    //     ))}
-    // </Select>
-    //       <br />
-    //       <br />
-    //       <label>Leader ID: </label>
-    //       <div
-
-    //         id="LeaderId"
-    //         name="LeaderId"
-    //         value={leaderId}
-
-    //       >
-    //         <p>
-    //         {content.id}
-    //       </p>
-    //       </div>
-
-    //       <input type="submit" />
-    //     </form>
-    //   </div>
-    // </>
     <div className="mt-5">
       <form onSubmit={handleSubmit}>
         <div>
@@ -236,11 +128,11 @@ const MyPost = () => {
         </div>
         <div>
           <label htmlFor="documentFile">Document File</label>
-          <input
-            type="file"
-            id="documentFile"
+          <FileBase64
             value={documentFile}
-            onChange={(e) => setDocumentFile(e.target.files[0])}
+            type="file"
+            multiple={false}
+            onDone={({ base64 }) => setDocumentFile({ documentFile: base64 })}
           />
         </div>
         <div>
@@ -248,13 +140,6 @@ const MyPost = () => {
           {members.map((member, index) => (
             <div key={index}>
               <label htmlFor={`member-email-${index}`}>Email</label>
-              {/* <input
-                type="email"
-                id={`member-email-${index}`}
-                name="email"
-                value={member.email}
-                onChange={(e) => handleMemberChange(index, e)}
-              /> */}
               <Select
                 type="email"
                 id={`member-email-${index}`}
@@ -273,13 +158,6 @@ const MyPost = () => {
                   ))}
               </Select>
               <label htmlFor={`member-id-${index}`}>ID</label>
-              {/* <input
-                type="text"
-                id={`member-id-${index}`}
-                name="id"
-                value={member.id}
-                onChange={(e) => handleMemberChange(index, e)}
-              /> */}
               <Select
                 type="text"
                 id={`member-id-${index}`}
@@ -297,14 +175,6 @@ const MyPost = () => {
                     </MenuItem>
                   ))}
               </Select>
-              {/* <label htmlFor={`member-leader-${index}`}>Is Leader</label>
-              <input
-                type="checkbox"
-                id={`member-leader-${index}`}
-                name="isLeader"
-                checked={member.isLeader}
-                onChange={(e) => handleMemberChange(index, e)}
-              /> */}
             </div>
           ))}
           <button type="button" onClick={handleAddMember}>
@@ -360,12 +230,27 @@ const MyPost = () => {
               <label htmlFor={`taskinstructionfile-member-id-${index}`}>
                 taskinstructionfile
               </label>
-              <input
+              {/* <input
                 type="text"
                 id={`taskinstructionfile-member-id-${index}`}
                 name="taskinstructionfile"
                 value={task.taskinstructionfile}
                 onChange={(e) => handleTaskChange(index, e)}
+              /> */}
+              <FileBase64
+                id={`taskinstructionfile-member-id-${index}`}
+                name="taskinstructionfile"
+                value={task.taskinstructionfile}
+                type="file"
+                multiple={false}
+                onDone={({ base64 }) =>
+                  handleTaskChange(index, {
+                    target: {
+                      name: "taskinstructionfile",
+                      value: base64,
+                    },
+                  })
+                }
               />
             </div>
           ))}
