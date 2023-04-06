@@ -5,6 +5,7 @@ import Footer from './Footer/Footer';
 import HeroSection from './HeroSection';
 import LandingNavber from './navbar/LandingNavber';
 import Team from './teamSection/Team';
+import Tools from './tools/Tools';
 const LandingPage = () => {
   return (
     <>
@@ -26,6 +27,7 @@ const LandingPage = () => {
             
             <Features />
             <Benefits/>
+            <Tools/>
             {/* <Team /> */}
       </div>
 

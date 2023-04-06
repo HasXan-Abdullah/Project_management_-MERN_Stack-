@@ -47,7 +47,7 @@ const LandingNavber = () => {
               </li>
 
               <li className="nav-item">
-                <a className="nav-link" href="#scrollspyHeading2">
+                <a className="nav-link" href="#tools">
                   Tools
                 </a>
               </li>
