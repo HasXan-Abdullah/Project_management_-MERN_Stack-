@@ -7,6 +7,8 @@ import ConstructionIcon from '@mui/icons-material/Construction';
 import AlignHorizontalLeftIcon from '@mui/icons-material/AlignHorizontalLeft';
 import { Paper } from '@mui/material';
 
+import FlagOutlinedIcon from '@mui/icons-material/FlagOutlined';
+
 const Benefits = () => {
   return (
     <section className="benefitSection">
@@ -24,7 +26,35 @@ const Benefits = () => {
                     elevation={10}
                     sx={{ borderRadius: "20px", width:'97%', margin:'15px', padding:'3px'}}
                   >
-            <div className="oneBen">
+      <div className="ben-div">
+          <div className="one-row">
+            <div className="one-col">
+                  <FlagOutlinedIcon sx={{fontSize:'3rem', color:'#83d0c0'}}/>
+                  <h5>Goal Oriented</h5>
+                  <p>Keep work and goals organized in one place.<br/>Be able to easily plan projects while taking <br/>previous track record into account.</p>
+            </div>
+
+            <div className="one-col">
+                  <ManageHistoryIcon sx={{fontSize:'3rem', color:'#83d0c0'}}/>
+                  <h5>Efficieny</h5>
+                  <p>Eliminate confusion and increase efficiency.<br/>Be able to easily register time on work items <br/>and take people's work schedule into account.</p>
+            </div>
+          </div>
+          <div className="one-row">
+            <div className="one-col">
+                  <ConstructionIcon sx={{fontSize:'3rem', color:'#83d0c0'}}/>
+                  <h5>Team Effectiveness</h5>
+                  <p>people are working on the right things at the<br/> right time. Easily document requirements, <br/>specs, directly or via files.</p>
+            </div>
+
+            <div className="one-col">
+                  <AlignHorizontalLeftIcon sx={{fontSize:'3rem', color:'#83d0c0'}}/>
+                  <h5>Team Align</h5>
+                  <p>Easily post comments and concerns and easily <br/>communicate with external stakeholders.</p>
+            </div>
+          </div>
+      </div>
+            {/* <div className="oneBen">
                 <h1> <FlagIcon sx={{fontSize:'3rem'}}/> </h1>
                 <p>Keep work and goals organized in one place.</p>
               
@@ -46,7 +76,7 @@ const Benefits = () => {
                 <h1><AlignHorizontalLeftIcon sx={{fontSize:'3rem'}}/></h1>
                 <p>Align communications.</p>
               
-            </div>
+            </div> */}
             </Paper>
 {/* </div>            */}
               {/* <div className='display'>

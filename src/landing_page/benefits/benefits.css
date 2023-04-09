@@ -2,6 +2,22 @@
     position: sticky;
 background-color: white !important;
 }
+.one-col{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.one-col>h5{
+    font-family: Arial, sans-serif;
+    color: #83d0c0;
+}
+.one-row{
+    display: flex;
+    justify-content: space-around;
+}
+.ben-div{
+    padding: 15px;
+}
 /* 
 .circle{
     border-radius:100%;

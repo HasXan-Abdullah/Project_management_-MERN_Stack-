@@ -37,22 +37,22 @@ const Footer = () => {
               <h6>Quick Links</h6>
               <ul className="footer-links">
                 <li className="nav-item">
-                  <a className="nav-link" href="#scrollspyHeading1">
+                  <a className="nav-link" href="#home">
                     Home
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link " href="#scrollspyHeading3">
+                  <a className="nav-link " href="#features">
                     Features
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link " href="#scrollspyHeading3">
-                    Team
+                  <a className="nav-link " href="#benefits">
+                    Benefits
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link " href="#scrollspyHeading3">
+                  <a className="nav-link " href="#tools">
                     Tools
                   </a>
                 </li>
