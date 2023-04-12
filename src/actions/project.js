@@ -137,27 +137,11 @@ export const deleteProject = (id) => {
 };
 
 // Update project
-export const updateProject = (
-  id,
-  project_name,
-  project_description,
-  memberId1,
-  memberId2,
-  memberId3,
-  leaderId
-) => {
+export const updateProject = (id, project) => {
   return (dispatch) => {
-    dispatch({ type: UPDATE_PROJECT_REQUEST });
+    dispatch({ type: UPDATE_PROJECT_REQUEST, });
 
-    return ProjectService.updateProject(
-      id,
-      project_name,
-      project_description,
-      memberId1,
-      memberId2,
-      memberId3,
-      leaderId
-    ).then(
+    return ProjectService.updateProject(id, project).then(
       (response) => {
         dispatch({
           type: UPDATE_PROJECT_SUCCESS,

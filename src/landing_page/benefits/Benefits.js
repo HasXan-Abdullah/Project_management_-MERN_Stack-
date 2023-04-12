@@ -12,7 +12,7 @@ import FlagOutlinedIcon from '@mui/icons-material/FlagOutlined';
 const Benefits = () => {
   return (
     <section className="benefitSection">
-      <div id="benefits" className="pt---60 ">
+      <div id="benefits" className="pt---60 contianer">
         <div className="benDiv">
           <div className="text-center mb-5">
             <h1 className="fontSize">

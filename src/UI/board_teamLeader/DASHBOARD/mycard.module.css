@@ -1,0 +1,15 @@
+.mainCard{
+min-width: 350px;
+    border-radius: 10px;
+    margin: 10px;
+}
+.iconDiv>svg{
+    font-size: 3rem;
+    margin: 10px;
+    color: cadetblue;
+}
+.txtDiv{
+    font-size: 1rem;
+        margin: 10px;
+        font-weight: bold;
+}

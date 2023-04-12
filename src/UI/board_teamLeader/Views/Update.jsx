@@ -1,111 +1,363 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { getProjectById, updateProject } from "../../../actions/project";
-
-
-const Update = ( ) => { 
+import { Button, Grid, MenuItem, TableRow, TextField } from "@mui/material";
+import FileBase64 from "react-file-base64";
+import Select from "@mui/material/Select";
+import GetTeamMember from "../projects/GetTeamMember";
+const Update = () => {
     const params = useParams();
     const dispatch = useDispatch();
-    const navigate =useNavigate();
+    const navigate = useNavigate();
+    const [user, setUser] = useState(null);
+    const [content, setContent] = useState(null);
 
-
- 
-    
     useEffect(() => {
-        dispatch(getProjectById(params.id)); 
+        const userData = localStorage.getItem("user");
+        if (userData) {
+            setUser(JSON.parse(userData).user);
+        } else {
+            navigate("/login");
+        }
+    }, []);
 
-    }, [dispatch,params.id]);
+    useEffect(() => {
+        dispatch(getProjectById(params.id));
+    }, [dispatch, params.id]);
+
+    useEffect(() => {
+        if (user) {
+            setContent(user.content);
+        }
+    }, [user]);
+
     const project = useSelector((state) => state.project.project);
-    const [project_name, setProjectName] = useState(
-   
-        project ? project.project_name : " ");
-    const [project_description, setProjectDesc] = useState(
-        project ? project.project_description : ""
-    );
-    const [memberId1, setMemberId1] = useState(
-        project ? project.memberId1 : ""
-    );
-    const [memberId2, setMemberId2] = useState(
-        project ? project.memberId2 : ""
-    );
-    const [memberId3, setMemberId3] = useState(
-        project ? project.memberId3 : ""
-    );
-    const [leaderId, setLeaderId] = useState(
-        project ? project.leaderId : ""
-    );
-    console.log(project.leaderId)
-    const handleUpdateProject = (e) => {
+
+
+    let mem = GetTeamMember().members;
+    const [project_description, setProjectDesc] = useState(project ? project.project_description : "");
+    const onChangeProjectDesc = (e) => {
+        const p_Desc = e.target.value;
+        setProjectDesc(p_Desc);
+    };
+    const [project_name, setProjectName] = useState(project ? project.project_name : "");
+    const onChangeProjectName = (e) => {
+        const p_Name = e.target.value;
+        setProjectName(p_Name);
+    };
+    const [documentFile, setDocumentFile] = useState(project?.documentFile||[""]);
+    const [members, setMembers] = useState(project?.members || [
+        { email: "", id: "", isLeader: false },
+    ]);
+    const [tasks, setTasks] = useState(project?.tasks || [
+        {
+            taskname: "",
+            taskdescription: "",
+            givento: "",
+            taskstatus: "",
+            taskinstructionfile: [],
+        },
+    ]);
+    useEffect(() => {
+        if (project) {
+            setProjectDesc(project.project_description || "");
+            setProjectName(project.project_name || "");
+            setDocumentFile(project.documentFile);
+            setTasks(project?.tasks || [
+                {
+                    taskname: "",
+                    taskdescription: "",
+                    givento: "",
+                    taskstatus: "",
+                    taskinstructionfile: [],
+                },
+            ])
+            setMembers(
+                project?.members || [
+                    { email: "", id: "", isLeader: false },
+                ]
+            )
+
+        }
+    }, [project]);
+    const handleSubmit = (e) => {
         e.preventDefault();
-      
-        dispatch(updateProject(params.id,project_name, project_description, memberId1, memberId2, memberId3, leaderId));
-        setProjectName('');
-        setProjectDesc('');
-        setMemberId1('');
-        setMemberId2('');
-        setMemberId3('');
-        setLeaderId('');
-        alert('Updated successfully');
-        navigate(`/home/view/${params.id}`)
+
+        let project = {
+            project_name,
+            project_description,
+            documentFile,
+            members: [
+                ...members,
+
+
+            ],
+            tasks,
+        };
+
+
+        dispatch(updateProject(params.id, project));
+    };
+
+    const handleAddMember = () => {
+        setMembers([...members, { email: "", id: "", isLeader: false }]);
+    };
+    const handleDeleteMember = (index) => {
+        const list = [...members];
+        list.splice(index, 1);
+        setMembers(list);
+    };
+
+    const handleMemberChange = (index, e) => {
+        const updatedMembers = [...members];
+        updatedMembers[index][e.target.name] = e.target.value;
+        setMembers(updatedMembers);
+    };
+    //
+    const handleAddTask = () => {
+        setTasks([
+            ...tasks,
+            {
+                taskname: "",
+                taskdescription: "",
+                givento: "",
+                taskstatus: "",
+                taskinstructionfile: [],
+            },
+        ]);
+    };
+    const handleDeleteTask = (index) => {
+        const list = [...tasks];
+        list.splice(index, 1);
+        setTasks(list);
+    };
+
+    const handleTaskChange = (index, e, data) => {
+        const { name, value } = e.target || data;
+        const updatedTasks = [...tasks];
+        updatedTasks[index][name] = value;
+        setTasks(updatedTasks);
     };
 
     return (
-        <form onSubmit={handleUpdateProject} className="mt-5">
-            <label>Project Name: </label>
-            <input
-                id="p_name"
-                name="p_name"
-                value={project_name}
-                onChange={(e) => setProjectName(e.target.value)}
-            />
-            <br />
-            <br />
-            <label>Project Description: </label>
-            <input
-                id="p_desc"
-                name="p_desc"
-                value={project_description}
-                onChange={(e) => setProjectDesc(e.target.value)}
-            />
-            <br />
-            <br />
-            <label>Member Id1: </label>
-            <input
-                id="memberId1"
-                name="memberId1"
-                value={memberId1}
-                onChange={(e) => setMemberId1(e.target.value)}
-            />
-            <br />
-            <br />
-            <label>Member Id2: </label>
-            <input
-                id="memberId2"
-                name="memberId2"
-                value={memberId2}
-                onChange={(e) => setMemberId2(e.target.value)}
-            />
-            <br />
-            <br />
-            <label>Member Id3: </label>
-            <input
-                id="memberId3"
-                name="memberId3"
-                value={memberId3}
-                onChange={(e) => setMemberId3(e.target.value)}
-            />
-            <br />
-            <br />
-            <label>Leader ID: </label>
-            <input
-                id="LeaderId"
-                name="LeaderId"
-                value={leaderId}
-                onChange={(e) => setLeaderId(e.target.value)}
-            />
-            <input type="submit" />
-        </form>
+        <div className="mt-5">
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <h3>Project info</h3>
+
+                    <TextField
+                        label="Project Name"
+                        id="p_name"
+                        name="p_name"
+                        value={project_name}
+                        onChange={onChangeProjectName}
+                        variant="outlined"
+                        size="small"
+                        sx={{ color: "#64c5b1" }}
+                    />
+
+                    <TextField
+                        id="p_desc"
+                        name="p_desc"
+                        value={project_description}
+                        onChange={onChangeProjectDesc}
+                        label="Project description"
+                        variant="outlined"
+                        size="small"
+                    />
+                </div>
+                <div>
+                    <div className="input-file">
+                        <label htmlFor="documentFile">Document File: </label>
+                        <FileBase64
+                            value={documentFile}
+                            type="file"
+                            multiple={false}
+                            onDone={({ base64 }) => setDocumentFile({ documentFile: base64 })}
+                        /></div>
+                </div>
+                <hr />
+
+                {/* ------------------------- */}
+
+                <div>
+                    <h3>Members</h3>
+                    {members.map((member, index) => (
+                        <div key={index}>
+                            <label htmlFor={`member-email-${index}`}>Email</label>
+
+                            <Select
+                                sx={{ marginRight: "35px" }}
+                                type="email"
+                                id={`member-email-${index}`}
+                                name="email"
+                                value={member.email}
+                                onChange={(e) => handleMemberChange(index, e)}
+                            >
+                                <MenuItem value="">
+                                    <em>none</em>
+                                </MenuItem>
+                                {Array.isArray(mem) &&
+                                    mem.map((data) => (
+                                        <MenuItem key={data.id} value={data.email}>
+                                            {data.email}
+                                        </MenuItem>
+                                    ))}
+                            </Select>
+                            <label htmlFor={`member-id-${index}`}>ID</label>
+                            <Select
+                                type="text"
+                                id={`member-id-${index}`}
+                                name="id"
+                                value={member.id}
+                                onChange={(e) => handleMemberChange(index, e)}
+                            >
+                                <MenuItem value="">
+                                    <em>None</em>
+                                </MenuItem>
+                                {Array.isArray(mem) &&
+                                    mem.map((data) => (
+                                        <MenuItem key={data.id} value={data.id}>
+                                            {data.name}
+                                        </MenuItem>
+                                    ))}
+                            </Select>
+                        </div>
+                    ))}
+                    <Button
+                        type="button"
+                        onClick={handleAddMember}
+                        variant="contained"
+                        sx={{ backgroundColor: "#64c5b1" }}
+                    >
+                        Add Member
+                    </Button>
+                    <Button
+                        type="button"
+                        onClick={(index) => handleDeleteMember(index)}
+                        variant="contained"
+                        sx={{ backgroundColor: "#64c5b1" }}
+                    >
+                        Delete Member
+                    </Button>
+                </div>
+
+                {/*  */}
+                <hr />
+
+                <div>
+                    <h3>tasks</h3>
+                    {tasks.map((task, index) => (
+                        <div key={index}>
+
+                            <TextField
+                                type="text"
+                                id={`task-name-${index}`}
+                                name="taskname"
+                                value={task.taskname}
+                                onChange={(e) => handleTaskChange(index, e)}
+                                label="Task name"
+                                variant="outlined"
+                                size="small"
+                            />
+
+                            <Select
+                                placeholder="member name"
+                                type="text"
+                                id={`givento-member-id-${index}`}
+                                name="givento"
+                                value={task.givento}
+                                onChange={(e) => handleTaskChange(index, e)}
+                                variant="outlined"
+                                size="small"
+                            >
+                                <MenuItem value="">
+                                    <em>None</em>
+                                </MenuItem>
+                                {Array.isArray(mem) &&
+                                    mem.map((data) => (
+                                        <MenuItem key={data.id} value={data.id}>
+                                            {data.name}
+                                        </MenuItem>
+                                    ))}
+                            </Select>
+
+                            <TextField
+                                type="text"
+                                id={`taskdescription-member-id-${index}`}
+                                name="taskdescription"
+                                value={task.taskdescription}
+                                onChange={(e) => handleTaskChange(index, e)}
+                                label="Task description"
+                                variant="outlined"
+                                size="small"
+                            />
+
+                            <TextField
+                                type="text"
+                                id={`taskstatus-member-id-${index}`}
+                                name="taskstatus"
+                                value={task.taskstatus}
+                                onChange={(e) => handleTaskChange(index, e)}
+                                label="Task Status"
+                                variant="outlined"
+                                size="small"
+                            />
+                            <div className="input-file">
+                                <FileBase64
+
+                                    id={`taskinstructionfile-member-id-${index}`}
+                                    name="taskinstructionfile"
+                                    value={task.taskinstructionfile}
+                                    type="file"
+                                    multiple={false}
+                                    onDone={({ base64 }) =>
+                                        handleTaskChange(index, {
+                                            target: {
+                                                name: "taskinstructionfile",
+                                                value: base64,
+                                            },
+                                        })
+                                    }
+                                />
+                            </div>
+                        </div>
+                    ))}
+
+                    <Button
+                        type="button"
+                        onClick={handleAddTask}
+                        variant="contained"
+                        sx={{ backgroundColor: "#64c5b1" }}
+                    >
+                        Add Task
+                    </Button>
+                    <Button
+                        type="button"
+                        onClick={(index) => handleDeleteTask(index)}
+                        variant="contained"
+                        sx={{ backgroundColor: "#64c5b1", marginLeft: "10px" }}
+                    >
+                        Delete Task
+                    </Button>
+                </div>
+                {/*  */}
+
+                <Button
+                    type="submit"
+                    variant="contained"
+                    sx={{
+                        backgroundColor: "#64c5b1",
+
+                        marginTop: "15px",
+                    }}
+                >
+                    Submit
+                </Button>
+                
+            </form>
+        </div>
     );
 };
 

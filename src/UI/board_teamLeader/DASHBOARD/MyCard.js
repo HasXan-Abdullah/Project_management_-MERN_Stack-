@@ -1,35 +1,31 @@
-import React from 'react'
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Unstable_Grid2';
+import { MenuItem, Paper } from "@mui/material";
+import React from "react";
 
-
-
-const MyCard = () => {
-    const Item = styled(Paper)(({ theme }) => ({
-        backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-        ...theme.typography.body2,
-        padding: theme.spacing(1),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-        height:200,
-       
-      }));
-      
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import style from './mycard.module.css';
+const MyCard = (props) => {
   return (
-    <div>
-        <Grid container spacing={3} sx={{mt:-25, height:'111px', width:'45rem'}}>
-            <Grid xs= {8} >
-                <Item>My Projects</Item>
-            </Grid>
-            <Grid xs={4}>
-                <Item>My Team</Item>
-            </Grid>
-        </Grid>
-    </div>
-  )
-}
+    <Paper className={`d-flex justify-content-between w-25 ${style.mainCard}`}>
 
-export default MyCard
+    
+  
+      <div className="d-flex">
+        <div className={`${style.iconDiv}`}>
+             {props.logo}
+        </div>
+     <div  className={`${style.txtDiv}`}>
+        {props.title}
+        <br></br>
+        {props.noOftasks}
+      </div>
+      </div>
+    
+      <div  className={`${style.iconDiv}`}>
+        <ArrowForwardIosIcon/>
+      </div>
 
+    </Paper>
+  );
+};
+
+export default MyCard;

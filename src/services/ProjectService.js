@@ -62,23 +62,13 @@ const deleteProject = (id) => {
   return axios.delete(API_URL + "deleteproject/" + id);
 };
 
-const updateProject = (
-  id,
-  project_name,
-  project_description,
-  memberId1,
-  memberId2,
-  memberId3,
-  leaderId
-) => {
-  return axios.post(API_URL + "updateproject/:" + id, {
-    project_name,
-    project_description,
-    memberId1,
-    memberId2,
-    memberId3,
-    leaderId,
-  });
+// const updateProject = (id, project) => {
+//   return axios.post(API_URL + "updateproject/:" + id, {
+//     project,
+//   });
+// };
+const updateProject = (id, project) => {
+  return axios.post(API_URL + "updateproject/" + id, project);
 };
 
 const ProjectService = {
