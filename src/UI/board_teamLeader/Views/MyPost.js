@@ -372,7 +372,7 @@ const MyPost = () => {
               </div>
   </div>          
 
-<div className="d-flex flex-row justify-content-evenly">
+<div className="d-flex flex-row justify-content-between">
           <div className="d-flex flex-column">    
           <label>Task Description</label>
           <TextareaAutosize
