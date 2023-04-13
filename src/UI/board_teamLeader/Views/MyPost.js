@@ -15,6 +15,7 @@ import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import AddIcon from '@mui/icons-material/Add';
 import projman from '../../../assets/images/proj.jpg';
 import { red } from "@mui/material/colors";
+import styles from './mypost.module.css';
 
 const MyPost = () => {
   let navigate = useNavigate();
@@ -50,7 +51,7 @@ const MyPost = () => {
     {
       taskname: "",
       taskdescription: "",
-       givento: {
+      givento: {
         value: "",
         label: "",
       },
@@ -95,10 +96,10 @@ const MyPost = () => {
         taskname: "",
         taskdescription: "",
         taskstatus: "",
-         givento: {
-        value: "",
-        label: "",
-      },
+        givento: {
+          value: "",
+          label: "",
+        },
         taskinstructionfile: [],
       },
     ]);
@@ -116,21 +117,21 @@ const MyPost = () => {
   //   setTasks(updatedTasks);
   // };
 
-   const handleTaskChange = (index, e, data) => {
+  const handleTaskChange = (index, e, data) => {
     const { name, value } = e.target || data;
     const updatedTasks = [...tasks];
     updatedTasks[index][name] = value;
     setTasks(updatedTasks);
-  
+
     if (name === `tasks[${index}].givento.value`) {
       const selectedOption = mem.find(member => member.id === value);
       updatedTasks[index].givento.label = selectedOption ? selectedOption.name : "";
       updatedTasks[index].givento.value = selectedOption ? selectedOption.id : "";
-      
+
     }
     return setTasks(updatedTasks);
 
-};
+  };
 
 
 
@@ -138,60 +139,63 @@ const MyPost = () => {
   return (
     <div className="mt-5">
       <form onSubmit={handleSubmit}>
-        <Paper elevation={10} sx={{borderRadius: "20px", padding:'15px 25px'}}>
-        <div>
-          <b><h3>Project info</h3></b>
-        <div className="d-flex flex-row align-items-end justify-content-between">
-          <div className="d-flex flex-column ">
+        <Paper elevation={10} className={styles.topSection}>
+          <div>
+            <h3 className={styles.h3}>Project info</h3>
+            {/* <div className="d-flex flex-row align-items-end justify-content-between"> */}
+              {/* <div className="d-flex flex-column "> */}
 
-          <label htmlFor="projectname">Project Name </label>
-            <TextField
-              // label="Project Name"
-              placeholder="Project Name"
-              id="p_name"
-              name="p_name"
-              value={project_name}
-              onChange={onChangeProjectName}
-              variant="outlined"
-              size="small"
-              sx={{ color: "#64c5b1" ,mb:'20px', width:'20rem'}}
+                <label htmlFor="projectname" className={styles.pname}>Project Name </label>
+                <TextField
+                  // label="Project Name"
+                  placeholder="Project Name"
+                  id="p_name"
+                  name="p_name"
+                  value={project_name}
+                  onChange={onChangeProjectName}
+                  variant="outlined"
+                  className={styles.fieldProjectName}
 
-            />
-            <label htmlFor="projectdesc">Project Description </label>
-            <TextField
-              id="p_desc"
-              name="p_desc"
-              value={project_description}
-              onChange={onChangeProjectDesc}
-              // label="Project description"
-              placeholder="Project Description"
-              variant="outlined"
-              size="small"
-            />
-            
-          </div>
-        
+                />
+                <label htmlFor="projectdesc" className={styles.projDesc}>Project Description </label>
+                <TextField
+                  id="p_desc"
+                  name="p_desc"
+                  value={project_description}
+                  onChange={onChangeProjectDesc}
+                  // label="Project description"
+                  placeholder="Project Description"
+                  variant="outlined"
+                  className={styles.fieldProjDesc}
+                />
 
-        
-          <div className="input-file d-flex flex-column">
-            <label htmlFor="documentFile">Upload Project: </label>
-            <FileBase64
-              value={documentFile}
-              type="file"
-              multiple={false}
-              onDone={({ base64 }) => setDocumentFile({ documentFile: base64 })}
-            />
+              {/* </div> */}
+
+
+
+              {/* <div className="input-file d-flex flex-column"> */}
+                <label htmlFor="documentFile" className={styles.uploadText}>Upload Project: </label>
+                <div className={styles.uploadProj}>
+                {/* <FileBase64
+                  
+                  value={documentFile}
+                  type="file"
+                  multiple={false}
+                  onDone={({ base64 }) => setDocumentFile({ documentFile: base64 })}
+                /> */}
+                <h3 className={styles.uploadText}>Upload Project</h3>
+                </div>
+              {/* </div> */}
+              {/* <div className="d-flex flex-column align-items-center"> */}
+                <img className={styles.photo} src={projman} alt="mens"/>
+              {/* </div> */}
+            {/* </div> */}
           </div>
-          <div className="d-flex flex-column align-items-center">
-            <img src={projman} alt="mens" width="220px"/>
-          </div>
-        </div>
-        </div>
         </Paper>
-        
+
 
         {/* ------------------------- */}
-      <Paper elevation={10}
+        {/* <Paper elevation={10}
        sx={{borderRadius: "20px", padding:'15px 25px', mt:'20px'}}
       >
         <div>
@@ -256,187 +260,171 @@ const MyPost = () => {
               </div>
             </div>
           ))}
-          {/* <Button
-            type="button"
-            onClick={handleAddMember}
-            variant="contained"
-            sx={{ backgroundColor: "#64c5b1" }}
-          >
-            Add Member
-          </Button> */}
-
-          {/* <Button
-            type="button"
-            onClick={(index) => handleDeleteMember(index)}
-            variant="contained"
-            sx={{ backgroundColor: "#64c5b1" }}
-          >
-            Delete Member
-          </Button> */}
-        </div>
-      </Paper>
-        {/*  */}
-      
-      
-       
-<Paper  elevation={10}
-       sx={{borderRadius: "20px", padding:'15px 25px', mt:'20px'}}>
-        <div>
-          <div className="d-flex justify-content-between">
-          <h3>Tasks</h3>
-          <Button onClick={handleAddTask} variant="contained" sx={{backgroundColor:'grey',borderRadius:'10px', width:'5rem', height:'2rem' ,textDecoration:'none'}} startIcon={<AddIcon />}>
-              Add
-            </Button>
-          </div>
-<div>
-          {tasks.map((task, index) => (
-            <div key={index}>
           
-<div className="d-flex justify-content-between">
-            <div className="d-flex flex-column"> 
-            <label htmlFor={`member-email-${index}`}>Task Name</label>
-                <TextField
-                type="text"
-                id={`task-name-${index}`}
-                name="taskname"
-                value={task.taskname}
-                onChange={(e) => handleTaskChange(index, e)}
-                // label="Task name"
-                placeholder="Task name"
-                variant="outlined"
-                size="large"
-                sx={{width:'15rem', mb:'20px'}}
-              />
-            </div>
-
-          <div className="d-flex flex-column">
-          <label htmlFor={`member-email-${index}`}>Assign to</label>
-          <Select
-            placeholder="member name"
-            id={`givento-member-id-${index}`}
-            name={`tasks[${index}].givento.value`}
-            value={task.givento.value}
-            onChange={(e) => handleTaskChange(index, e)}
-            variant="outlined"
-            // size="small"
-            sx={{width:'15rem'}}
-          >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          {Array.isArray(mem) &&
-            mem.map((data) => (
-              <MenuItem key={data.id} value={data.id}>
-                {data.name}
-              </MenuItem>
-            ))}
-        </Select>
         </div>
-
-    
-              
-
-              <FormControl>
-                <FormLabel id="demo-row-radio-buttons-group-label">
-                  Task Status
-                </FormLabel>
-                <RadioGroup
-                  row
-                  aria-labelledby="demo-row-radio-buttons-group-label"
-                  id={`taskstatus-member-id-${index}`}
-                  name="taskstatus"
-                  value={task.taskstatus}
-                  onChange={(e) => handleTaskChange(index, e)}
-                >
-                  <FormControlLabel
-                    value="Active"
-                    control={<Radio />}
-                    label="Active"
-                  />
-                  <FormControlLabel
-                    value="Pending"
-                    control={<Radio />}
-                    label="Pending"
-                  />
-                  <FormControlLabel
-                    value="Completed"
-                    control={<Radio />}
-                    label="Completed"
-                  />
-                </RadioGroup>
-              </FormControl>
-              <div>
-                  <CancelRoundedIcon 
-                  onClick={(index) => handleDeleteTask(index)}
-                  sx={{color:'red' , fontSize:'1.5rem'}}/>
-              </div>
-  </div>          
-
-<div className="d-flex flex-row justify-content-between">
-          <div className="d-flex flex-column">    
-          <label>Task Description</label>
-          <TextareaAutosize
-                type="text"
-                id={`taskdescription-member-id-${index}`}
-                name="taskdescription"
-                value={task.taskdescription}
-                onChange={(e) => handleTaskChange(index, e)}
-                label="Task description"
-                variant="outlined"
-                size="small"
-                placeholder="Description"
-                
-              />
-          </div>
-
-              <div className="input-file d-flex flex-column">
-              <label>Upload Task File</label> 
-                <FileBase64
-                  id={`taskinstructionfile-member-id-${index}`}
-                  name="taskinstructionfile"
-                  value={task.taskinstructionfile}
-                  type="file"
-                  multiple={false}
-                  onDone={({ base64 }) =>
-                    handleTaskChange(index, {
-                      target: {
-                        name: "taskinstructionfile",
-                        value: base64,
-                      },
-                    })
-                  }
-                />
-              </div>
-            </div>
-  </div>
-))}
-
-        </div>
-</div>
+      </Paper> */}
         {/*  */}
 
-       
-      </Paper>
-      <div className="d-flex justify-content-center">
-      <Button
-          type="submit"
-          variant="contained"
-          sx={{
-            backgroundColor: "#64c5b1",
 
-            marginTop: "15px",
-            width:'40rem',
-            textAlign:"center",
-          }}
-        >
-          Post Project
-      </Button>
-      </div>
+
+        {/* <Paper elevation={10}
+          sx={{ borderRadius: "20px", padding: '15px 25px', mt: '20px' }}>
+          <div>
+            <div className="d-flex justify-content-between">
+              <h3>Tasks</h3>
+              <Button onClick={handleAddTask} variant="contained" sx={{ backgroundColor: 'grey', borderRadius: '10px', width: '5rem', height: '2rem', textDecoration: 'none' }} startIcon={<AddIcon />}>
+                Add
+              </Button>
+            </div>
+            <div>
+              {tasks.map((task, index) => (
+                <div key={index}>
+
+                  <div className="d-flex justify-content-between">
+
+                    <div className="d-flex flex-column">
+                      <label htmlFor={`member-email-${index}`}>Task Name</label>
+                      <TextField
+                        type="text"
+                        id={`task-name-${index}`}
+                        name="taskname"
+                        value={task.taskname}
+                        onChange={(e) => handleTaskChange(index, e)}
+                        
+                        placeholder="Task name"
+                        variant="outlined"
+                        size="large"
+                        sx={{ width: '15rem', mb: '20px' }}
+                      />
+                    </div>
+
+                    <div className="d-flex flex-column">
+                      <label htmlFor={`member-email-${index}`}>Assign to</label>
+                      <Select
+                        placeholder="member name"
+                        id={`givento-member-id-${index}`}
+                        name={`tasks[${index}].givento.value`}
+                        value={task.givento.value}
+                        onChange={(e) => handleTaskChange(index, e)}
+                        variant="outlined"
+                        sx={{ width: '15rem' }}
+                      >
+                        <MenuItem value="">
+                          <em>None</em>
+                        </MenuItem>
+                        {Array.isArray(mem) &&
+                          mem.map((data) => (
+                            <MenuItem key={data.id} value={data.id}>
+                              {data.name}
+                            </MenuItem>
+                          ))}
+                      </Select>
+                    </div>
+
+
+
+
+                    <FormControl>
+                      <FormLabel id="demo-row-radio-buttons-group-label">
+                        Task Status
+                      </FormLabel>
+                      <RadioGroup
+                        row
+                        aria-labelledby="demo-row-radio-buttons-group-label"
+                        id={`taskstatus-member-id-${index}`}
+                        name="taskstatus"
+                        value={task.taskstatus}
+                        onChange={(e) => handleTaskChange(index, e)}
+                      >
+                        <FormControlLabel
+                          value="Active"
+                          control={<Radio />}
+                          label="Active"
+                        />
+                        <FormControlLabel
+                          value="Pending"
+                          control={<Radio />}
+                          label="Pending"
+                        />
+                        <FormControlLabel
+                          value="Completed"
+                          control={<Radio />}
+                          label="Completed"
+                        />
+                      </RadioGroup>
+                    </FormControl>
+                    <div>
+                      <CancelRoundedIcon
+                        onClick={(index) => handleDeleteTask(index)}
+                        sx={{ color: 'red', fontSize: '1.5rem' }} />
+                    </div>
+                  </div>
+
+                  <div className="d-flex flex-row justify-content-between">
+                    <div className="d-flex flex-column">
+                      <label>Task Description</label>
+                      <TextareaAutosize
+                        type="text"
+                        id={`taskdescription-member-id-${index}`}
+                        name="taskdescription"
+                        value={task.taskdescription}
+                        onChange={(e) => handleTaskChange(index, e)}
+                        label="Task description"
+                        variant="outlined"
+                        size="small"
+                        placeholder="Description"
+
+                      />
+                    </div>
+
+                    <div className="input-file d-flex flex-column">
+                      <label>Upload Task File</label>
+                      <FileBase64
+                        id={`taskinstructionfile-member-id-${index}`}
+                        name="taskinstructionfile"
+                        value={task.taskinstructionfile}
+                        type="file"
+                        multiple={false}
+                        onDone={({ base64 }) =>
+                          handleTaskChange(index, {
+                            target: {
+                              name: "taskinstructionfile",
+                              value: base64,
+                            },
+                          })
+                        }
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+
+            </div>
+          </div>
+          
+
+
+        </Paper> */}
+        {/* <div className="d-flex justify-content-center">
+          <Button
+            type="submit"
+            variant="contained"
+            sx={{
+              backgroundColor: "#64c5b1",
+
+              marginTop: "15px",
+              width: '40rem',
+              textAlign: "center",
+            }}
+          >
+            Post Project
+          </Button>
+        </div> */}
       </form>
-      
-      
+
+
     </div>
-    
+
   );
 };
 
