@@ -1,0 +1,134 @@
+.topSection{
+    /* border: 2px solid black; */
+    position: absolute;
+    width: 1390px;
+    height: 295px;
+    left: 276px;
+    top: 104px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+}
+.h3{
+    position: absolute;
+    width: 161px;
+    height: 36px;
+    left: 30px;
+    top: 27px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 36px;
+    
+    color: #000000;
+}
+.pname{
+    position: absolute;
+    width: 103px;
+    height: 19px;
+    left: 30px;
+    top: 105px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+
+    color: #555555;
+}
+.fieldProjectName{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 460px;
+    height: 40px;
+    left: 30px;
+    top: 130px;
+
+    background: #FFFFFF;
+    /* border: 1px solid #D9D9D9;
+    border-radius: 10px; */
+}
+.projDesc{
+    position: absolute;
+    width: 130px;
+    height: 19px;
+    left: 30px;
+    top: 190px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+
+    color: #555555;
+}
+.fieldProjDesc{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 460px;
+    height: 40px;
+    left: 30px;
+    top: 215px;
+
+    background: #FFFFFF;
+    /* border: 1px solid #D9D9D9;
+    border-radius: 10px; */
+}
+.uploadText{
+    position: absolute;
+    width: 112px;
+    height: 19px;
+    left: 554px;
+    top: 104px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+
+    color: #555555;
+}
+.uploadProj{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 480px;
+    height: 117px;
+    left: 554px;
+    top: 138px;
+    
+    background: #FFFFFF;
+    border: 1px dashed #92E0D0;
+    border-radius: 10px;
+}
+.uploadText{
+    position: absolute;
+    width: 210px;
+    height: 36px;
+    left: 104px;
+    top: 41px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 36px;
+
+    color: #D9D9D9;
+}
+.photo{
+    position: absolute;
+width: 285px;
+height: 225px;
+left: 1376px;
+top: 46px;
+transform: matrix(-1, 0, 0, 1, 0, 0);
+}
