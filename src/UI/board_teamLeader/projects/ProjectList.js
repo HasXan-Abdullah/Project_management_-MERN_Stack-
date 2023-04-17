@@ -6,7 +6,7 @@ import ProjectData from "./ProjectData";
 const ProjectList = () => {
   const projects = ProjectData().projects;
   
-  console.log(projects)
+  console.log(projects[0].createdAt)
   
   return (
     <div>

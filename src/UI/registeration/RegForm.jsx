@@ -16,6 +16,8 @@ import {
   FormHelperText,
   Container,
 } from "@mui/material";
+import UploadBtn from '../board_teamLeader/leader_components/postFormComps/UploadBtn'
+import FileBase64 from "react-file-base64";
 import MenuItem from "@mui/material/MenuItem";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Pic2 from '../../assets/images/remote-project-manager-software.png';
@@ -52,7 +54,7 @@ const Regform = () => {
   const checkBtn = useRef();
   const { message } = useSelector((state) => state.message);
   const [category, setcategory] = useState("");
-  const [role, setrole] = useState("");
+  const [role, setrole] = useState("user");
   const [gender, setGender] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
@@ -61,7 +63,7 @@ const Regform = () => {
   const [email, setemail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const [profilepic, setProfilepic] = useState([]);
   const { isLoggedIn } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
@@ -97,11 +99,10 @@ const Regform = () => {
     setcategory(category);
   
   };
-  const handleroleChange = (e) => {
-    const role = e.target.value;
-    setrole(role);
-
+  const handleFileUpload = ({ base64 }) => {
+    setProfilepic(base64);
   };
+
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -112,7 +113,7 @@ const Regform = () => {
 
     if (checkBtn.current.context._errors.length === 0) {
       console.log(" to register");
-      dispatch(register(name, email, phone, address, gender, password, category, role))
+      dispatch(register(name, email, phone, address, gender, password, category, role ,profilepic))
         .then(() => {
           navigate("/login");
         })
@@ -139,9 +140,7 @@ const Regform = () => {
 
         <Grid className="mainContainer" container spacing={0} columns={16} align="center">
 
-    <Grid item xs={8} className="imgSection" >
-   <img  width="100%" src={Pic2} alt="bg" className="bgimg"/>
-    </Grid>
+ 
     <Grid item xs={8} align="center" className="loginContainer">
     <Paper elevation={0} className="paperStyle">
       <div className="regForm">
@@ -167,6 +166,25 @@ const Regform = () => {
                   required
                 />
               </FormControl>
+                      <FormControl className="textFields">
+                        <InputLabel className="inputLabel" htmlFor="name">
+                          Upload Profile Picture
+                          
+
+                        </InputLabel>
+                        <br></br>
+                        <div className="upload-btn-wrapper">
+                        
+                             <UploadBtn
+                           
+                        value={profilepic}
+              
+                        onDone={handleFileUpload}
+                      />
+                        </div>
+                       
+                      </FormControl>
+                    
               <FormControl className="textFields">
                 <InputLabel className="inputLabel" htmlFor="email">
                   Email address
@@ -228,7 +246,7 @@ const Regform = () => {
                 />
               </FormControl>
               <FormControl className="textFields">
-                <InputLabel className="inputLabel" id="demo-simple-select-label">category</InputLabel>
+                <InputLabel className="inputLabel" id="demo-simple-select-label">Role</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="category"
@@ -244,23 +262,7 @@ const Regform = () => {
                   <MenuItem  className="inputLabel" value="member">Team Member</MenuItem>
                 </Select>
               </FormControl>
-                      <FormControl className="textFields">
-                        <InputLabel className="inputLabel" id="demo-simple-select-label">role</InputLabel>
-                        <Select
-                          labelId="demo-simple-select-label"
-                          id="role"
-                          name="role"
-                          className="inputLabel"
-                          value={role}
-                          label="role"
-                          onChange={handleroleChange}
-                          validations={[required]}
-                          required
-                        >
-                          <MenuItem className="inputLabel" value="admin">admin</MenuItem>
-                          <MenuItem className="inputLabel" value="user">user</MenuItem>
-                        </Select>
-                      </FormControl>
+
              
               <FormControl
                 name="gender"
@@ -350,6 +352,10 @@ const Regform = () => {
 
         </Paper>
     </Grid>
+            <Grid item xs={8} className="imgSection" >
+   <img  width="80%" src={profilepic} alt="" className="bgimg"/>
+    </Grid>
+            
   </Grid>
   </Paper>
   

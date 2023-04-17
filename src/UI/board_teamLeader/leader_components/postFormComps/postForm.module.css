@@ -1,0 +1,150 @@
+.inputFields {
+  box-sizing: border-box;
+  width: 460px;
+  height: 40px;
+
+  padding: 10px 17px;
+  background: #ffffff;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  text-decoration: none !important;
+}
+.inpLables{
+  font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+  display: block;
+    color: #555555;
+}
+.uploadBtn {
+box-sizing: border-box;
+    position: relative;
+    width: 480px;
+    height: 117px;
+
+    cursor: pointer;
+
+    background: #ffffff;
+    border: 1px dashed #92e0d0;
+    border-radius: 10px;
+ 
+}
+.uploadBtnContent {
+    margin:38px 40px;
+    margin-right: 0px;
+}
+.uploadBtnText{
+  margin-top: 38px; 
+ margin-left: 22.8px;
+ font-size:1.875rem; 
+ font-weight: bold; 
+ inline-size: auto; 
+ color: #D9D9D9;
+}
+input[type="file"] {
+   width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: visible;
+      opacity: 0;
+      cursor: pointer;
+
+}
+/* .upload{
+    width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      cursor: pointer;
+      background-color: #37b1f5;
+} */
+.addBtn {
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 17px;
+  gap: 10px;
+  color: white;
+  position: relative;
+  width: 101px;
+  height: 39px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+
+    color: #FFFFFF;
+  border: none;
+  background: #676d6c;
+  border-radius: 10px;
+}
+.selectOption {
+  box-sizing: border-box;
+
+  position: relative;
+  width: 100%;
+  height: 40px;
+
+  padding: 15px;
+  background: #f9f9f9;
+  border-color: #d9d9d9;
+  border-radius: 10px !important;
+}
+.selectOption:focus{
+text-decoration: none;
+border: none;
+}
+.radioBtn {
+
+  width: 16px;
+  height: 16px;
+
+
+
+  background: #37b1f5;
+}
+.textArea{
+    box-sizing: border-box;
+    
+  
+        width: 460px;
+        min-height: 115px;
+     
+    
+        background: #FFFFFF;
+        border: 1px solid #D9D9D9;
+        border-radius: 10px;
+}
+.DelBtn{
+  border: none;
+      margin-top: 33px;
+  text-align: center;
+    font-size: 8.11px;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    color: white;
+    background: #FF8C8C;
+   
+}
+.submitBtn{
+  margin-top: 41px;
+  border: none;
+  width: 752px;
+    height: 65px;
+    left: 607px;
+    top: 1205px;
+  
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    color: white;
+    background: #92E0D0;
+    border-radius: 9px;
+}

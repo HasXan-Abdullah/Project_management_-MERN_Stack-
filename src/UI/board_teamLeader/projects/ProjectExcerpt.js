@@ -16,15 +16,18 @@ import SingleProject from "./SingleProject";
 const ProjectExcerpt = (data) => {
    const dispatch =useDispatch();
    let project = data.project;
-
+console.log(project)
   return (
     <div>
       <div key={project.id}>
-        <Card>
+        {/* <Card>
           <CardContent>
             <Typography variant="h5" gutterBottom>
               {project.project_name}
             </Typography>
+            <div>
+              {project.project_description}
+            </div>
           </CardContent>
           <CardActions>
             <Button
@@ -39,7 +42,35 @@ const ProjectExcerpt = (data) => {
             <br></br>
             <Link to={`/home/view/${project.id}`}>View</Link>
           </CardActions>
-        </Card>
+        </Card> */}
+
+        <div style={{
+          backgroundColor:'gray'
+          ,margin:'15px'
+        }}>
+          <div>
+            {project.project_name}
+          </div>
+          <div>
+            {project.project_description}
+          </div>
+          <div>
+            <table>
+              <tr>
+                <td>Created: </td>
+                {/* <td>{project.createdAt}</td> */}
+              </tr>
+              <tr>
+                <td>hello</td>
+                <td>hello</td>
+              </tr>
+              <tr>
+                <td>hello</td>
+                <td>hello</td>
+              </tr>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   );

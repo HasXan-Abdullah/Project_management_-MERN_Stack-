@@ -1,6 +1,19 @@
- .input-file input[type="file" i]::-webkit-file-upload-button {
-    border: 1px solid #ccc;
-        display: inline-block;
-        padding: 6px 12px;
-        cursor: pointer;
+
+ .taskDiv{
+    padding: 13px;
+        background: #F5F5F5;
+        border-radius: 10px;
+        margin-bottom: 26px;
  }
+
+input[name="profilepic"] {
+    font-weight: bold;
+    background-color: dodgerblue;
+    padding: 0.5em;
+    border: thin solid grey;
+    border-radius: 3px;
+    opacity: 1;
+    overflow: hidden;
+    position: relative;
+}
+

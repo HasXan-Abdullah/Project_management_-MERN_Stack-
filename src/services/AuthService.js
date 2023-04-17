@@ -38,7 +38,8 @@ const register = (
   gender,
   password,
   category,
-  role
+  role,
+  profilepic,
 ) => {
   const API_URL = "http://localhost:3000/v1/auth/register";
   console.log("sigin UP method");
@@ -50,7 +51,8 @@ const register = (
     gender,
     password,
     category,
-    role
+    role,
+    profilepic,
   });
 };
 const AuthService= {

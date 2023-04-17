@@ -8,7 +8,7 @@ import {
 import AuthService from "../services/AuthService";
 ///for register
 export const register =
-  (name, email, phone, address, gender, password, category, role) =>
+  (name, email, phone, address, gender, password, category, role,profilepic) =>
   (dispatch) => {
     return AuthService.register(
       name,
@@ -18,7 +18,8 @@ export const register =
       gender,
       password,
       category,
-      role
+      role,
+      profilepic
     ).then(
       (response) => {
         dispatch({

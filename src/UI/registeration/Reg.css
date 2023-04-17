@@ -34,10 +34,13 @@ a{
     z-index: 2;
 }
 .imgSection{
+    border-radius: 50%;
     padding-top: 15%;
     width: 100%;
     background-color: #ffffff;
 }
+.imgSection >img  {
+    border-radius: 50%;}
 .mainContainer{
     justify-content: center;
     

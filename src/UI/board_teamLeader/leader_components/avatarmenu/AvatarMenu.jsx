@@ -1,18 +1,30 @@
-import React, { useCallback } from 'react'
+
 import { Avatar, Button, Menu, MenuItem, Tooltip } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import React, { useState,useEffect, useCallback } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import CheckButton from "react-validation/build/button";
 import { logout } from '../../../../actions/auth';
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-const AvatarMenu = () => {
+const AvatarMenu = (props) => {
     const dispatch = useDispatch();
     const logOut = useCallback(() => {
         dispatch(logout());
     }, [dispatch]);
+    const navigate = useNavigate();
+    const [user, setUser] = useState(JSON.parse(window.localStorage.getItem("user")));
+
+    useEffect(() => {
+        if (!user) {
+            navigate("/login");
+        } 
+    }, [dispatch, navigate, user]);
+
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -33,7 +45,7 @@ const AvatarMenu = () => {
       <div> <Box sx={{ flexGrow: 0, }}>
           <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  <Avatar alt="Remy Sharp" src={user.user.profilepic} />
               </IconButton>
           </Tooltip>
           <Menu

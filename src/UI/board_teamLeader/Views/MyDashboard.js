@@ -17,14 +17,14 @@ const projects = ProjectData().projects;
 let allMembers = [];
 
 projects.forEach(project => {
-  if (project.members) {
+  if (project?.members) {
     const membersWithoutLeaders = project.members.filter(member => !member.isLeader);
     allMembers = allMembers.concat(membersWithoutLeaders);
   }
 });
 let allTasks =[];
 projects.forEach(project => {
-  if (project.tasks) {
+  if (project?.tasks) {
     allTasks = allTasks.concat(project.tasks);
   }
 });

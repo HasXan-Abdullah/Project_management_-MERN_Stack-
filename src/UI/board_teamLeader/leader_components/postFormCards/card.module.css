@@ -1,0 +1,22 @@
+.mainDiv{
+    margin-top: 41px;
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-top: 27px;
+        padding-top: 27px;
+        padding-left: 30px;
+        padding-right: 30px;
+    background: #FFFFFF;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    padding-bottom:65px ;
+    
+}
+.cardRow{
+    font-weight: 400;
+        font-size: 30px;
+        line-height: 36px;
+    margin-bottom:42px ;
+        color: #000000;
+}
