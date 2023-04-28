@@ -2,27 +2,19 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { add_project } from "../../../actions/project";
-import Select from "@mui/material/Select";
+
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
+
 import {
-  Button,
-  Grid,
+ 
   MenuItem,
-  Paper,
-  TableRow,
-  TextareaAutosize,
-  TextField,
+
 } from "@mui/material";
 import GetTeamMember from "../projects/GetTeamMember";
-import FileBase64 from "react-file-base64";
-import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
-import AddIcon from "@mui/icons-material/Add";
+
 import projman from "../../../assets/images/image4.png";
-import { red } from "@mui/material/colors";
 import PostCards from "../leader_components/postFormCards/PostCards";
 import AddButton from "../leader_components/postFormComps/AddButton";
 import InputFieldpost from "../leader_components/postFormComps/InputFieldpost";
@@ -48,6 +40,8 @@ const MyPost = () => {
   let userId = content.id;
   console.log(userId);
   const dispatch = useDispatch();
+ const now = new Date();
+const [createdDate, setCreatedDate] = useState(now.toUTCString().slice(0, 17));
 
   const [project_description, setProjectDesc] = useState("");
   const onChangeProjectDesc = (e) => {
@@ -85,6 +79,7 @@ const MyPost = () => {
         ...members,
       ],
       tasks,
+      createdDate,
     };
     e.preventDefault();
     dispatch(add_project(project));

@@ -17,16 +17,18 @@ const Projects = () => {
   const dispatch = useDispatch();
   
   return (
-    <div>
-      {Array.isArray(matchingData) &&
-        matchingData.map((data) => (
-          <div key={data && data.id}> 
-            {data && data.id && ( 
-              <ProjectExcerpt key={data.id} project={data} />
-            )}
-          </div>
-        ))}
-    </div>
+    <div className="row">
+  {Array.isArray(matchingData) &&
+    matchingData.map((data) => (
+      <div key={data && data.id} style={{ width: '33.33%', padding: '10px' }}>
+        {data && data.id && <ProjectExcerpt key={data.id} project={data} />}
+      </div>
+    ))}
+</div>
+
+ 
+    
+
   );
 };
 

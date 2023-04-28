@@ -18,7 +18,7 @@ import { Route, Routes } from 'react-router-dom';
 import MyDashboard from '../../Views/MyDashboard';
 import MyOverview from '../../Views/MyOverview';
 import MyDiscussion from '../../Views/MyDiscussion';
-import MyTask from '../../Views/MyTask';
+import ProjectsList from '../../Views/ProjectsList';
 import TimeTracking from '../../Views/TimeTracking';
 import Scheduling from '../../Views/Scheduling';
 import Reporting from '../../Views/Reporting';
@@ -144,7 +144,7 @@ export default function SideMenu() {
                         <Route path="post" element={<MyPost />} />
                         <Route path="overview" element={<MyOverview />} />
                         <Route exact path="discussion" element={<MyDiscussion />} />
-                        <Route exact path="projects" element={<MyTask />} />
+                        <Route exact path="projects" element={<ProjectsList />} />
                         <Route exact path="timetracking" element={<TimeTracking />} />
                         <Route exact path="scheduling" element={<Scheduling />} />
                         <Route exact path="reporting" element={<Reporting />} />

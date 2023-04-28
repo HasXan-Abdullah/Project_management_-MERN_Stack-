@@ -11,66 +11,72 @@ import { useDispatch } from "react-redux";
 
 import { Link,  } from "react-router-dom";
 import { deleteProject, getProjectById } from "../../../actions/project";
-import SingleProject from "./SingleProject";
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
 const ProjectExcerpt = (data) => {
-   const dispatch =useDispatch();
+    const dispatch =useDispatch();
    let project = data.project;
-console.log(project)
-  return (
-    <div>
-      <div key={project.id}>
-        {/* <Card>
-          <CardContent>
-            <Typography variant="h5" gutterBottom>
-              {project.project_name}
-            </Typography>
-            <div>
-              {project.project_description}
-            </div>
-          </CardContent>
-          <CardActions>
-            <Button
-              size="small"
-              onClick={() => {
-                dispatch(deleteProject(project.id));
-              }}
-            >
-              Delete
-            </Button>
-            <Link to={`/home/update/${project.id}`}>Update</Link>
-            <br></br>
-            <Link to={`/home/view/${project.id}`}>View</Link>
-          </CardActions>
-        </Card> */}
+   let allMembers = [];
 
-        <div style={{
-          backgroundColor:'gray'
-          ,margin:'15px'
-        }}>
-          <div>
-            {project.project_name}
-          </div>
-          <div>
-            {project.project_description}
-          </div>
-          <div>
-            <table>
-              <tr>
-                <td>Created: </td>
-                {/* <td>{project.createdAt}</td> */}
-              </tr>
-              <tr>
-                <td>hello</td>
-                <td>hello</td>
-              </tr>
-              <tr>
-                <td>hello</td>
-                <td>hello</td>
-              </tr>
-            </table>
-          </div>
-        </div>
+// 2023-04-19T15:06:26.687Z
+  if (project?.members) {
+    const membersWithoutLeaders = project.members.filter(member => !member.isLeader);
+    allMembers = allMembers.concat(membersWithoutLeaders);
+  }
+
+    const date = new Date(project.updatedDate);
+
+  const formattedDate = date.toLocaleDateString("en-US", {
+    weekday: "short",
+    year: "numeric",
+    month: "short",
+    day: "numeric"
+  });
+    const [anchorEl, setAnchorEl] = React.useState(null);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+// console.log(project.members.length)
+  return (
+    <div >
+      <div key={project.id}>
+    <Card sx={{ margin: '15px', backgroundColor: '#f2f2f2', borderRadius: '10px', boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.1)' }}>
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          {project.project_name}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {project.project_description}
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ marginTop: '10px' }}>
+          Members: {allMembers.length}
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ marginTop: '10px' }}>
+          Created: {formattedDate}
+        </Typography>
+      </CardContent>
+      <CardActions sx={{ justifyContent: 'flex-end' }}>
+        <Button size="small" onClick={handleClick}>
+          <MoreVertIcon />
+        </Button>
+        <Menu
+          id="simple-menu"
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          <MenuItem onClick={() => { dispatch(deleteProject(project.id)); handleClose(); }}>Delete</MenuItem>
+          <MenuItem component={Link} to={`/home/update/${project.id}`} onClick={handleClose}>Update</MenuItem>
+          <MenuItem component={Link} to={`/home/view/${project.id}`} onClick={handleClose}>View</MenuItem>
+        </Menu>
+      </CardActions>
+    </Card>
       </div>
     </div>
   );

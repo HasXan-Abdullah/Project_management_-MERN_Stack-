@@ -2,7 +2,8 @@ import React from 'react'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SecHeader from "../../Components/SecHeader";
 import Projects from '../projects/Projects';
-const MyTask = () => {
+import PostCards from '../leader_components/postFormCards/PostCards';
+const ProjectsList = () => {
     const theme= createTheme({
         typography:{
           fontFamily:[
@@ -12,17 +13,15 @@ const MyTask = () => {
       });
   return (
     <>
-    
-    
-    <div style={{padding:'10rem', marginLeft:'260px', marginTop:'0%',width:"52.5%",  backgroundColor:'#F3F4F3'}}>
-      <h3>Projects</h3>
-      <div>
-        projects list
-        <Projects/>
-      </div>
-    </div>
+   <PostCards
+   cardtitle= "Projects"
+   content={
+
+  <div> <Projects/></div>
+   }
+   />
     </>
   )
 }
 
-export default MyTask
+export default ProjectsList

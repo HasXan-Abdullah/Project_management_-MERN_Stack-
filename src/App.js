@@ -9,7 +9,7 @@ import Home from "./UI/home/Home";
 
 import MyPost from "./UI/board_teamLeader/Views/MyPost";
 import MyOverview from "./UI/board_teamLeader/Views/MyOverview";
-import MyTask from "./UI/board_teamLeader/Views/MyTask";
+// import MyTask from "./UI/board_teamLeader/Views/MyTask";
 import TimeTracking from "./UI/board_teamLeader/Views/TimeTracking";
 import Scheduling from "./UI/board_teamLeader/Views/Scheduling";
 import Reporting from "./UI/board_teamLeader/Views/Reporting";
@@ -49,7 +49,7 @@ function App() {
               <Route exact path="post" element={<MyPost />} />
               <Route exact path="overview" element={<MyOverview />} />
               <Route exact path="home/discussion" element={<MyDiscussion />} />
-              <Route exact path="task" element={<MyTask />} />
+              {/* <Route exact path="task" element={<MyTask />} /> */}
               <Route exact path="timetracking" element={<TimeTracking />} />
               <Route exact path="scheduling" element={<Scheduling />} />
               <Route exact path="reporting" element={<Reporting />} />
