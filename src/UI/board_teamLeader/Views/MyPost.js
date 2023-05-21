@@ -82,7 +82,17 @@ const [createdDate, setCreatedDate] = useState(now.toUTCString().slice(0, 17));
       createdDate,
     };
     e.preventDefault();
-    dispatch(add_project(project));
+    dispatch(add_project(project))
+        .then(() => {
+          navigate("/home");
+        })
+        .catch((error) => {
+          // Handle the error if the post request fails
+          console.log(error);
+          alert("Failed to add project. Please try again.");
+        });
+    
+    
   };
 
   const handleAddMember = () => {
