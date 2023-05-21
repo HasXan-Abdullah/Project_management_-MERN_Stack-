@@ -14,6 +14,7 @@ import { deleteProject, getProjectById } from "../../../actions/project";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import PostCards from "../leader_components/postFormCards/PostCards";
 
 const ProjectExcerpt = (data) => {
     const dispatch =useDispatch();
@@ -43,41 +44,49 @@ const ProjectExcerpt = (data) => {
   };
 // console.log(project.members.length)
   return (
-    <div >
-      <div key={project.id}>
-    <Card sx={{ margin: '15px', backgroundColor: '#f2f2f2', borderRadius: '10px', boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.1)' }}>
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {project.project_name}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {project.project_description}
-        </Typography>
-        <Typography variant="body2" color="text.secondary" sx={{ marginTop: '10px' }}>
-          Members: {allMembers.length}
-        </Typography>
-        <Typography variant="body2" color="text.secondary" sx={{ marginTop: '10px' }}>
-          Created: {formattedDate}
-        </Typography>
-      </CardContent>
-      <CardActions sx={{ justifyContent: 'flex-end' }}>
-        <Button size="small" onClick={handleClick}>
-          <MoreVertIcon />
-        </Button>
-        <Menu
-          id="simple-menu"
-          anchorEl={anchorEl}
-          keepMounted
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-        >
-          <MenuItem onClick={() => { dispatch(deleteProject(project.id)); handleClose(); }}>Delete</MenuItem>
-          <MenuItem component={Link} to={`/home/update/${project.id}`} onClick={handleClose}>Update</MenuItem>
-          <MenuItem component={Link} to={`/home/view/${project.id}`} onClick={handleClose}>View</MenuItem>
-        </Menu>
-      </CardActions>
-    </Card>
-      </div>
+    <div ><PostCards
+      
+      content={
+        <div key={project.id}>
+      
+        <CardContent>
+          <Typography gutterBottom variant="h5" color="#64c5b1" component="div">
+            {project.project_name}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {project.project_description.slice(0,30)}....
+          </Typography>
+          <Typography variant="body2" color="text.secondary" sx={{ marginTop: '10px' }}>
+            Members: {allMembers.length}
+          </Typography>
+          <Typography variant="body2" color="text.secondary" sx={{ marginTop: '10px' }}>
+            Created: {formattedDate}
+          </Typography>
+        </CardContent>
+        <CardActions sx={{ justifyContent: 'flex-end' }}>
+          <Button  sx={{
+            color:'#64c5b1'
+          }} size="small" onClick={handleClick}>
+            <MoreVertIcon  />
+          </Button>
+          <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+            <MenuItem onClick={() => { dispatch(deleteProject(project.id)); handleClose(); }}>Delete</MenuItem>
+            <MenuItem component={Link} to={`/home/update/${project.id}`} onClick={handleClose}>Update</MenuItem>
+            <MenuItem component={Link} to={`/home/view/${project.id}`} onClick={handleClose}>View</MenuItem>
+          </Menu>
+        </CardActions>
+      
+        </div>
+      }
+      
+      />
+
     </div>
   );
 }

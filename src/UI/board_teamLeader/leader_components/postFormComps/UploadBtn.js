@@ -3,11 +3,12 @@ import styles from './postForm.module.css';
 import uploadBtnIcon from '../../../../assets/images/Vector.png';
 import FileBase64 from 'react-file-base64';
 
-const UploadBtn = ({ onDone,value,label}) => {
+const 
+UploadBtn = ({ onDone,value,label}) => {
   return (
     <div>
 <label className={`${styles.inpLables} mt-4 mb-2`}>{label}</label>
-      <label className={`${styles.uploadBtn} `} htmlFor="actual-btn">
+      <label className={`${styles.uploadBtn} `} >
          <FileBase64 multiple={false}  id="actual-btn" value={value}  type="file" onDone={onDone} />
    
    <div className={`d-flex`}>

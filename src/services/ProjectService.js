@@ -4,7 +4,7 @@ import AuthHeader from './AuthHeader';
 
 
 
-  const API_URL = "http://localhost:3000/v1/projects/";
+  const API_URL = "https://pm-server.vercel.app/v1/projects/";
 ///get projects
 
 const get_projects = () => {

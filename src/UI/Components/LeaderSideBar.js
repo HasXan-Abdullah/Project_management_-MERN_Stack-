@@ -7,36 +7,43 @@ import FlagCircleOutlinedIcon from "@mui/icons-material/FlagCircleOutlined";
 
 import React from "react";
 import SideLink from "../global_components/SideLinks/SideLink";
+import { useSelector } from "react-redux";
 
 const LeaderSideBar = () => {
+  const user = useSelector((state) => state.auth.user);
   return (
+<div>
+
+
+    {user.user.category !== 'member' ? 
+    
     <div>
-      <SideLink
-        title="Dashboard"
-        link="/home"
-        icon_name={<HomeOutlinedIcon />}
-      />
+    <SideLink
+      title="Dashboard"
+      link="/home"
+      icon_name={<HomeOutlinedIcon />}
+    />
 
-      <SideLink
-        title="Post a Project"
-        link="post"
-        icon_name={<AddBoxOutlinedIcon />}
-      />
+    <SideLink
+      title="Post a Project"
+      link="post"
+      icon_name={<AddBoxOutlinedIcon />}
+    />
 
-      <SideLink
-        title="Overview"
-        link="overview"
-        icon_name={<FlagCircleOutlinedIcon/>}
-      />
 
-      <SideLink
-        title="Discussion"
-        link="discussion"
-        icon_name={<AccessTimeOutlinedIcon />}
-      />
 
-      <SideLink title="Projects" link="projects" icon_name={<TaskAltOutlinedIcon />} />
-    </div>
+
+
+    <SideLink title="Projects" link="projects" icon_name={<TaskAltOutlinedIcon />} />
+  </div>
+    : <div>
+    <SideLink
+      title="Dashboard"
+      link="/home"
+      icon_name={<HomeOutlinedIcon />}
+    />
+  </div>}
+   </div>
   );
 };
 

@@ -37,7 +37,7 @@ const LandingNavber = () => {
               </li>
 
               <a className="navbar-brand logo" href="#home"> 
-              <img width="100px" src={perfectlogo} alt="logo" />  
+              <img width="115px" src={perfectlogo} alt="logo" />  
           </a>
 
               <li className="nav-item">

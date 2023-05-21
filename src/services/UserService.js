@@ -4,7 +4,7 @@ import AuthHeader from "./AuthHeader";
 
 
 ///API
-const API_URL = "http://localhost:3000/users/";
+const API_URL = "https://pm-server.vercel.app/users/";
 
 const getPublicContent= ()=>{
     const config =AuthHeader();
@@ -15,7 +15,7 @@ const getPublicContent= ()=>{
 
 const getTeamMembers = () => {
 
-  return axios.get('http://localhost:3000/v1/users/getTeamMember/', {
+  return axios.get('https://pm-server.vercel.app/v1/users/getTeamMember/', {
 
   });
 };

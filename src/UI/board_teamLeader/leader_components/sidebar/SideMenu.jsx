@@ -16,7 +16,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import MyPost from '../../Views/MyPost';
 import { Route, Routes } from 'react-router-dom';
 import MyDashboard from '../../Views/MyDashboard';
-import MyOverview from '../../Views/MyOverview';
+import Todos from '../../Views/Todos';
 import MyDiscussion from '../../Views/MyDiscussion';
 import ProjectsList from '../../Views/ProjectsList';
 import TimeTracking from '../../Views/TimeTracking';
@@ -28,6 +28,8 @@ import { Container } from '@mui/material';
 import Update from '../../Views/Update';
 import SingleProject from '../../projects/SingleProject';
 import Profile from '../../Views/Profile';
+import { useSelector } from 'react-redux';
+import Todo from '../../Views/Todos';
 
 
 const drawerWidth = 240;
@@ -79,8 +81,8 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 export default function SideMenu() {
   
+    const user = useSelector((state) => state.auth.user);
 
-   
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
 
@@ -108,7 +110,8 @@ export default function SideMenu() {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap component="div">
-                       Leader Panel
+                    {user.user.category !== 'leader' ? 'Member' : 'Leader'}
+
                     </Typography>
 <AvatarMenu />
                 </Toolbar>
@@ -138,19 +141,34 @@ export default function SideMenu() {
 
             </Drawer>
             <Main open={open}>
+            <div style={{
+       
+       color:"aqua",width:'fit-content'
+       ,position:'absolute',
+       zIndex:'9',
+       top:'80%'
+       ,left:'80%'
+     }}>
+       <Todo/>
+     </div>
                     <Routes>
-                        <Route index element={<MyDashboard />} />
+                        
+                    {user.user.category !== 'leader' ? null:  <Route index element={<MyDashboard />} />}
+                       
                         <Route path="/home" element={<MyDashboard />} />
                         <Route path="post" element={<MyPost />} />
-                        <Route path="overview" element={<MyOverview />} />
+                        <Route path="overview" element={<Todos />} />
                         <Route exact path="discussion" element={<MyDiscussion />} />
                         <Route exact path="projects" element={<ProjectsList />} />
+                        <Route exact path="todos" element={<Todos />} />
                         <Route exact path="timetracking" element={<TimeTracking />} />
                         <Route exact path="scheduling" element={<Scheduling />} />
                         <Route exact path="reporting" element={<Reporting />} />
                         <Route exact path='update/:id' element={<Update />}/>
                         <Route exact path='view/:id' element={<SingleProject />} />
                         <Route exact path='profile/:id' element={<Profile />} />
+                      
+                        
                     </Routes>
             </Main>
         </Box>    

@@ -20,7 +20,7 @@ const Projects = () => {
     <div className="row">
   {Array.isArray(matchingData) &&
     matchingData.map((data) => (
-      <div key={data && data.id} style={{ width: '33.33%', padding: '10px' }}>
+      <div key={data && data.id} style={{ width: '350px', padding: '10px' }}>
         {data && data.id && <ProjectExcerpt key={data.id} project={data} />}
       </div>
     ))}

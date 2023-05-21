@@ -4,17 +4,10 @@ import React from 'react'
 // import SecHeader from '../Components/SecHeader'
 // import SideBar from '../../Components/SideBar'
 import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
-import MyDashboard from '../Views/MyDashboard'
-import MyPost from '../Views/MyPost'
-import MyOverview from '../Views/MyOverview'
-import MyDiscussion from '../Views/MyDiscussion'
-// import MyTask from '../Views/MyTask'
-import TimeTracking from '../Views/TimeTracking'
-import Scheduling from '../Views/Scheduling'
-import Reporting from '../Views/Reporting'
-// import SideLink from '../../global_components/SideLinks/SideLink'
+
 import SideMenu from '../leader_components/sidebar/SideMenu'
 import { useEffect } from 'react';
+import Todo from '../Views/Todos';
 
 const MainLayout = () => {
    let navigate = useNavigate();
@@ -29,7 +22,8 @@ const MainLayout = () => {
  }, []);
   return (
     <div >
- 
+     
+      
       <SideMenu />
 
     </div>

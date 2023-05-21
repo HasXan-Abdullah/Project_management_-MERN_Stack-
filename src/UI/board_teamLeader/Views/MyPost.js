@@ -53,7 +53,7 @@ const [createdDate, setCreatedDate] = useState(now.toUTCString().slice(0, 17));
     const p_Name = e.target.value;
     setProjectName(p_Name);
   };
-  const [documentFile, setDocumentFile] = useState([]);
+  const [documentFile, setDocumentFile] = useState();
   const [members, setMembers] = useState([
     { email: "", id: "", isLeader: false },
   ]);
@@ -66,7 +66,7 @@ const [createdDate, setCreatedDate] = useState(now.toUTCString().slice(0, 17));
         label: "",
       },
       taskstatus: "",
-      taskinstructionfile: [],
+      taskinstructionfile: "",
     },
   ]);
   const handleSubmit = (e) => {
