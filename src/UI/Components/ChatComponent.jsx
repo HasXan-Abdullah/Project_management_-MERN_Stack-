@@ -16,7 +16,7 @@ const ChatComponent = () => {
       setInputText('');
 
       axios
-        .post('https://pm-server.vercel.app/chat', { prompt: inputText })
+        .post('https://pm-server.vercel.app/v1/chat', { prompt: inputText })
         .then((response) => {
           const botResponse = response.data;
           setMessages([...messages, { text: botResponse, sender: 'bot' }]);
