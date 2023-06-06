@@ -9,6 +9,7 @@ import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import { Link, useParams } from "react-router-dom";
 import { getProjectById } from "../../../actions/project";
 import PostCards from "../leader_components/postFormCards/PostCards";
+import dayjs from "dayjs";
 const SingleProject = () => {
   const params = useParams();
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const SingleProject = () => {
   useEffect(() => {
     dispatch(getProjectById(params.id));
   }, []);
- 
+  const deadLine = dayjs(project.deadline? project.deadline: '').format('ddd, MMM D, YYYY');
   return (
     <>
       <div className="mt-5">
@@ -32,8 +33,8 @@ const SingleProject = () => {
                 ) : (
                   <div>
                     <div className="d-flex justify-content-between">
-                      <div>
-                        <h2>{project.project_name}</h2> 
+                      <div >
+                        <h2 >{project.project_name}</h2> 
                       </div>
 
                       <div>
@@ -55,19 +56,27 @@ const SingleProject = () => {
                       </div>
                     </div>
                     <p>{project.project_description}</p>
-                    <h5>Assigned Task </h5> <br />
+                    <hr></hr>
+                    <div className="row text-center">
+                       <h5>Assigned Task </h5> <br />
+                    </div>
+                   
                     <h6>
                       {project?.tasks?.map((task) => {
                         return (
                           <div>
                             <div className="d-flex justify-content-between">
                               <div>
-                                <h5>{task.givento.label} </h5>
-                                <h6>{task.taskname} <span style={{
+                                <h5><span>{task.taskname} <span style={{
+                                  color:'#64c5b1',
                                   fontSize:'14px'
                                 }}>
                                 ({task.taskstatus})
-                                  </span></h6>
+                                  </span></span>  </h5>
+                                <h6> <strong style={{
+                                  color:'grey'
+
+                                }}>Assigned to: </strong>{task.givento.label}</h6>
                               </div>
                               <div>
 
@@ -87,7 +96,8 @@ const SingleProject = () => {
                               </div>
                             </div>
 
-                            <p><strong>Description</strong> {task.taskdescription}</p>
+                            <p><span className="text-secondary f-bold">Description: </span> {task.taskdescription}</p>
+                            <hr></hr>
                           </div>
                         );
                       })}
@@ -97,6 +107,12 @@ const SingleProject = () => {
                         {" "}
                         <h6>
                           Number of Member : {project?.members?.length}
+                        </h6>{" "}
+                      </div>
+                      <div>
+                        {" "}
+                        <h6>
+                         <strong>Dead Line</strong> : {deadLine}
                         </h6>{" "}
                       </div>
                       <div>

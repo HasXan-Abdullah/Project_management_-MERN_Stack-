@@ -55,7 +55,7 @@ const LeaderSideBar = () => {
          <SideLink
       title="Submissions"
       link="submissions"
-      icon_name={<FolderOpenIcon />}
+      icon_name={<TaskAltOutlinedIcon />}
     />
 
 

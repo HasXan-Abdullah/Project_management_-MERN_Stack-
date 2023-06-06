@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import MyCard from '../DASHBOARD/MyCard'
 
 import Button from '@mui/material/Button';
@@ -10,6 +10,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Typography from '@mui/material/Typography';
 import PostCards from '../leader_components/postFormCards/PostCards';
+import FileDownloadIcon from "@mui/icons-material/FileDownload";
 
 import TextArea from '../leader_components/postFormComps/TextArea';
 
@@ -21,6 +22,8 @@ import { useSelector } from 'react-redux';
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import RevModal from './RevModal';
+import DataChart from '../leader_components/datatable/DataChart';
 
 
 const style = {
@@ -42,32 +45,59 @@ const MemberSubmission = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const { projects, loading } = useSelector((state) => state.project);
+  const [selectedProjectId, setSelectedProjectId] = useState(null);
 
+///// Find the selected project
+const selectedProject = projects.find(project => project.id === selectedProjectId);
 
+// Initialize task status counts
+let active = 0;
+let pending = 0;
+let completed = 0;
+
+// Calculate task status counts for the selected project
+if (selectedProject?.tasks) {
+  selectedProject.tasks.forEach(task => {
+    if (task.taskstatus === 'Active') {
+      active++;
+    } else if (task.taskstatus === 'Pending') {
+      pending++;
+    } else if (task.taskstatus === 'Completed') {
+      completed++;
+    }
+  });
+}
+
+// Create the tasksStatus object with the counts
+const tasksStatus = {
+  active,
+  pending,
+  completed
+};
+
+ 
   const renderProjects = () => {
-    const rows = Math.ceil(projects.length / 3);
+    const rows = Math.ceil(projects.length );
     const projectRows = [];
 
     for (let i = 0; i < rows; i++) {
-      const startIndex = i * 3;
-      const endIndex = startIndex + 3;
+      const startIndex = i * 2;
+      const endIndex = startIndex + 2;
       const rowProjects = projects.slice(startIndex, endIndex);
 
       const row = (
-        <div className='row' key={i}>
+        <div className='row ' key={i}>
           {rowProjects.map((project) => (
-            <div className='col' style={{
-              maxWidth:'477.3px',
-              margin:'10px'
-            }}  key={project.id}>
+
+             <div className='col-6' style={{ maxWidth: '45%', margin: '10px' }} key={project.id}>
+  
               <Accordion>
  
- <AccordionSummary
-   expandIcon={<ExpandMoreIcon sx={{marginLeft:'auto', 
-   fontSize:'3rem',
-   borderRadius:'20px',
-   color:'cadetblue'}}/>}
- >
+              <AccordionSummary
+  expandIcon={<ExpandMoreIcon sx={{ marginLeft: 'auto', fontSize: '3rem', borderRadius: '20px', color: 'cadetblue' }} />}
+  onClick={() => setSelectedProjectId(project.id)}
+>
+
 
    <div className='d-flex align-items-center'>
      
@@ -77,28 +107,42 @@ const MemberSubmission = () => {
    </AccordionSummary>
 
 <AccordionDetails>
-<div className='d-flex justify-content-between p-2'>
-   <div>This is graph</div>
+<div className='d-flex '>
+<div>
+
+
+    {/* Rest of the JSX code */}
+  </div>
+   <div>
+   <DataChart tasksStatus={tasksStatus} />
+   </div>
    
 
-   <div className='border border-light-5 rounded p-3'>
+   <div className='border  border-light-5 text-justify rounded p-3 text-secondary'>
        
-       {project.project_description}
+      <strong>Description :</strong> {project.project_description.slice(0,200)} ....
        
    </div>
 </div>
 <hr/>
 {
 project?.tasks?.map((task) =>{
+
+
+
+  
+  console.log(task)
   return(
-    <div key={task._id}>
+    <div key={task._id} style={{
+      margin:'10px'
+    }}>
 <Accordion>
-    <AccordionSummary expandIcon={<ExpandMoreIcon sx={{marginLeft:'auto', 
+    <AccordionSummary expandIcon={<ExpandMoreIcon sx={{margin:'auto', 
     fontSize:'1.5rem',
     color:'cadetblue'}}/>}>
 
         <div className='d-flex justify-content-between'>
-            <div>{task.taskname}</div>
+            <div className='text-secondary'> <strong>{task.taskname}</strong></div>
 
             {/* <div>Description</div> */}
         </div >
@@ -106,99 +150,44 @@ project?.tasks?.map((task) =>{
     </AccordionSummary>
     <AccordionDetails>
       <div className="border border-light-5 rounded p-3 d-flex flex-column align-items-start" >
-        <div className='mb-2'>{task.taskname}</div>
-        <div className='mb-2'>{task.taskdescription}</div>
-        <div className='mb-2'>Task file</div>
-        <div className='mb-2'>comment:{task.submitcomment} </div>
+        
+        <div className='mb-2 text-secondary'> <strong>Description : </strong>{task.taskdescription.slice(0,180)} .......</div>
+        <div className='mb-2 text-secondary'>
+        
+        {
+                task.submissionfile? (
+                  <div>
+                  <a href={task.submissionfile} style={{
+                    color:'#64c5b1',
+                    cursor:'pointer',
+                    fontSize:'14px'
+                  }} download>
+   <FileDownloadIcon/> Submitted task
+  </a>
+                  </div>
+                  ) : null
+               }
+        </div>
+        <div className='mb-2 text-secondary'><strong>Comment:{task.submitcomment} </strong></div>
         
         
       </div>
       <div className='text-center mt-2'>
-      <Button variant="contained" sx={{backgroundColor:'#83d0c0' , marginTop:'2px'}}  onClick={handleOpen}>Review</Button>
-
-      </div>
+      {/*  */}
+    <RevModal task={task} pid={project.id}/>
+        </div>
       {/* -------------------------------MODAL------------------------- */}
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-            <Box sx={style}>
-              <Typography id="modal-modal-title" variant="h6" component="h2">
-                Task Name
-              </Typography>
-              
-              <p id="modal-modal-description" style={{ marginTop: 2 }}>
-                Task Description
-              </p>
-
-              <p id="modal-modal-description" style={{ marginTop: 2 }}>
-                Comment
-              </p>
-              
-              <div>
-                Task File
-              </div>
-
-              <hr/>
-              <TextArea
-              tasklabel="Comments"
-              placeholder="Write Review!"
-              // value={comment}
-              // onChange={(e) => setComment(e.target.value)}
-              sx={{ mt: 2 }}
-              />
-              {/* -----------------------Radio Buttons--------------------- */}
-                  <div className="col">
-                    <label className='mb-2'>
-                      Task Status
-                    </label>
-                    <RadioGroup
-                      row
-                      aria-labelledby="demo-row-radio-buttons-group-label"
-                      // id={`taskstatus-member-id-${index}`}
-                      name="taskstatus"
-                      value={task.taskstatus}
-                      className='justify-content-center'
-                      
-                      // onChange={(e) => handleTaskChange(index, e)}
-                    >
-                      
-                      <FormControlLabel
-                        value="Active"
-                        control={<Radio />}
-                        label="Active"
-                      
-                      />
-                      <FormControlLabel
-                        value="Pending"
-                        control={<Radio />}
-                        label="Pending"
-                      />
-                      <FormControlLabel
-                        value="Completed"
-                        control={<Radio />}
-                        label="Completed"
-                      />
-                      
-                    </RadioGroup>
-                    </div>
-              <br/>
-
-      <div className='text-center mt-2'>
-      <Button variant="contained" sx={{backgroundColor:'#83d0c0' , marginTop:'2px'}}>Send Review</Button>
-
-      </div>
-            </Box>
-        </Modal>
+     
     </AccordionDetails>
 
 </Accordion>
     </div>
  
   )
+  
 })
+
+
 }
 
 
@@ -214,7 +203,7 @@ project?.tasks?.map((task) =>{
 
     return projectRows;
   };
-console.log(projects)
+
   if (loading) {
     return <div>Loading projects...</div>;
   }

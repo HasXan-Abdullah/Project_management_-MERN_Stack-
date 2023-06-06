@@ -21,6 +21,7 @@ import {
   Divider,
 } from "@mui/material";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
+import dayjs from "dayjs";
 
 const TaskExcerpt = (data) => {
   const navigate = useNavigate();
@@ -40,6 +41,15 @@ const TaskExcerpt = (data) => {
     return text;
   };
 
+  const date = new Date(project.updatedDate);
+  const deadLine = dayjs(project.deadline? project.deadline: '').format('ddd, MMM D, YYYY');
+
+  const formattedDate = date.toLocaleDateString("en-US", {
+    weekday: "short",
+    year: "numeric",
+    month: "short",
+    day: "numeric"
+  });
   return (
     <div ><PostCards
       
@@ -55,35 +65,23 @@ const TaskExcerpt = (data) => {
           {project.project_name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          desc
+        {project.project_description.slice(0,30)} ......
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ marginTop: '10px' }}>
-          Members:
+        Members:  {project.members.length}
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ marginTop: '10px' }}>
-          Created: 
+          Created:  {project.createdDate}
         </Typography>
-       
+        <Typography variant="body2" color="text.secondary" sx={{ marginTop: '10px' }}>
+          Updated At:  {formattedDate}
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ marginTop: '10px' }}>
+          Dead Line:  {deadLine}
+        </Typography>
       </CardContent> 
       </Link>
-      {/* <CardActions sx={{ justifyContent: 'flex-end' }}>
-        <Button  sx={{
-          color:'#64c5b1'
-        }} size="small" onClick={handleClick}>
-          <MoreVertIcon  />
-        </Button>
-        <Menu
-          id="simple-menu"
-          anchorEl={anchorEl}
-          keepMounted
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-        >
-          <MenuItem onClick={() => { dispatch(deleteProject(data.id)); handleClose(); }}>Delete</MenuItem>
-          <MenuItem component={Link} to={`/home/update/${data.id}`} onClick={handleClose}>Update</MenuItem>
-          <MenuItem component={Link} to={`/home/view/${data.id}`} onClick={handleClose}>View</MenuItem>
-        </Menu>
-      </CardActions> */}
+  
     
       </div>
 

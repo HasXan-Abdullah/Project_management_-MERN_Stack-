@@ -32,11 +32,12 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 const SubModal = ({ data, pid}) => {
   let navigate = useNavigate();
   const dispatch = useDispatch();
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+
   const [comment, setComment] = useState();
   const [documentFile, setDocumentFile] = useState();
+   const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false); 
   const [openNoti, setOpenNoti] = useState(false);
   const [openAlert, setOpenAlert] = useState(false);
   const handleFileUpload = ({ base64 }) => {
@@ -65,7 +66,7 @@ const SubModal = ({ data, pid}) => {
 
     };
 console.log(updatedTask)
-    const apiUrl = `http://localhost:4000/v1/projects/${pid}/tasks/${data._id}`;
+    const apiUrl = `https://pm-server.vercel.app/v1/projects/${pid}/tasks/${data._id}`;
 
     axios
       .patch(apiUrl, updatedTask) 

@@ -119,7 +119,7 @@ const Todo = () => {
 
 
 <div >
-      <Button aria-describedby={id} variant="" style={{
+      <Button aria-describedby={id}  style={{
    
          position: 'fixed',
          bottom: '20px',
@@ -150,7 +150,7 @@ const Todo = () => {
           horizontal: 'right',
         }}
       >
-        <Typography sx={{ p: 2 }}>
+        
         <div>
       
         <form className={classes.form}>
@@ -166,15 +166,18 @@ const Todo = () => {
   />
   {editIndex === -1 ? (
     <Button
-      variant="contained"
-      color="primary"
-      onClick={handleAddTodo}
-      startIcon={<AddCircle />}
-      className={classes.addButton}
-      fullWidth
-    >
-      Add Todo
-    </Button>
+  variant="contained" // Update the variant prop to "outlined"
+  style={{
+    color:'white'
+  }}
+  onClick={handleAddTodo}
+  startIcon={<AddCircle />}
+  className={classes.addButton}
+  fullWidth
+>
+  Add Todo
+</Button>
+
   ) : (
     <Button
       variant="contained"
@@ -191,8 +194,8 @@ const Todo = () => {
 
 {todos && todos.length > 0 ? (
   <List>
-    {todos.map((todoItem, index) => (
-      <ListItem key={todoItem ? todoItem.id : ''}>
+   {todos.map((todoItem, index) => (
+  <ListItem key={todoItem.id || index}>
         <ListItemText primary={todoItem ? todoItem.todo : ''} />
         <IconButton aria-label="Edit Todo" onClick={() => handleEditTodo(index)}>
           <Edit />
@@ -204,13 +207,13 @@ const Todo = () => {
     ))}
   </List>
 ) : (
-  <p>No todos available.</p>
+  <div>No todos available.</div>
 )}
 
 </div>
 
 
-        </Typography>
+      
       </Popover>
     </div>
 

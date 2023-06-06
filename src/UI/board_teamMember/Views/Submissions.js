@@ -16,7 +16,7 @@ const Submissions = () => {
     }
   return (
     <div className='mt-5'>
-      <ChatComponent/>
+    
         <PostCards
         cardtitle="Submissions"
         content={<TaskAccordion project={projects}/>}

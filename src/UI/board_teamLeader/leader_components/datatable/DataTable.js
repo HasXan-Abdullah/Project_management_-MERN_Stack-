@@ -56,7 +56,7 @@ export default function StickyHeadTable() {
       return [
         ...acc,
         ...project.tasks.map((task) => {
-          console.log(task.givento.label)
+    
           return createData(project.project_name,task.givento.label, task.taskname, task.taskstatus);
         }) 
       ];
@@ -66,7 +66,7 @@ export default function StickyHeadTable() {
   }, []);
 
   return (
-    <Paper sx={{ width: '50%', overflow: 'hidden' }}>
+    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -83,46 +83,56 @@ export default function StickyHeadTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                
-                return (
-                  
-                  <TableRow hover role="checkbox" tabIndex={-1} key={`${row.name}-${row.task}`}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align} 
-                         style={{
-                    textAlign:'right',
-                
-                 }}
-    >
-                  <div style={{
-                    display:"flex",
-                    justifyContent:'right',
-                width:'fit-content', 
-                padding:'3px',
-                color:column.id === 'status'?'white':'inherit',
-                borderRadius:"5px",   
-                backgroundColor: column.id === 'status' && value === 'Active' ? 'teal' : 
-                 column.id === 'status' && value === 'Completed' ? 'green' :
-                 column.id === 'status' && value === 'Pending' ? 'red' : 'inherit',
-                 
-                 }}>
+          {rows
+  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+  .map((row, index) => {
+    return (
+      <TableRow
+        hover
+        role="checkbox"
+        tabIndex={-1}
+        key={`${row.projectname}-${row.task}-${index}`}
+      >
+        {columns.map((column) => {
+          const value = row[column.id];
+          return (
+            <TableCell
+              key={column.id}
+              align={column.align}
+              style={{
+                textAlign: 'right',
+              }}
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'right',
+                  width: 'fit-content',
+                  padding: '3px',
+                  color:
+                    column.id === 'status' ? 'white' : 'inherit',
+                  borderRadius: '5px',
+                  backgroundColor:
+                    column.id === 'status' && value === 'Active'
+                      ? 'teal'
+                      : column.id === 'status' && value === 'Completed'
+                      ? 'green'
+                      : column.id === 'status' && value === 'Pending'
+                      ? 'orange'
+                      : 'inherit',
+                }}
+              >
+                {column.format && typeof value === 'number'
+                  ? column.format(value)
+                  : value}
+              </div>
+            </TableCell>
+          );
+        })}
+      </TableRow>
+    );
+  })}
 
-                 
-    {column.format && typeof value === 'number'
-        ? column.format(value)
-        : value} 
-        </div>
-</TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
           </TableBody>
         </Table>
       </TableContainer>

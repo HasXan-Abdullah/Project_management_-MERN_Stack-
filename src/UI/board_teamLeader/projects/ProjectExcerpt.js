@@ -15,6 +15,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import PostCards from "../leader_components/postFormCards/PostCards";
+import dayjs from "dayjs";
 
 const ProjectExcerpt = (data) => {
     const dispatch =useDispatch();
@@ -28,6 +29,7 @@ const ProjectExcerpt = (data) => {
   }
 
     const date = new Date(project.updatedDate);
+  const deadLine = dayjs(project.deadline).format('ddd, MMM D, YYYY');
 
   const formattedDate = date.toLocaleDateString("en-US", {
     weekday: "short",
@@ -35,6 +37,7 @@ const ProjectExcerpt = (data) => {
     month: "short",
     day: "numeric"
   });
+ 
     const [anchorEl, setAnchorEl] = React.useState(null);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -61,6 +64,9 @@ const ProjectExcerpt = (data) => {
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ marginTop: '10px' }}>
             Created: {formattedDate}
+          </Typography>
+          <Typography variant="body2" color="text.secondary" sx={{ marginTop: '10px' }}>
+          Dead line: {deadLine}
           </Typography>
         </CardContent>
         <CardActions sx={{ justifyContent: 'flex-end' }}>

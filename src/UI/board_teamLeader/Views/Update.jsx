@@ -123,10 +123,12 @@ const Update = () => {
         // navigate(`/home/view/${params.id}`)
     };
 
-    const handleAddMember = () => {
+    const handleAddMember = (e) => {
+        e.preventDefault();
         setMembers([...members, { email: "", id: "", isLeader: false }]);
     };
-    const handleDeleteMember = (index) => {
+    const handleDeleteMember = (index,e) => {
+        e.preventDefault();
         const list = [...members];
         list.splice(index, 1);
         setMembers(list);
@@ -138,7 +140,8 @@ const Update = () => {
         setMembers(updatedMembers);
     };
     //
-    const handleAddTask = () => {
+    const handleAddTask = (e) => {
+        e.preventDefault();
         setTasks([
             ...tasks,
             {
@@ -153,7 +156,8 @@ const Update = () => {
             },
         ]);
     };
-    const handleDeleteTask = (index) => {
+    const handleDeleteTask = (index,e) => {
+        e.preventDefault();
         const list = [...tasks];
         list.splice(index, 1);
         setTasks(list);
@@ -253,7 +257,7 @@ const Update = () => {
                                 </SelectOp>
                             </div>
                             <div className="col">
-                                <DelBtn onClick={(index) => handleDeleteMember(index)} />
+                                <DelBtn onClick={(e) => handleDeleteMember(index,e)} />
                             </div>
                         </div>
                     ))}
@@ -349,7 +353,7 @@ const Update = () => {
                                     </div>
                                 </div>
                                 <div className="col-sm-1 d-flex justify-content-end">
-                                    <DelBtn onClick={(index) => handleDeleteTask(index)} />
+                                    <DelBtn onClick={(e) => handleDeleteTask(index,e)} />
                                 </div>
                             </div>
                         </div>

@@ -11,6 +11,7 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 import StickyHeadTable from '../leader_components/datatable/DataTable'
 import TaskIcon from '@mui/icons-material/Task';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import DataChart from '../leader_components/datatable/DataChart'
 const MyDashboard = () => {
 
 const projects = ProjectData().projects;
@@ -23,12 +24,38 @@ projects.forEach(project => {
   }
 });
 let allTasks =[];
+///
+let active = 0;
+let pending = 0;
+let completed = 0;
+
+projects.forEach(project => {
+  if (project?.tasks) {
+    project.tasks.forEach(task => {
+      if (task.taskstatus === 'Active') {
+        active++;
+      } else if (task.taskstatus === 'Pending') {
+        pending++;
+      } else if (task.taskstatus === 'Completed') {
+        completed++;
+      }
+    });
+  }
+});
+
+const tasksStatus = {
+  active,
+  pending,
+  completed
+};
+
+// 
 projects.forEach(project => {
   if (project?.tasks) {
     allTasks = allTasks.concat(project.tasks);
   }
 });
-console.log(allTasks)
+
   return (
     <>
       <div
@@ -46,8 +73,18 @@ console.log(allTasks)
      
        </div>
 
- <div className='mt-5'>
-            <StickyHeadTable/>
+       <div className='mt-5'>
+  <div className='row'>
+    <div className=' col'><StickyHeadTable/></div>
+    <div className='col-lg-4 d-flex justify-content-sm-center justify-content-center'>
+      <DataChart tasksStatus={tasksStatus} />
+    </div>
+  </div>
+
+
+           
+
+            
         </div>
 
 

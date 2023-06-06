@@ -34,6 +34,7 @@ import AssignedTask from '../../../board_teamMember/Views/AssignedTask';
 import MemberDashboard from '../../../board_teamMember/Views/MemberDashboard';
 import Submissions from '../../../board_teamMember/Views/Submissions';
 import MemberSubmission from '../../Views/MemberSubmission';
+import ChatComponent from '../../../Components/ChatComponent';
 
 
 const drawerWidth = 240;
@@ -154,6 +155,7 @@ export default function SideMenu() {
        ,left:'80%'
      }}>
        <Todo/>
+       <ChatComponent/>
      </div>
                     <Routes>
                         
@@ -166,6 +168,7 @@ export default function SideMenu() {
                         <Route exact path="discussion" element={<MyDiscussion />} />
                         <Route exact path="projects" element={<ProjectsList />} />
                         <Route exact path="todos" element={<Todos />} />
+                        
                         <Route exact path="timetracking" element={<TimeTracking />} />
                         <Route exact path="scheduling" element={<Scheduling />} />
                         <Route exact path="reporting" element={<Reporting />} />

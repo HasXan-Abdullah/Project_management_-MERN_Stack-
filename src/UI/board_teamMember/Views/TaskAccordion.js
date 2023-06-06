@@ -104,7 +104,9 @@ export default function TaskAccordion(project) {
                                 )}
                               </div>
                             </div>
-                            <p>Description : {task.taskdescription}</p>
+                            <p>Task Description : {task.taskdescription}</p>
+<hr></hr>
+                            <p><strong >Leader Comment: </strong> {task.filereview}</p>
                           </div>
                         </div>
                       );

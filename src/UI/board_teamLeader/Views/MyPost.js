@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { add_project } from "../../../actions/project";
+import dayjs from 'dayjs';
+import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -9,6 +14,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 
 import {
  
+  Button,
   MenuItem,
 
 } from "@mui/material";
@@ -24,6 +30,7 @@ import DelBtn from "../leader_components/postFormComps/DelBtn";
 import TextArea from "../leader_components/postFormComps/TextArea";
 import styles from "../../board_teamLeader/leader_components/postFormComps/postForm.module.css";
 import SubmitBtn from "../leader_components/postFormComps/SubmitBtn";
+import DatePick from "../leader_components/DatePick";
 
 const MyPost = () => {
   let navigate = useNavigate();
@@ -48,6 +55,9 @@ const [createdDate, setCreatedDate] = useState(now.toUTCString().slice(0, 17));
     const p_Desc = e.target.value;
     setProjectDesc(p_Desc);
   };
+  const [value, setValue]= useState(dayjs('2023-06-7'));
+ 
+  console.log(value)
   const [project_name, setProjectName] = useState("");
   const onChangeProjectName = (e) => {
     const p_Name = e.target.value;
@@ -56,6 +66,20 @@ const [createdDate, setCreatedDate] = useState(now.toUTCString().slice(0, 17));
   const [documentFile, setDocumentFile] = useState();
   const handleFileUpload = ({ base64 }) => {
     setDocumentFile(base64);
+  };
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const handleOpenCalendar = () => {
+    setIsOpen(true);
+  };
+
+  const handleCloseCalendar = () => {
+    setIsOpen(false);
+  };
+
+  const handleDateChange = (newValue) => {
+    setValue(newValue);
+    handleCloseCalendar();
   };
 
   const [members, setMembers] = useState([
@@ -83,6 +107,7 @@ const [createdDate, setCreatedDate] = useState(now.toUTCString().slice(0, 17));
         ...members,
       ],
       tasks,
+      deadline:value,
       createdDate,
     };
     e.preventDefault();
@@ -99,10 +124,12 @@ const [createdDate, setCreatedDate] = useState(now.toUTCString().slice(0, 17));
     
   };
 
-  const handleAddMember = () => {
+  const handleAddMember = (e) => {
+    e.preventDefault();
     setMembers([...members, { email: "1212", id: "", isLeader: false }]);
   };
-  const handleDeleteMember = (index) => {
+  const handleDeleteMember = (index,e) => {
+    e.preventDefault();
     const list = [...members];
     list.splice(index, 1);
     setMembers(list);
@@ -114,7 +141,8 @@ const [createdDate, setCreatedDate] = useState(now.toUTCString().slice(0, 17));
     setMembers(updatedMembers);
   };
   //
-  const handleAddTask = () => {
+  const handleAddTask = (e) => {
+    e.preventDefault();
     setTasks([
       ...tasks,
       {
@@ -129,7 +157,8 @@ const [createdDate, setCreatedDate] = useState(now.toUTCString().slice(0, 17));
       },
     ]);
   };
-  const handleDeleteTask = (index) => {
+  const handleDeleteTask = (index,e) => {
+    e.preventDefault();
     const list = [...tasks];
     list.splice(index, 1);
     setTasks(list);
@@ -182,6 +211,25 @@ const [createdDate, setCreatedDate] = useState(now.toUTCString().slice(0, 17));
             label="Project Description" />
             </div>
             <div className="col">
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DemoContainer components={['DateCalendar', 'DateCalendar']}>
+        <DemoItem label=" ">
+          <div><label>DeadLine</label>
+          <Button 
+          style={{ borderColor: "#64c5b1" ,color:'#64c5b1'}}
+           onClick={handleOpenCalendar}> Open Calendar</Button> 
+            {isOpen && (
+              <DateCalendar
+                value={value}
+                onChange={handleDateChange}
+                onClose={handleCloseCalendar}
+              />
+            )}
+          </div>
+        </DemoItem>
+      </DemoContainer>
+    </LocalizationProvider>
+
               <UploadBtn value={documentFile} onDone={handleFileUpload} />
             </div>
             <div className="col ">
@@ -230,7 +278,7 @@ const [createdDate, setCreatedDate] = useState(now.toUTCString().slice(0, 17));
               </SelectOp>
             </div>
             <div className="col">
-              <DelBtn onClick={(index) => handleDeleteMember(index)} />
+              <DelBtn onClick={(e) => handleDeleteMember(index,e)} />
             </div>
           </div>
         ))}
@@ -327,14 +375,14 @@ const [createdDate, setCreatedDate] = useState(now.toUTCString().slice(0, 17));
                 </div>
               </div>
               <div className="col-sm-1 d-flex justify-content-end">
-                <DelBtn onClick={(index) => handleDeleteTask(index)} />
+                <DelBtn onClick={(e) => handleDeleteTask(index,e)} />
               </div>
             </div>
           </div>
         ))}
       />
 
-      <SubmitBtn  type="submit" />
+      <SubmitBtn  onClick={handleSubmit} type="submit" />
       </form>
     </div>
   );
