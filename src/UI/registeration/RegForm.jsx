@@ -103,7 +103,7 @@ const Regform = () => {
     setProfilepic(base64);
   };
 
-
+console.log(profilepic) 
   const handleRegister = (e) => {
     e.preventDefault();
     console.log(category)
@@ -351,9 +351,9 @@ const Regform = () => {
       </div>
 
         </Paper>
-    </Grid>
+        </Grid>
             <Grid item xs={8} className="imgSection" >
-   <img  width="80%" src={profilepic} alt="" className="bgimg"/>
+   <img  width="80%" src={profilepic} alt="profile pic" className="bgimg"/>
     </Grid>
             
   </Grid>

@@ -4,7 +4,7 @@ const TextArea = (props) => {
   return (
     <div>
         
-        <label className={`${styles.inpLables} mt-4 mb-2`}>Task Description</label>
+        <label className={`${styles.inpLables} mt-4 mb-2`} >{props.tasklable}</label>
            <textarea {...props} className={`${styles.textArea}`}></textarea>
     </div>
   )

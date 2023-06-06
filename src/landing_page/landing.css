@@ -51,6 +51,7 @@ border: 1px solid #83d0c0;
 .paraText{
     margin:20px;
     font-size: 20px;
+    text-align: justify;
 }
 .managerPic{
     margin-left: 20px;

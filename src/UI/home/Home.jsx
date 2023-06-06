@@ -88,23 +88,18 @@ const Home = () => {
     return (
      
       
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '100vh',
-          color:'#64c5b1'
-        }}
-      >
-        <CircularProgress />
-         <br/>
-         <div className='text-center d-block'>
-         Be patient loading your work ....
-      </div>
-      
-      
-      </div>  
+      <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
+  <div className="text-center">
+    <CircularProgress style={{ color: '#64c5b1' }} />
+    <br />
+    <div className="mt-3">
+      Be patient<br />
+      Loading your<br />
+      work....
+    </div>
+  </div>
+</div>
+
     );
   }
 
@@ -121,8 +116,8 @@ const Home = () => {
       {/* Your Home component content */}
       {content && (
         <div>
-          <h1>Welcome, {content.username}!</h1>
-          <button onClick={handleLogout}>Logout</button>
+          {/* <h1>Welcome, {content.username}!</h1>
+          <button onClick={handleLogout}>Logout</button> */}
         </div>
       )}
     </div>

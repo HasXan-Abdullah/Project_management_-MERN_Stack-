@@ -4,7 +4,7 @@ import { Link, Navigate, useNavigate  } from 'react-router-dom';
 import { logout } from '../../actions/auth';
 
 import axios from "axios";
-import AssignedTask from "./AssignedTask";
+import AssignedTask from "./Views/AssignedTask";
 import { Button } from "@mui/material";
 import ProjectList from "../board_teamLeader/projects/ProjectList";
 import ProjectData from "../board_teamLeader/projects/ProjectData";
@@ -28,15 +28,21 @@ const BoardMember = () => {
     console.log(user.user.id);
   }, [user]);
 
-  
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    } else {
+      dispatch(getProjects());
+    }
+  }, [dispatch, navigate, user]);
   // const [project, setProject] = useState([]);
   return (
     <>
-      <div className="container mt-4 mt-5">
+      <div className="mt-4 mt-5">
 
       <SideMenu/>
   
-        <AssignedTask />
+        
               
       </div>
     </>

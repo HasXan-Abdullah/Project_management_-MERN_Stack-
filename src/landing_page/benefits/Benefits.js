@@ -29,26 +29,26 @@ const Benefits = () => {
       <div className="ben-div">
           <div className="one-row">
             <div className="one-col">
-                  <FlagOutlinedIcon sx={{fontSize:'3rem', color:'#83d0c0'}}/>
+                  <FlagOutlinedIcon sx={{fontSize:'3rem', color:'#83d0c0', marginBottom:'25px'}}/>
                   <h5>Goal Oriented</h5>
                   <p>Keep work and goals organized in one place.<br/>Be able to easily plan projects while taking <br/>previous track record into account.</p>
             </div>
 
             <div className="one-col">
-                  <ManageHistoryIcon sx={{fontSize:'3rem', color:'#83d0c0'}}/>
+                  <ManageHistoryIcon sx={{fontSize:'3rem', color:'#83d0c0', marginBottom:'25px'}}/>
                   <h5>Efficieny</h5>
                   <p>Eliminate confusion and increase efficiency.<br/>Be able to easily register time on work items <br/>and take people's work schedule into account.</p>
             </div>
           </div>
           <div className="one-row">
             <div className="one-col">
-                  <ConstructionIcon sx={{fontSize:'3rem', color:'#83d0c0'}}/>
+                  <ConstructionIcon sx={{fontSize:'3rem', color:'#83d0c0', marginBottom:'25px'}}/>
                   <h5>Team Effectiveness</h5>
                   <p>people are working on the right things at the<br/> right time. Easily document requirements, <br/>specs, directly or via files.</p>
             </div>
 
             <div className="one-col">
-                  <AlignHorizontalLeftIcon sx={{fontSize:'3rem', color:'#83d0c0'}}/>
+                  <AlignHorizontalLeftIcon sx={{fontSize:'3rem', color:'#83d0c0', marginBottom:'25px'}}/>
                   <h5>Team Align</h5>
                   <p>Easily post comments and concerns and easily <br/>communicate with external stakeholders.</p>
             </div>

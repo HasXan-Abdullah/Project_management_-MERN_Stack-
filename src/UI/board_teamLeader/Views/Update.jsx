@@ -70,9 +70,12 @@ const Update = () => {
         {
             taskname: "",
             taskdescription: "",
-            givento: "",
+            givento: {
+                value: "",
+                label: "",
+              },
             taskstatus: "",
-            taskinstructionfile: [],
+            taskinstructionfile: "",
         },
     ]);
     useEffect(() => {
@@ -84,7 +87,10 @@ const Update = () => {
                 {
                     taskname: "",
                     taskdescription: "",
-                    givento: "",
+                    givento: {
+                        value: "",
+                        label: "",
+                      },
                     taskstatus: "",
                     taskinstructionfile: [],
                 },
@@ -114,7 +120,7 @@ const Update = () => {
 
 
         dispatch(updateProject(params.id, project));
-        navigate(`/home/view/${params.id}`)
+        // navigate(`/home/view/${params.id}`)
     };
 
     const handleAddMember = () => {
@@ -138,9 +144,12 @@ const Update = () => {
             {
                 taskname: "",
                 taskdescription: "",
-                givento: "",
+                givento: {
+                    value: "",
+                    label: "",
+                  },
                 taskstatus: "",
-                taskinstructionfile: [],
+                taskinstructionfile: "",
             },
         ]);
     };
@@ -149,234 +158,34 @@ const Update = () => {
         list.splice(index, 1);
         setTasks(list);
     };
-
     const handleTaskChange = (index, e, data) => {
         const { name, value } = e.target || data;
         const updatedTasks = [...tasks];
-        updatedTasks[index][name] = value;
+        const task = { ...updatedTasks[index] };
+    
+        if (name === `tasks[${index}].givento.value`) {
+            const selectedOption = mem.find((member) => member.id === value);
+            task.givento.label = selectedOption ? selectedOption.name : "";
+            task.givento.value = selectedOption ? selectedOption.id : "";
+        } else if (name === `tasks[${index}].taskinstructionfile`) {
+            task.taskinstructionfile = value || ""; // Assign value directly
+        } else {
+            task[name] = value;
+        }
+    
+        updatedTasks[index] = task;
         setTasks(updatedTasks);
     };
+    
+
+      
+      
+      
     const handleFileUpload = ({ base64 }) => {
         setDocumentFile(base64);
     };
     return (
-        // <div className="mt-5">
-        //     <form onSubmit={handleSubmit}>
-        //         <div>
-        //             <h3>Project info</h3>
-
-        //             <TextField
-        //                 label="Project Name"
-        //                 id="p_name"
-        //                 name="p_name"
-        //                 value={project_name}
-        //                 onChange={onChangeProjectName}
-        //                 variant="outlined"
-        //                 size="small"
-        //                 sx={{ color: "#64c5b1" }}
-        //             />
-
-        //             <TextField
-        //                 id="p_desc"
-        //                 name="p_desc"
-        //                 value={project_description}
-        //                 onChange={onChangeProjectDesc}
-        //                 label="Project description"
-        //                 variant="outlined"
-        //                 size="small"
-        //             />
-        //         </div>
-        //         <div>
-        //             <div className="input-file">
-        //                 <label htmlFor="documentFile">Document File: </label>
-        //                 <FileBase64
-        //                     value={documentFile}
-        //                     type="file"
-        //                     multiple={false}
-        //                     onDone={({ base64 }) => setDocumentFile({ documentFile: base64 })}
-        //                 /></div>
-        //         </div>
-        //         <hr />
-
-        //         {/* ------------------------- */}
-
-        //         <div>
-        //             <h3>Members</h3>
-        //             {members.map((member, index) => (
-        //                 <div key={index}>
-        //                     <label htmlFor={`member-email-${index}`}>Email</label>
-
-        //                     <Select
-        //                         sx={{ marginRight: "35px" }}
-        //                         type="email"
-        //                         id={`member-email-${index}`}
-        //                         name="email"
-        //                         value={member.email}
-        //                         onChange={(e) => handleMemberChange(index, e)}
-        //                     >
-        //                         <MenuItem value="">
-        //                             <em>none</em>
-        //                         </MenuItem>
-        //                         {Array.isArray(mem) &&
-        //                             mem.map((data) => (
-        //                                 <MenuItem key={data.id} value={data.email}>
-        //                                     {data.email}
-        //                                 </MenuItem>
-        //                             ))}
-        //                     </Select>
-        //                     <label htmlFor={`member-id-${index}`}>ID</label>
-        //                     <Select
-        //                         type="text"
-        //                         id={`member-id-${index}`}
-        //                         name="id"
-        //                         value={member.id}
-        //                         onChange={(e) => handleMemberChange(index, e)}
-        //                     >
-        //                         <MenuItem value="">
-        //                             <em>None</em>
-        //                         </MenuItem>
-        //                         {Array.isArray(mem) &&
-        //                             mem.map((data) => (
-        //                                 <MenuItem key={data.id} value={data.id}>
-        //                                     {data.name}
-        //                                 </MenuItem>
-        //                             ))}
-        //                     </Select>
-        //                 </div>
-        //             ))}
-        //             <Button
-        //                 type="button"
-        //                 onClick={handleAddMember}
-        //                 variant="contained"
-        //                 sx={{ backgroundColor: "#64c5b1" }}
-        //             >
-        //                 Add Member
-        //             </Button>
-        //             <Button
-        //                 type="button"
-        //                 onClick={(index) => handleDeleteMember(index)}
-        //                 variant="contained"
-        //                 sx={{ backgroundColor: "#64c5b1" }}
-        //             >
-        //                 Delete Member
-        //             </Button>
-        //         </div>
-
-        //         {/*  */}
-        //         <hr />
-
-        //         <div>
-        //             <h3>tasks</h3>
-        //             {tasks.map((task, index) => (
-        //                 <div key={index}>
-
-        //                     <TextField
-        //                         type="text"
-        //                         id={`task-name-${index}`}
-        //                         name="taskname"
-        //                         value={task.taskname}
-        //                         onChange={(e) => handleTaskChange(index, e)}
-        //                         label="Task name"
-        //                         variant="outlined"
-        //                         size="small"
-        //                     />
-
-        //                     <Select
-        //                         placeholder="member name"
-        //                         type="text"
-        //                         id={`givento-member-id-${index}`}
-        //                         name="givento"
-        //                         value={task.givento}
-        //                         onChange={(e) => handleTaskChange(index, e)}
-        //                         variant="outlined"
-        //                         size="small"
-        //                     >
-        //                         <MenuItem value="">
-        //                             <em>None</em>
-        //                         </MenuItem>
-        //                         {Array.isArray(mem) &&
-        //                             mem.map((data) => (
-        //                                 <MenuItem key={data.id} value={data.id}>
-        //                                     {data.name}
-        //                                 </MenuItem>
-        //                             ))}
-        //                     </Select>
-
-        //                     <TextField
-        //                         type="text"
-        //                         id={`taskdescription-member-id-${index}`}
-        //                         name="taskdescription"
-        //                         value={task.taskdescription}
-        //                         onChange={(e) => handleTaskChange(index, e)}
-        //                         label="Task description"
-        //                         variant="outlined"
-        //                         size="small"
-        //                     />
-
-        //                     <TextField
-        //                         type="text"
-        //                         id={`taskstatus-member-id-${index}`}
-        //                         name="taskstatus"
-        //                         value={task.taskstatus}
-        //                         onChange={(e) => handleTaskChange(index, e)}
-        //                         label="Task Status"
-        //                         variant="outlined"
-        //                         size="small"
-        //                     />
-        //                     <div className="input-file">
-        //                         <FileBase64
-
-        //                             id={`taskinstructionfile-member-id-${index}`}
-        //                             name="taskinstructionfile"
-        //                             value={task.taskinstructionfile}
-        //                             type="file"
-        //                             multiple={false}
-        //                             onDone={({ base64 }) =>
-        //                                 handleTaskChange(index, {
-        //                                     target: {
-        //                                         name: "taskinstructionfile",
-        //                                         value: base64,
-        //                                     },
-        //                                 })
-        //                             }
-        //                         />
-        //                     </div>
-        //                 </div>
-        //             ))}
-
-        //             <Button
-        //                 type="button"
-        //                 onClick={handleAddTask}
-        //                 variant="contained"
-        //                 sx={{ backgroundColor: "#64c5b1" }}
-        //             >
-        //                 Add Task
-        //             </Button>
-        //             <Button
-        //                 type="button"
-        //                 onClick={(index) => handleDeleteTask(index)}
-        //                 variant="contained"
-        //                 sx={{ backgroundColor: "#64c5b1", marginLeft: "10px" }}
-        //             >
-        //                 Delete Task
-        //             </Button>
-        //         </div>
-        //         {/*  */}
-
-        //         <Button
-        //             type="submit"
-        //             variant="contained"
-        //             sx={{
-        //                 backgroundColor: "#64c5b1",
-
-        //                 marginTop: "15px",
-        //             }}
-        //         >
-        //             Submit
-        //         </Button>
-                
-        //     </form>
-        // </div>
+       
 
         <div className="mt-5">
             <form onSubmit={handleSubmit}>
@@ -472,26 +281,26 @@ const Update = () => {
                                 <div className="col-7 mt-4" style={{ marginLeft: "" }}>
                                     <div className="row">
                                         <div className="col">
-                                            <SelectOp
-                                                label="Assign to"
-                                                sx={{ width: "250px" }}
-                                                placeholder="member name"
-                                                id={`givento-member-id-${index}`}
-                                                name={`tasks[${index}].givento.value`}
-                                                value={task.givento.value}
-                                                onChange={(e) => handleTaskChange(index, e)}
-                                                variant="outlined"
-                                            >
-                                                <MenuItem value="">
-                                                    <em>None</em>
-                                                </MenuItem>
-                                                {Array.isArray(mem) &&
-                                                    mem.map((data) => (
-                                                        <MenuItem key={data.id} value={data.id}>
-                                                            {data.name}
-                                                        </MenuItem>
-                                                    ))}
-                                            </SelectOp>
+                                        <SelectOp
+                      label="Assign to"
+                      sx={{ width: "250px" }}
+                      placeholder="member name"
+                      id={`givento-member-id-${index}`}
+                      name={`tasks[${index}].givento.value`}
+                      value={task.givento.value}
+                      onChange={(e) => handleTaskChange(index, e)}
+                      variant="outlined"
+                    >
+                      <MenuItem value="">
+                        <em>None</em>
+                      </MenuItem>
+                      {Array.isArray(mem) &&
+                        mem.map((data) => (
+                          <MenuItem key={data.id} value={data.id}>
+                            {data.name}
+                          </MenuItem>
+                        ))}
+                    </SelectOp>
                                         </div>
 
                                         <div className="col">

@@ -54,6 +54,10 @@ const [createdDate, setCreatedDate] = useState(now.toUTCString().slice(0, 17));
     setProjectName(p_Name);
   };
   const [documentFile, setDocumentFile] = useState();
+  const handleFileUpload = ({ base64 }) => {
+    setDocumentFile(base64);
+  };
+
   const [members, setMembers] = useState([
     { email: "", id: "", isLeader: false },
   ]);
@@ -121,7 +125,7 @@ const [createdDate, setCreatedDate] = useState(now.toUTCString().slice(0, 17));
           value: "",
           label: "",
         },
-        taskinstructionfile: [],
+        taskinstructionfile: "",
       },
     ]);
   };
@@ -141,25 +145,24 @@ const [createdDate, setCreatedDate] = useState(now.toUTCString().slice(0, 17));
   const handleTaskChange = (index, e, data) => {
     const { name, value } = e.target || data;
     const updatedTasks = [...tasks];
-    updatedTasks[index][name] = value;
-    setTasks(updatedTasks);
+    const task = { ...updatedTasks[index] };
 
     if (name === `tasks[${index}].givento.value`) {
-      const selectedOption = mem.find((member) => member.id === value);
-      updatedTasks[index].givento.label = selectedOption
-        ? selectedOption.name
-        : "";
-      updatedTasks[index].givento.value = selectedOption
-        ? selectedOption.id
-        : "";
+        const selectedOption = mem.find((member) => member.id === value);
+        task.givento.label = selectedOption ? selectedOption.name : "";
+        task.givento.value = selectedOption ? selectedOption.id : "";
+    } else if (name === `tasks[${index}].taskinstructionfile`) {
+        task.taskinstructionfile = value || ""; // Assign value directly
+    } else {
+        task[name] = value;
     }
-    return setTasks(updatedTasks);
-  };
 
-  const handleFileUpload = ({ base64 }) => {
-    setDocumentFile(base64);
-  };
+    updatedTasks[index] = task;
+    setTasks(updatedTasks);
+};
 
+
+ 
   return (
     <div className="mt-5">
        <form onSubmit={handleSubmit}>
@@ -246,6 +249,7 @@ const [createdDate, setCreatedDate] = useState(now.toUTCString().slice(0, 17));
                 onChange={(e) => handleTaskChange(index, e)}/>
 
                 <TextArea    type="text"
+                placeholder="Task Description"
                 id={`taskdescription-member-id-${index}`}
                 name="taskdescription"
                 value={task.taskdescription}
@@ -307,7 +311,7 @@ const [createdDate, setCreatedDate] = useState(now.toUTCString().slice(0, 17));
                     </RadioGroup>
                   </div>
                 </div>
-                <div>
+                <div style={{width:'480px'}}>
                   <UploadBtn  id={`taskinstructionfile-member-id-${index}`}
                   name="taskinstructionfile"
                   value={task.taskinstructionfile}

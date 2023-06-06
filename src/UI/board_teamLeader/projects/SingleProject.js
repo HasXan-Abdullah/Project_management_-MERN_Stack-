@@ -62,6 +62,7 @@ const SingleProject = () => {
                           <div>
                             <div className="d-flex justify-content-between">
                               <div>
+                                <h5>{task.givento.label} </h5>
                                 <h6>{task.taskname} <span style={{
                                   fontSize:'14px'
                                 }}>
@@ -86,7 +87,7 @@ const SingleProject = () => {
                               </div>
                             </div>
 
-                            <p>{task.taskdescription}</p>
+                            <p><strong>Description</strong> {task.taskdescription}</p>
                           </div>
                         );
                       })}

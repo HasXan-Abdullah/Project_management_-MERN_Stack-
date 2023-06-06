@@ -30,6 +30,10 @@ import SingleProject from '../../projects/SingleProject';
 import Profile from '../../Views/Profile';
 import { useSelector } from 'react-redux';
 import Todo from '../../Views/Todos';
+import AssignedTask from '../../../board_teamMember/Views/AssignedTask';
+import MemberDashboard from '../../../board_teamMember/Views/MemberDashboard';
+import Submissions from '../../../board_teamMember/Views/Submissions';
+import MemberSubmission from '../../Views/MemberSubmission';
 
 
 const drawerWidth = 240;
@@ -153,9 +157,10 @@ export default function SideMenu() {
      </div>
                     <Routes>
                         
-                    {user.user.category !== 'leader' ? null:  <Route index element={<MyDashboard />} />}
-                       
+                    {user.user.category !== 'leader' ? <Route index element={<MemberDashboard />} />:  <Route index element={<MyDashboard />} />}
+                    {user.user.category == 'leader' ? null:  <Route path='projects' element={<AssignedTask />} />}
                         <Route path="/home" element={<MyDashboard />} />
+                        <Route path='submissions' element={<Submissions/>}/>
                         <Route path="post" element={<MyPost />} />
                         <Route path="overview" element={<Todos />} />
                         <Route exact path="discussion" element={<MyDiscussion />} />
@@ -167,6 +172,9 @@ export default function SideMenu() {
                         <Route exact path='update/:id' element={<Update />}/>
                         <Route exact path='view/:id' element={<SingleProject />} />
                         <Route exact path='profile/:id' element={<Profile />} />
+
+
+                        <Route exact path='membersubmission' element={<MemberSubmission/>} />
                       
                         
                     </Routes>
