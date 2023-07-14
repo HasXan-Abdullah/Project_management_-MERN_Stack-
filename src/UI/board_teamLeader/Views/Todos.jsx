@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 const Todo = () => { 
   const user = useSelector((state) => state.auth.user);
   const [todo, setTodo] = useState('');
-  const [user_id,setUser_id] = useState(user.user.id)
+  const [user_id, setUser_id] = useState(user?.user?.id || '');
   const [editIndex, setEditIndex] = useState(-1);
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -60,9 +60,8 @@ const Todo = () => {
 
 
 
-
   useEffect(() => {
-    if (!user) {
+    if (!user || !user.user) {
       navigate('/login');
     } else {
       dispatch(getTodos());
@@ -195,7 +194,7 @@ const Todo = () => {
 {todos && todos.length > 0 ? (
   <List>
    {todos.map((todoItem, index) => (
-  <ListItem key={todoItem.id || index}>
+  <ListItem key={todoItem?.id || index}>
         <ListItemText primary={todoItem ? todoItem.todo : ''} />
         <IconButton aria-label="Edit Todo" onClick={() => handleEditTodo(index)}>
           <Edit />

@@ -353,7 +353,10 @@ console.log(profilepic)
         </Paper>
         </Grid>
             <Grid item xs={8} className="imgSection" >
-   <img  width="80%" src={profilepic} alt="profile pic" className="bgimg"/>
+            {
+  profilepic && <img width="300px" height='300px' src={profilepic} className="bgimg" />
+}
+
     </Grid>
             
   </Grid>
